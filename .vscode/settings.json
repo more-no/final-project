@@ -8,5 +8,6 @@
     "postcss",
     "javascript",
     "typescriptreact"
-  ]
+  ],
+  "cSpell.words": ["dompurify", "tailwindcss", "upleveled"]
 }
