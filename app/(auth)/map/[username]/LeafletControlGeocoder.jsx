@@ -12,7 +12,7 @@ export default function LeafletControlGeocoder() {
 
   useEffect(() => {
     let geocoder = L.Control.Geocoder.nominatim();
-    // eslint-disable-next-line no-restricted-globals
+    // eslint-disable-next-line no-restricted-global
     if (typeof URLSearchParams !== 'undefined' && location.search) {
       // parse /?geocoder=nominatim from URL
       // eslint-disable-next-line no-restricted-globals
