@@ -6,6 +6,6 @@ export function generateMetadata() {
   };
 }
 
-export default function HowItWorks() {
+export default function How() {
   return <div>How it works...</div>;
 }

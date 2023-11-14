@@ -4,7 +4,7 @@ import { SearchHost } from '../../../../migrations/00001-createTableHostsInforma
 
 export type SearchResponseBodyGet =
   | {
-      host: SearchHost;
+      host: SearchHost[];
     }
   | {
       errors: { message: string }[];

@@ -144,6 +144,7 @@ export const searchHosts = cache(async (city: string) => {
       users.email,
       users.country,
       users.city,
+      users.picture_url,
       TO_CHAR (
         users.date_registration,
         'YYYY-MM'

@@ -7,9 +7,9 @@ export default function FooterLogged() {
       <nav>
         <header className="footer-title">Help us</header>
         <fieldset className="form-control">
-          <label className="label">
+          <div className="label">
             <span className="label-text">Sustain the project!</span>
-          </label>
+          </div>
           <div className="relative">
             <button className="btn btn-sm btn-accent top-0 right-0 rounded">
               Donate

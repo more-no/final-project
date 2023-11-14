@@ -35,7 +35,7 @@ export default function Header() {
                 <Link href="/about">About the Project</Link>
               </li>
               <li>
-                <Link href="/howitworks">How it works</Link>
+                <Link href="/how">How it works</Link>
               </li>
               <li>
                 <Link href="/communities">My Communities</Link>
@@ -52,7 +52,7 @@ export default function Header() {
               <Link href="/about">About the Project</Link>
             </li>
             <li>
-              <Link href="/howitworks">How it works</Link>
+              <Link href="/how">How it works</Link>
             </li>
             <li>
               <Link href="/communities">My Communities</Link>

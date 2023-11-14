@@ -7,7 +7,7 @@ export function generateMetadata() {
 export default function UserCommunities() {
   return (
     <div>
-      <h2>User's Communities Page</h2>
+      <h2>Communities' Page</h2>
     </div>
   );
 }

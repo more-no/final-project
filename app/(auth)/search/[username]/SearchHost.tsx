@@ -13,7 +13,6 @@ import { SearchHost } from '../../../../migrations/00001-createTableHostsInforma
 export default function SearchHosts() {
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [city, setCity] = useState('');
-  // const [cityHosts, setCityHosts] = useState(UserCity[]);
   const [cityHosts, setCityHosts] = useState<SearchHost[]>([]);
 
   const router = useRouter();
@@ -35,7 +34,6 @@ export default function SearchHosts() {
       setErrors(data.errors);
       return;
     }
-    // console.log(errors);
 
     console.log('Hosts Data: ', data.host);
 
@@ -43,51 +41,62 @@ export default function SearchHosts() {
 
     setCityHosts(hostsArray);
 
-    // revalidatePath() throws unnecessary error, will be used when stable
-    // revalidatePath('/(auth)/register', 'page');
     router.refresh();
   }
 
   return (
-    <div className="flex-col">
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-          await handleSearch(city);
-        }}
-      >
-        <div className="form-control">
-          <div className="join">
-            <input
-              name="City"
-              value={city}
-              className="input input-bordered join-item"
-              placeholder="Where are you going?"
-              onChange={(event) => {
-                setCity(event.currentTarget.value);
-              }}
-            />
-            <button className="btn btn-active btn-ghost join-item rounded-r-full">
-              Search
-            </button>
+    <div className="flex-row">
+      <div>
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+            await handleSearch(city);
+          }}
+        >
+          <div className="form-control">
+            <div className="join">
+              <input
+                name="City"
+                value={city}
+                className="input input-bordered join-item"
+                placeholder="Where are you going?"
+                onChange={(event) => {
+                  setCity(event.currentTarget.value);
+                }}
+              />
+              <button className="btn btn-active btn-ghost join-item rounded-r-full">
+                Search
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
-      <br />
+        </form>
+        <br />
+      </div>
       <div>
         {cityHosts.length > 0 ? (
           cityHosts.map((host: SearchHost) => (
-            <div key={`card-div-${host.id}`}>
-              <div> Email: {host.email} </div>
-              <div> Username: {host.username} </div>
-              <div>
-                Living in: {host.city}, {host.country}
+            <div className="pb-8" key={`card-div-${host.id}`}>
+              <div className="card card-side bg-base-100 shadow-xl">
+                <figure>
+                  <img src={host.pictureUrl} alt="Thumbnail" />
+                </figure>
+                <div className="card-body">
+                  <h1 className="card-title">{host.username} is available!</h1>
+                  <span> Member since: {host.dateString} </span>
+                  <span>
+                    {' '}
+                    Living in: {host.city}, {host.country}{' '}
+                  </span>
+                  <span> Last-minute requests: {`${host.lastMinute}`} </span>
+                  <span> Open to Meet: {`${host.openToMeet}`} </span>
+                  <div className="card-actions justify-end pt-6">
+                    <a className="btn btn-ghost" href={`mailto:${host.email}`}>
+                      {' '}
+                      Contact
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div> Member since: {host.dateString} </div>
-              <div> Available: {`${host.available}`} </div>
-              <div> Last-minute requests: {`${host.lastMinute}`} </div>
-              <div> Open to Meet: {`${host.openToMeet}`} </div>
-              <br />
             </div>
           ))
         ) : (

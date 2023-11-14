@@ -9,7 +9,7 @@ export type Props = {
 };
 
 setConfig({
-  cloudName: 'detgpj4yy',
+  cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
 });
 
 export default function UploadPicture(props: Props) {
@@ -87,11 +87,11 @@ export default function UploadPicture(props: Props) {
           <input type="file" name="file" />
         </p>
 
-        <img src={imageSrc} />
+        {/* <img src={imageSrc} /> */}
 
         {imageSrc && !uploadData && (
           <p>
-            <button>Upload Files</button>
+            <button className="btn btn-active btn-neutral">Upload Files</button>
           </p>
         )}
 

@@ -20,6 +20,7 @@ export type SearchHost = {
   email: string;
   country: string;
   city: string;
+  pictureUrl: string;
   dateString: string;
   available: boolean;
   lastMinute: boolean;
