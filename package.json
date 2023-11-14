@@ -20,7 +20,6 @@
     "leaflet-control-geocoder": "^2.4.0",
     "ley": "^0.8.1",
     "next": "13.5.5",
-    "next-cloudinary": "^5.5.0",
     "next-themes": "^0.2.1",
     "postgres": "^3.4.3",
     "react": "^18.2.0",

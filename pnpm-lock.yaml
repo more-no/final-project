@@ -35,9 +35,6 @@ dependencies:
   next:
     specifier: 13.5.5
     version: 13.5.5(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
-  next-cloudinary:
-    specifier: ^5.5.0
-    version: 5.5.0(next@13.5.5)(react@18.2.0)
   next-themes:
     specifier: ^0.2.1
     version: 0.2.1(next@13.5.5)(react-dom@18.2.0)(react@18.2.0)
@@ -512,29 +509,6 @@ packages:
     resolution: {integrity: sha512-WBhOZ+wz93G/vsqkfmIBsPYf7FH4i5ZKN3QYlUfg9Ni5A2E09CCfsNG6RUuGeLjDPaFXFbta1rkNf3+2hFlavQ==}
     dependencies:
       snake-case: 3.0.4
-    dev: false
-
-  /@cloudinary-util/url-loader@3.15.0:
-    resolution: {integrity: sha512-1Xq/woN0cngKY9e1EBgClomkOSmEy+yriBYqy5FUelxc0bCCZXNTMpkhssdUVnMXJbm8TIOBmqgVfqH5u0/DtQ==}
-    dependencies:
-      '@cloudinary-util/util': 2.3.0
-      '@cloudinary/url-gen': 1.12.1
-    dev: false
-
-  /@cloudinary-util/util@2.3.0:
-    resolution: {integrity: sha512-0Gojd+ZRQjJQmlBEAa8Ua94amvx7uWHoUzVUEGi1S8bgF1wPcMqG07cSUGQfRwHsFQ/9XOesx76Df622E+CevA==}
-    dev: false
-
-  /@cloudinary/transformation-builder-sdk@1.8.0:
-    resolution: {integrity: sha512-/QLSDDI+rfYH3bFH+DpgEk8NgSoeqwiea9GW5VXplcpebQOOcFqOzNFM6Hlik3PDqq4JMP4s3E7BoPZ1Rdk/IQ==}
-    dependencies:
-      '@cloudinary/url-gen': 1.12.1
-    dev: false
-
-  /@cloudinary/url-gen@1.12.1:
-    resolution: {integrity: sha512-TWV2MEZeYuPUt6kmZ9T7AhOq+HpDqkZcoULSGATNMpuq9PAiWUZS58+kas4a4YGinUeDSpfFivZ8KOMkREn1lQ==}
-    dependencies:
-      '@cloudinary/transformation-builder-sdk': 1.8.0
     dev: false
 
   /@csstools/css-parser-algorithms@2.3.2(@csstools/css-tokenizer@2.2.1):
@@ -3864,18 +3838,6 @@ packages:
       railroad-diagrams: 1.0.0
       randexp: 0.4.6
     dev: true
-
-  /next-cloudinary@5.5.0(next@13.5.5)(react@18.2.0):
-    resolution: {integrity: sha512-1YntO/G4ZlouiEmjehDJOWzRUo+PslEUbMrqRYFUOiJVt/A9NKs+jWJSTkQxADoe6pvsrx/GzcgzLMMk9mX8JQ==}
-    peerDependencies:
-      next: ^12 || ^13 || ^14
-      react: ^17 || ^18
-    dependencies:
-      '@cloudinary-util/url-loader': 3.15.0
-      '@cloudinary-util/util': 2.3.0
-      next: 13.5.5(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
-      react: 18.2.0
-    dev: false
 
   /next-themes@0.2.1(next@13.5.5)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
