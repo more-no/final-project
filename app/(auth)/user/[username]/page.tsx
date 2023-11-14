@@ -50,7 +50,7 @@ export default async function UserPage({ params }: Props) {
         <h2>Profile of {params.username}</h2>
         <div className="avatar">
           <div className="w-70 rounded">
-            <img src={user.pictureUrl} />
+            <img src={user.pictureUrl} alt="Thumbnail" />
             {/* <img src="/thumbnail.jpg" /> */}
           </div>
         </div>

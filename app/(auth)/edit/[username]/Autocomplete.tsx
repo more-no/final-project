@@ -1,18 +1,18 @@
 'use client';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import Select from 'react-select';
 import { useRouter } from 'next/navigation';
-import { PositionResponseBodyPut } from '../../../api/(auth)/editPosition/[username]/route';
+// import { PositionResponseBodyPut } from '../../../api/(auth)/editPosition/[username]/route';
 
 const apiKey = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY;
 
-export type Position = {
-  position: string;
-  username: string;
-};
+// export type Position = {
+//   position: string;
+//   username: string;
+// };
 
-export default function Autocomplete(props: Position) {
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
+export default function Autocomplete(props) {
+  const [errors, setErrors] = useState([]);
   const [options, setOptions] = useState([]);
   const [selectedValue, setSelectedValue] = useState(props.position);
   const [inputValue, setInputValue] = useState('');
@@ -38,10 +38,12 @@ export default function Autocomplete(props: Position) {
     console.log('Data: ', data);
 
     if (data) {
-      const suggestions = data.results.map((result) => ({
-        label: result.formatted,
-        value: result.geometry,
-      }));
+      const suggestions = data.results.map(
+        (result: { formatted: any; geometry: any }) => ({
+          label: result.formatted,
+          value: result.geometry,
+        }),
+      );
       setOptions(suggestions);
       console.log('Suggestion: ', suggestions);
     }
@@ -61,7 +63,7 @@ export default function Autocomplete(props: Position) {
     console.log('Response Edit Position: ', responseDB);
 
     if (responseDB.ok) {
-      const dataDB: PositionResponseBodyPut = await responseDB.json();
+      await responseDB.json();
     } else {
       console.error('Response not okay. Status:', responseDB.status);
     }
@@ -70,6 +72,8 @@ export default function Autocomplete(props: Position) {
 
     router.refresh();
   }
+
+  const id = useId();
 
   return (
     <div>
@@ -80,7 +84,7 @@ export default function Autocomplete(props: Position) {
         }}
       >
         <Select
-          id="address"
+          instanceId={id}
           options={options}
           onChange={(choice) => {
             console.log('The user has selected:', choice);

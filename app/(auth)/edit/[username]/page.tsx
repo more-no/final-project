@@ -45,7 +45,7 @@ export default async function EditPage({ params }: Props) {
 
   return (
     <div className="flex">
-      <EditUserForm user={user} languagesList={languagesList} />
+      <EditUserForm user={user} />
       <EditHostForm host={host} username={user.username} />
       <Autocomplete username={user.username} position={host.position} />
       <UploadPicture username={user.username} />

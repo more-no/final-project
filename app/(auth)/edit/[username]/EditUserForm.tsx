@@ -3,15 +3,12 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { UserResponseBodyPut } from '../../../api/(auth)/editUser/[username]/route';
 import { User } from '../../../../migrations/00000-createTableUsers';
-import { CldUploadButton } from 'next-cloudinary';
-// import Languages from './SelectLanguages';
 
 type Props = {
   user: User;
-  languagesList: string[];
 };
 
-export default function EditUserForm({ user, languagesList }: Props) {
+export default function EditUserForm({ user }: Props) {
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [gender, setGender] = useState(user.gender);
   const [country, setCountry] = useState(user.country);
@@ -27,7 +24,6 @@ export default function EditUserForm({ user, languagesList }: Props) {
         gender,
         country,
         city,
-        // pictureUrl,
         presentation,
       }),
     });
@@ -42,8 +38,6 @@ export default function EditUserForm({ user, languagesList }: Props) {
 
     console.log('Error Updating User: ', errors);
 
-    // revalidatePath() throws unnecessary error, will be used when stable
-    // revalidatePath('/(auth)/register', 'page');
     router.refresh();
   }
 
@@ -67,7 +61,7 @@ export default function EditUserForm({ user, languagesList }: Props) {
                   setGender(event.currentTarget.value);
                 }}
               >
-                <option disabled selected>
+                <option value="" disabled>
                   {' '}
                   I am{' '}
                 </option>
@@ -105,19 +99,6 @@ export default function EditUserForm({ user, languagesList }: Props) {
               />
             </label>
           </div>
-          {/* <div className="form-control">
-              <label className="label">
-              <span className="label-text font-bold p-3">Picture</span>
-              <input
-                name="Picture"
-                value={pictureUrl}
-                className="input input-bordered"
-                onChange={(event) => {
-                  setPictureUrl(event.target.value);
-                }}
-              />
-            </label>
-            </div> */}
           <div className="form-control">
             <label className="label">
               <span className="label-text font-bold p-3">Presentation</span>
@@ -132,7 +113,6 @@ export default function EditUserForm({ user, languagesList }: Props) {
               />
             </label>
           </div>
-          {/* <Languages languagesList={languagesList} /> */}
           <button className="btn btn-neutral">Save Changes</button>
         </form>
       </div>

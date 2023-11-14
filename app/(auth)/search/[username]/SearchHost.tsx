@@ -53,7 +53,7 @@ export default function SearchHosts() {
       <form
         onSubmit={async (event) => {
           event.preventDefault();
-          handleSearch(city);
+          await handleSearch(city);
         }}
       >
         <div className="form-control">

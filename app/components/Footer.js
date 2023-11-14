@@ -9,9 +9,9 @@ export default function Footer() {
       <nav>
         <header className="footer-title">Help us</header>
         <fieldset className="form-control">
-          <label className="label">
-            <span className="label-text">Sustain the project!</span>
-          </label>
+          {/* <label className="label"> */}
+          <span className="label-text">Sustain the project!</span>
+          {/* </label> */}
           <div className="relative">
             <a
               className="btn btn-sm btn-accent top-0 right-0 rounded"
@@ -37,9 +37,9 @@ export default function Footer() {
       <form>
         <header className="footer-title">Newsletter</header>
         <fieldset className="form-control">
-          <label className="label">
-            <span className="label-text">Stay in contact!</span>
-          </label>
+          {/* <label className="label"> */}
+          <span className="label-text">Stay in contact!</span>
+          {/* </label> */}
           <div className="relative">
             <input
               placeholder="username@site.com"
