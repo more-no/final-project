@@ -76,7 +76,7 @@ export default function Autocomplete(props: Position) {
   const id = useId();
 
   return (
-    <div>
+    <div className="flex-row">
       <form
         onSubmit={async (event) => {
           event.preventDefault();

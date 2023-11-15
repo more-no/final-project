@@ -5,7 +5,7 @@ import EditHostForm from './EditHostForm';
 import { getHostById } from '../../../../database/hosts';
 import { UserResponseBodyGet } from '../../../api/(auth)/users/[username]/route';
 import { getLanguages } from '../../../../database/languages';
-import Autocomplete from './Autocomplete';
+import Autocomplete from '../../map/[username]/Autocomplete';
 import UploadPicture from './UploadPicture';
 
 type Props = {
@@ -47,7 +47,7 @@ export default async function EditPage({ params }: Props) {
     <div className="flex">
       <EditUserForm user={user} />
       <EditHostForm host={host} username={user.username} />
-      <Autocomplete username={user.username} position={host.position} />
+      {/* <Autocomplete username={user.username} position={host.position} /> */}
       <UploadPicture username={user.username} />
     </div>
   );

@@ -11,15 +11,15 @@ export default function Homepage() {
       <div className="hero-overlay bg-opacity-60" />
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-          <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+          <img src="/slogan.png" alt="logo" className="pb-10" />
           <Link href="/register" className="btn btn-accent">
             Join us
           </Link>
+          {/* <p className="mb-5 pt-10">
+            OpenTribe is a global tribe of hosts and travelers united by a
+            passion for exploration and a commitment to open-minded hospitality.
+            Join us and become part of a worldwide network.
+          </p> */}
         </div>
       </div>
     </div>

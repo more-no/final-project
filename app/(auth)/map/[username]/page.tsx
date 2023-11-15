@@ -1,11 +1,16 @@
 import React from 'react';
 import MyMap from './MyMap';
 import {
+  getHostById,
   getPositionByUsername,
   // getPositionByUsername,
   getPositions,
 } from '../../../../database/hosts';
 import { LatLngExpression } from 'leaflet';
+import Autocomplete from './Autocomplete';
+import { getUserByUsername } from '../../../../database/users';
+import { UserResponseBodyGet } from '../../../api/(auth)/users/[username]/route';
+import { NextResponse } from 'next/server';
 
 type Props = {
   params: { username: string };
@@ -55,8 +60,29 @@ export default async function page({ params }: Props) {
 
   console.log('Positions: ', positions);
 
+  const user = await getUserByUsername(params.username);
+
+  if (!user) {
+    // Create an error response in the shape of HostResponseBodyGet
+    const errorResponse: UserResponseBodyGet = {
+      errors: [{ message: 'Error finding the User' }],
+    };
+    return NextResponse.json(errorResponse, { status: 500 });
+  }
+
+  const host = await getHostById(user.id);
+
+  if (!host) {
+    // Create an error response in the shape of HostResponseBodyGet
+    const errorResponse: UserResponseBodyGet = {
+      errors: [{ message: 'Error finding the Host' }],
+    };
+    return NextResponse.json(errorResponse, { status: 500 });
+  }
+
   return (
     <div>
+      <Autocomplete username={user.username} position={host.position} />
       <MyMap positions={positions} id={usersId} mapCoords={mapCoords} />
     </div>
   );
