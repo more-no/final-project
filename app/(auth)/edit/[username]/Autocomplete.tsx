@@ -6,12 +6,12 @@ import { useRouter } from 'next/navigation';
 
 const apiKey = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY;
 
-// export type Position = {
-//   position: string;
-//   username: string;
-// };
+export type Position = {
+  position: string;
+  username: string;
+};
 
-export default function Autocomplete(props) {
+export default function Autocomplete(props: Position) {
   const [errors, setErrors] = useState([]);
   const [options, setOptions] = useState([]);
   const [selectedValue, setSelectedValue] = useState(props.position);

@@ -103,9 +103,9 @@ export default function HeaderLogged(props: UserLoggedIn) {
                 <li>
                   <Link href={`/user/${props.username}`}>My Profile</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href={`/host/${props.username}`}>My Host Profile</Link>
-                </li>
+                </li> */}
                 <li>
                   <Link href={`/communities`}>Communities</Link>
                 </li>
@@ -125,9 +125,9 @@ export default function HeaderLogged(props: UserLoggedIn) {
               <li>
                 <Link href={`/user/${props.username}`}>My Profile</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href={`/host/${props.username}`}>My Host Profile</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href={`/communities`}>Communities</Link>
               </li>

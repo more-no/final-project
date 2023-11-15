@@ -53,7 +53,7 @@ export default function EditAccountForm({ user }: Props) {
         >
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-bold p-3">First POPO</span>
+              <span className="label-text font-bold p-3">First Name</span>
               <input
                 name="First Name"
                 value={firstName}

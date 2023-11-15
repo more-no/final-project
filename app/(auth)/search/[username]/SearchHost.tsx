@@ -78,7 +78,7 @@ export default function SearchHosts() {
             <div className="pb-8" key={`card-div-${host.id}`}>
               <div className="card card-side bg-base-100 shadow-xl">
                 <figure>
-                  <img src={host.pictureUrl} alt="Thumbnail" />
+                  <img src={host.pictureUrl} alt="Thumbnail" className="w-64" />
                 </figure>
                 <div className="card-body">
                   <h1 className="card-title">{host.username} is available!</h1>
