@@ -51,7 +51,9 @@ export default function MyMap(props) {
             position={position}
             icon={customIcon}
           >
-            {/* <Popup>{marker.popUp}</Popup> */}
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
           </Marker>
         ))}
       </MarkerClusterGroup>

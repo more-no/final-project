@@ -1,3 +1,9 @@
+import React from 'react';
+
+export default function page() {
+  return <div>page</div>;
+}
+
 // import { getHostById } from '../../../../database/hosts';
 // import { getUserByUsername } from '../../../../database/users';
 // import { NextResponse } from 'next/server';

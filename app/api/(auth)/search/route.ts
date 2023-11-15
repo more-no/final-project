@@ -25,16 +25,7 @@ export async function GET(
     return NextResponse.json(errorResponse, { status: 404 });
   }
 
-  // console.log('City: ', city);
-
   const host = await searchHosts(city);
-
-  // if (!host) {
-  //   const errorResponse: SearchResponseBodyGet = {
-  //     errors: [{ message: 'Hosts not found' }],
-  //   };
-  //   return NextResponse.json(errorResponse, { status: 404 });
-  // }
 
   return NextResponse.json({ host: host });
 }

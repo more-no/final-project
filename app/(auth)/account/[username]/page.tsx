@@ -5,7 +5,6 @@ import EditAccountForm from './EditAccountForm';
 import { User } from '../../../../migrations/00000-createTableUsers';
 
 type Props = {
-  user: User;
   params: { username: string };
 };
 

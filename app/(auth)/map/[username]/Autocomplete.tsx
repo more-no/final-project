@@ -88,7 +88,7 @@ export default function Autocomplete(props: Position) {
           options={options}
           onChange={(choice) => {
             console.log('The user has selected:', choice);
-            setSelectedValue(choice);
+            setSelectedValue(choice!);
           }}
           onInputChange={handleInputChange}
           inputValue={inputValue}

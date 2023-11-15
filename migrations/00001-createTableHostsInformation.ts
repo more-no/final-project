@@ -27,17 +27,14 @@ export type SearchHost = {
   openToMeet: boolean;
 };
 
-// export type CardHost = {
-//   id: number;
-//   username: string;
-//   email: string;
-//   country: string;
-//   city: string;
-//   date_registration: string;
-//   available: boolean;
-//   lastMinute: boolean;
-//   openToMeet: boolean;
-// };
+export type HostsMap = {
+  id: number;
+  username: string;
+  pictureUrl: string;
+  available: boolean;
+  lastMinute: boolean;
+  openToMeet: boolean;
+};
 
 export type Positions = {
   position: string;

@@ -11,7 +11,6 @@ type Props = {
 export default function UsersList({ users }: Props) {
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [usersList, setUsersList] = useState(users);
-  // const [isReported, setIsReported] = useState();
 
   const router = useRouter();
 
@@ -24,7 +23,7 @@ export default function UsersList({ users }: Props) {
 
     const data: UserResponseBodyDelete = await response.json();
 
-    console.log('DELETE Data response: ', data);
+    console.log('Data response: ', data);
 
     if ('errors' in data) {
       setErrors(data.errors);
@@ -39,32 +38,6 @@ export default function UsersList({ users }: Props) {
 
     router.refresh();
   }
-
-  // async function handleReportUser(username: string) {
-  //   setIsReported((prevIsReported) => !prevIsReported);
-
-  //   const response = await fetch(`/api/editUser/${username}`, {
-  //     method: 'PUT',
-  //     body: JSON.stringify({
-  //       reported: isReported,
-  //     }),
-  //   });
-
-  //   console.log('Response User Report: ', response);
-
-  //   const data: UserResponseBodyDelete = await response.json();
-
-  //   console.log('REPORT Data response: ', data);
-
-  //   if ('errors' in data) {
-  //     setErrors(data.errors);
-  //     return;
-  //   }
-
-  //   console.log(errors);
-
-  //   router.refresh();
-  // }
 
   return (
     <div className="overflow-x-auto">
@@ -88,7 +61,6 @@ export default function UsersList({ users }: Props) {
                 <td>{user.firstName}</td>
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
-                <td>{`${user.reported}`}</td>
                 <td>
                   <button
                     className="btn btn-sm btn-neutral"
@@ -97,14 +69,6 @@ export default function UsersList({ users }: Props) {
                     Delete
                   </button>
                 </td>
-                {/* <td>
-                  <button
-                    className="btn btn-sm btn-neutral"
-                    onClick={async () => await handleReportUser(user.username)}
-                  >
-                    Report
-                  </button>
-                </td> */}
               </tr>
             );
           })}

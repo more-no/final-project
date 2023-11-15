@@ -161,3 +161,19 @@ export const searchHosts = cache(async (city: string) => {
   `;
   return host;
 });
+
+export const searchHostsInMap = cache(async () => {
+  const host = await sql<SearchHost[]>`
+    SELECT
+      users.id,
+      users.username,
+      users.picture_url,
+      hosts_information.available,
+      hosts_information.last_minute,
+      hosts_information.open_to_meet
+    FROM
+      users
+      JOIN hosts_information ON users.id = hosts_information.user_id
+  `;
+  return host;
+});

@@ -2,18 +2,13 @@
 import { useState } from 'react';
 import { setConfig } from 'cloudinary-build-url';
 import { useRouter } from 'next/navigation';
-import { PictureResponseBodyPut } from '../../../api/(auth)/pictureUrl/[username]/route';
-
-export type Props = {
-  username: string;
-};
 
 setConfig({
   cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
 });
 
-export default function UploadPicture(props: Props) {
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
+export default function UploadPicture(props) {
+  const [errors, setErrors] = useState([]);
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
 
@@ -70,7 +65,7 @@ export default function UploadPicture(props: Props) {
     console.log('Response Edit User Picture Url: ', responseUrl);
 
     if (responseUrl.ok) {
-      const data: PictureResponseBodyPut = await responseUrl.json();
+      const data = await responseUrl.json();
     } else {
       console.error('Response not okay. Status:', responseUrl.status);
     }

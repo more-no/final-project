@@ -6,11 +6,11 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  gender: string | null;
-  country: string | null;
-  city: string | null;
-  pictureUrl: string | null;
-  presentation: string | null;
+  gender: string;
+  country: string;
+  city: string;
+  pictureUrl: string;
+  presentation: string;
   date_registration: string;
   reported: boolean;
 };
