@@ -15,6 +15,14 @@ export default function SearchHosts() {
   const [city, setCity] = useState('');
   const [cityHosts, setCityHosts] = useState<SearchHost[]>([]);
 
+  const renderIcon = (value: boolean) => {
+    return value ? (
+      <img src="/true.png" alt="Yes" />
+    ) : (
+      <img src="/false.png" alt="No" />
+    );
+  };
+
   const router = useRouter();
 
   async function handleSearch(selectedCity: string) {
@@ -45,8 +53,13 @@ export default function SearchHosts() {
   }
 
   return (
-    <div className="flex-row">
-      <div>
+    <div className="flex-row ml-6">
+      <h1 className="text-4xl py-6"> Search for a Host: </h1>
+      <p className="pb-2">
+        {' '}
+        Save your positions so other users can find you on the Map
+      </p>
+      <div className="py-6">
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -73,63 +86,67 @@ export default function SearchHosts() {
         <br />
       </div>
       <div>
-        {cityHosts.length > 0 ? (
-          cityHosts.map((host: SearchHost) => (
-            <div className="pb-8" key={`card-div-${host.id}`}>
-              <div className="card lg:card-side bg-base-100 shadow-xl">
-                <div className="flex-col">
-                  <h2 className="card-title pt-4 pb-4">
-                    {host.username} is available!
-                  </h2>
-                  <figure>
-                    <img
-                      src={host.pictureUrl}
-                      alt="Thumbnail"
-                      className="w-50"
-                    />
-                  </figure>
-                </div>
-                <div className="card-body justify-end">
-                  <span> Member since: {host.dateString} </span>
-                  <span>
-                    {' '}
-                    Currently living in: {host.city}, {host.country}{' '}
-                  </span>
-                  <span>
-                    {' '}
-                    Accept last-minute requests: {`${host.lastMinute}`}{' '}
-                  </span>
-                  <span> Open to Meet travelers: {`${host.openToMeet}`} </span>
-                  <div className="flex flex-row space-x-10">
-                    <div className="card-actions pt-6">
-                      <a
-                        className="btn btn-primary"
-                        href={`/profile/${host.username}`}
-                      >
-                        {' '}
-                        See Profile
-                      </a>
-                    </div>
-                    <div className="card-actions pt-6">
-                      <a
-                        className="btn btn-primary"
-                        href={`mailto:${host.email}`}
-                      >
-                        {' '}
-                        Contact
-                      </a>
+        <div className="flex flex-wrap gap-12">
+          {cityHosts.length > 0 ? (
+            cityHosts.map((host: SearchHost) => (
+              <div className="pb-8" key={`card-div-${host.id}`}>
+                <div className="card lg:card-side bg-base-100 shadow-xl">
+                  <div className="flex-col">
+                    <h2 className="card-title pl-6 pt-4 pb-4">
+                      {host.username} is available!
+                    </h2>
+                    <figure>
+                      <img
+                        src={host.pictureUrl}
+                        alt="Thumbnail"
+                        className="w-50"
+                      />
+                    </figure>
+                  </div>
+                  <div className="card-body justify-end pl-6 mt-3">
+                    <span> Member since: {host.dateString} </span>
+                    <span>
+                      {' '}
+                      Currently living in: {host.city}, {host.country}{' '}
+                    </span>
+                    <span>
+                      Accept last-minute requests: {renderIcon(host.lastMinute)}
+                    </span>
+                    <span>
+                      {' '}
+                      Open to Meet travelers: {renderIcon(host.openToMeet)}
+                    </span>
+                    <div className="flex flex-row space-x-10">
+                      <div className="card-actions pt-6">
+                        <a
+                          className="btn btn-primary"
+                          href={`/profile/${host.username}`}
+                        >
+                          {' '}
+                          See Profile
+                        </a>
+                      </div>
+                      <div className="card-actions pt-6">
+                        <a
+                          className="btn btn-primary"
+                          href={`mailto:${host.email}`}
+                        >
+                          {' '}
+                          Contact
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <>
-            <br />
-            <span>No hosts found yet.</span>
-          </>
-        )}
+            ))
+          ) : (
+            <>
+              <br />
+              <div className="ml-3 text-xl">No hosts found yet.</div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

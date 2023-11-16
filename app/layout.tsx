@@ -33,7 +33,7 @@ export default async function RootLayout(props: Props) {
       <body>
         <Theme>
           {user ? <HeaderLogged username={user.username} /> : <Header />}
-          <div className="hero min-h-screen bg-base-200">{props.children}</div>
+          <div className="min-h-screen bg-base-200">{props.children}</div>
           {user ? <FooterLogged /> : <Footer />}
         </Theme>
       </body>

@@ -10,7 +10,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
   if (props.username === 'admin') {
     return (
       <header className="header header-center bg-base-200 text-base-content rounded Text Size 2">
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 pl-6">
           <div className="navbar-start">
             <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
             <div className="dropdown">
@@ -85,7 +85,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
   } else {
     return (
       <header className="header header-center bg-base-200 text-base-content rounded Text Size 2">
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 pl-6">
           <div className="navbar-start">
             <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
             <div className="dropdown">
@@ -110,27 +110,33 @@ export default function HeaderLogged(props: UserLoggedIn) {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link href={`/user/${props.username}`}>My Profile</Link>
+                  <Link href={`/user/${props.username}`}>MY PROFILE</Link>
                 </li>
                 <li>
-                  <Link href={`/map/${props.username}`}>Map</Link>
+                  <Link href={`/map/${props.username}`}>MAP</Link>
                 </li>
                 <li>
-                  <Link href={`/search/${props.username}`}>Find your Host</Link>
+                  <Link href={`/search/${props.username}`}>FIND A HOST</Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
+            <ul className="menu menu-horizontal px-1 gap-8">
               <li>
-                <Link href={`/user/${props.username}`}>My Profile</Link>
+                <Link className="font-bold" href={`/user/${props.username}`}>
+                  MY PROFILE
+                </Link>
               </li>
               <li>
-                <Link href={`/map/${props.username}`}>Map</Link>
+                <Link className="font-bold" href={`/map/${props.username}`}>
+                  MAP
+                </Link>
               </li>
               <li>
-                <Link href={`/search/${props.username}`}>Find your Host</Link>
+                <Link className="font-bold" href={`/search/${props.username}`}>
+                  FIND A HOST
+                </Link>
               </li>
             </ul>
           </div>

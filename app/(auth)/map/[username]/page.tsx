@@ -81,7 +81,7 @@ export default async function page({ params }: Props) {
   }
 
   return (
-    <div>
+    <div className="ml-6">
       <Autocomplete username={user.username} position={host.position} />
       <MyMap positions={positions} id={usersId} mapCoords={mapCoords} />
     </div>

@@ -7,5 +7,5 @@ type Props = {
 };
 
 export default function ProfileLayout(props: Props) {
-  return <div className="flex justify-center">{props.children}</div>;
+  return <div className="flex">{props.children}</div>;
 }

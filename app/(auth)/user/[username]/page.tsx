@@ -20,7 +20,7 @@ export function generateMetadata() {
 }
 
 export default async function UserPage({ params }: Props) {
-  const renderImage = (value: boolean) => {
+  const renderIcon = (value: boolean) => {
     return value ? (
       <img src="/true.png" alt="Yes" />
     ) : (
@@ -55,54 +55,60 @@ export default async function UserPage({ params }: Props) {
   }
 
   return (
-    <div className="container">
-      <div className="flex flex-col">
+    <div className="ml-6">
+      <div className="">
         <div>
-          <p className="text-3xl">Profile of {params.username}</p>
+          <p className="text-4xl py-6">{params.username}'s profile</p>
         </div>
-        <div className="flex flex-row">
+        <div>
           <div>
-            <div className="avatar">
-              <div className="rounded">
-                <img src={user.pictureUrl} alt="Thumbnail" />
+            <div>
+              <div className="avatar">
+                <div className="rounded">
+                  <img src={user.pictureUrl} alt="Thumbnail" />
+                </div>
               </div>
+              <p>Member since: {user.date_registration}</p>
+              <p>Gender: {user.gender}</p>
+              <p>
+                Living in: {user.city}, {user.country}
+              </p>
             </div>
-            <p>Member since: {user.date_registration}</p>
-            <p>{user.gender}</p>
-            <p>
-              Living in: {user.city}, {user.country}
-            </p>
           </div>
-          <h2>About me: {user.presentation}</h2>
+        </div>
+        <div>
+          <h2 className="text-2xl p-8">About me:</h2>
+          <h2 className="text-2xl">{user.presentation}</h2>
+        </div>
+      </div>
+      <div>
+        <div className="grid grid-cols-4">
           <div>
-            <p>
-              Available:
-              {host?.available !== undefined && renderImage(host.available)}
-            </p>
-            <p>
-              Last Minute requests:{' '}
-              {host?.lastMinute !== undefined && renderImage(host.lastMinute)}
-            </p>
-            <p>
-              Open to meet:{' '}
-              {host?.openToMeet !== undefined && renderImage(host.openToMeet)}
-            </p>
-            <p>
-              Offer a Private Room:{' '}
-              {host?.privateRoom !== undefined && renderImage(host.privateRoom)}
-            </p>
-            <p>
-              Offer a real bed:{' '}
-              {host?.bed !== undefined && renderImage(host.bed)}
-            </p>
-            <p>
-              Has animals:{' '}
-              {host?.haveAnimals !== undefined && renderImage(host.haveAnimals)}
-            </p>
-            <p>
-              Accept animals:{' '}
-              {host?.hostAnimals !== undefined && renderImage(host.hostAnimals)}
-            </p>
+            Available:
+            {host?.available !== undefined && renderIcon(host.available)}
+          </div>
+          <div>
+            Last Minute requests:{' '}
+            {host?.lastMinute !== undefined && renderIcon(host.lastMinute)}
+          </div>
+          <div>
+            Open to meet:{' '}
+            {host?.openToMeet !== undefined && renderIcon(host.openToMeet)}
+          </div>
+          <div>
+            Offer a Private Room:{' '}
+            {host?.privateRoom !== undefined && renderIcon(host.privateRoom)}
+          </div>
+          <div>
+            Offer a real bed: {host?.bed !== undefined && renderIcon(host.bed)}
+          </div>
+          <div>
+            Has animals:{' '}
+            {host?.haveAnimals !== undefined && renderIcon(host.haveAnimals)}
+          </div>
+          <div>
+            Accept animals:{' '}
+            {host?.hostAnimals !== undefined && renderIcon(host.hostAnimals)}
           </div>
         </div>
       </div>

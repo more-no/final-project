@@ -44,7 +44,9 @@ export default async function EditPage({ params }: Props) {
   }
 
   return (
-    <div className="flex">
+    <div className="flex-row ml-6">
+      <h1 className="text-4xl py-6"> Edit your profile: </h1>
+      <p className="pb-2"> Here you can update your profile</p>
       <EditUserForm user={user} />
       <EditHostForm host={host} username={user.username} />
       {/* <Autocomplete username={user.username} position={host.position} /> */}

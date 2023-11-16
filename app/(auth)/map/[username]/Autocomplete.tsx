@@ -76,26 +76,33 @@ export default function Autocomplete(props: Position) {
   const id = useId();
 
   return (
-    <div className="flex-row">
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-          await handleInputChange(inputValue);
-        }}
-      >
-        <Select
-          instanceId={id}
-          options={options}
-          onChange={(choice) => {
-            console.log('The user has selected:', choice);
-            setSelectedValue(choice!);
+    <div>
+      <h1 className="text-4xl py-6"> Select your location: </h1>
+      <p className="pb-2">
+        {' '}
+        Save your positions so other users can find you on the Map
+      </p>
+      <div className="flex-row py-6">
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+            await handleInputChange(inputValue);
           }}
-          onInputChange={handleInputChange}
-          inputValue={inputValue}
-          isSearchable
-        />
-        <button className="btn btn-neutral">Save Changes</button>
-      </form>
+        >
+          <Select
+            instanceId={id}
+            options={options}
+            onChange={(choice) => {
+              console.log('The user has selected:', choice);
+              setSelectedValue(choice!);
+            }}
+            onInputChange={handleInputChange}
+            inputValue={inputValue}
+            isSearchable
+          />
+          <button className="btn btn-neutral">Save Changes</button>
+        </form>
+      </div>
     </div>
   );
 }
