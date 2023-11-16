@@ -32,14 +32,7 @@ export default async function RootLayout(props: Props) {
     <html lang="en" data-theme="retro">
       <body>
         <Theme>
-          {user ? (
-            <HeaderLogged
-              username={user.username}
-              pictureUrl={user.pictureUrl || ''}
-            />
-          ) : (
-            <Header />
-          )}
+          {user ? <HeaderLogged username={user.username} /> : <Header />}
           <div className="hero min-h-screen bg-base-200">{props.children}</div>
           {user ? <FooterLogged /> : <Footer />}
         </Theme>

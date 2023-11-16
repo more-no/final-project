@@ -4,7 +4,6 @@ import Theme from './ThemeSwitch';
 
 export type UserLoggedIn = {
   username: string | string[];
-  pictureUrl: string | string[];
 };
 
 export default function HeaderLogged(props: UserLoggedIn) {
@@ -113,19 +112,11 @@ export default function HeaderLogged(props: UserLoggedIn) {
                 <li>
                   <Link href={`/user/${props.username}`}>My Profile</Link>
                 </li>
-                {/* <li>
-                  <Link href={`/host/${props.username}`}>My Host Profile</Link>
-                </li> */}
-                <li>
-                  <Link href={`/communities`}>Communities</Link>
-                </li>
                 <li>
                   <Link href={`/map/${props.username}`}>Map</Link>
                 </li>
                 <li>
-                  <Link href={`/search/${props.username}`}>
-                    Search your Host
-                  </Link>
+                  <Link href={`/search/${props.username}`}>Find your Host</Link>
                 </li>
               </ul>
             </div>
@@ -135,17 +126,11 @@ export default function HeaderLogged(props: UserLoggedIn) {
               <li>
                 <Link href={`/user/${props.username}`}>My Profile</Link>
               </li>
-              {/* <li>
-                <Link href={`/host/${props.username}`}>My Host Profile</Link>
-              </li> */}
-              <li>
-                <Link href={`/communities`}>Communities</Link>
-              </li>
               <li>
                 <Link href={`/map/${props.username}`}>Map</Link>
               </li>
               <li>
-                <Link href={`/search/${props.username}`}>Search your Host</Link>
+                <Link href={`/search/${props.username}`}>Find your Host</Link>
               </li>
             </ul>
           </div>
@@ -173,22 +158,29 @@ export default function HeaderLogged(props: UserLoggedIn) {
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link href={`/user/${props.username}`}>My Profile</Link>
+                <span className="justify-between">{`${props.username}`}</span>
               </li>
+              <li />
               <li>
                 <Link href={`/edit/${props.username}`}>Edit Profile</Link>
               </li>
               <li>
-                <Link href="/contacts" className="justify-between">
+                <span className="justify-between">
                   Contacts
                   <span className="badge">Soon!</span>
-                </Link>
+                </span>
               </li>
               <li>
-                <Link href="/searchpeople" className="justify-between">
-                  Find People
+                <span className="justify-between">
+                  Messages
                   <span className="badge">Soon!</span>
-                </Link>
+                </span>
+              </li>
+              <li>
+                <span className="justify-between">
+                  Communities
+                  <span className="badge">Soon!</span>
+                </span>
               </li>
               <li />
               <li>

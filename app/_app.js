@@ -1,7 +1,7 @@
 import RootLayout from './layout';
 import Head from 'next/head';
 
-const MyApp = ({ Component, pageProps }) => {
+export default function MyApp({ Component, pageProps }) {
   return (
     <RootLayout>
       <Head>
@@ -59,6 +59,4 @@ const MyApp = ({ Component, pageProps }) => {
       <Component {...pageProps} />
     </RootLayout>
   );
-};
-
-export default MyApp;
+}

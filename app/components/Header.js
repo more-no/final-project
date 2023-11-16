@@ -37,9 +37,9 @@ export default function Header() {
               <li>
                 <Link href="/how">How it works</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/communities">My Communities</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/safety">Safety Tips</Link>
               </li>
@@ -54,9 +54,9 @@ export default function Header() {
             <li>
               <Link href="/how">How it works</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/communities">My Communities</Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/safety">Safety Tips</Link>
             </li>

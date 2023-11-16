@@ -15,11 +15,6 @@ export default function Homepage() {
           <Link href="/register" className="btn btn-accent">
             Join us
           </Link>
-          {/* <p className="mb-5 pt-10">
-            OpenTribe is a global tribe of hosts and travelers united by a
-            passion for exploration and a commitment to open-minded hospitality.
-            Join us and become part of a worldwide network.
-          </p> */}
         </div>
       </div>
     </div>
