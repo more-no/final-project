@@ -76,33 +76,49 @@ export default function SearchHosts() {
         {cityHosts.length > 0 ? (
           cityHosts.map((host: SearchHost) => (
             <div className="pb-8" key={`card-div-${host.id}`}>
-              <div className="card card-side bg-base-100 shadow-xl">
-                <figure>
-                  <img src={host.pictureUrl} alt="Thumbnail" className="w-50" />
-                </figure>
-                <div className="card-body">
-                  <h1 className="card-title">{host.username} is available!</h1>
+              <div className="card lg:card-side bg-base-100 shadow-xl">
+                <div className="flex-col">
+                  <h2 className="card-title pt-4 pb-4">
+                    {host.username} is available!
+                  </h2>
+                  <figure>
+                    <img
+                      src={host.pictureUrl}
+                      alt="Thumbnail"
+                      className="w-50"
+                    />
+                  </figure>
+                </div>
+                <div className="card-body justify-end">
                   <span> Member since: {host.dateString} </span>
                   <span>
                     {' '}
-                    Living in: {host.city}, {host.country}{' '}
+                    Currently living in: {host.city}, {host.country}{' '}
                   </span>
-                  <span> Last-minute requests: {`${host.lastMinute}`} </span>
-                  <span> Open to Meet: {`${host.openToMeet}`} </span>
-                  <div className="card-actions justify-end pt-6">
-                    <a
-                      className="btn btn-ghost"
-                      href={`/profile/${host.username}`}
-                    >
-                      {' '}
-                      See Profile
-                    </a>
-                  </div>
-                  <div className="card-actions justify-end pt-6">
-                    <a className="btn btn-ghost" href={`mailto:${host.email}`}>
-                      {' '}
-                      Contact
-                    </a>
+                  <span>
+                    {' '}
+                    Accept last-minute requests: {`${host.lastMinute}`}{' '}
+                  </span>
+                  <span> Open to Meet travelers: {`${host.openToMeet}`} </span>
+                  <div className="flex flex-row space-x-10">
+                    <div className="card-actions pt-6">
+                      <a
+                        className="btn btn-primary"
+                        href={`/profile/${host.username}`}
+                      >
+                        {' '}
+                        See Profile
+                      </a>
+                    </div>
+                    <div className="card-actions pt-6">
+                      <a
+                        className="btn btn-primary"
+                        href={`mailto:${host.email}`}
+                      >
+                        {' '}
+                        Contact
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

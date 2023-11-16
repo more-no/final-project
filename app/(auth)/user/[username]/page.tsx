@@ -67,13 +67,13 @@ export default async function UserPage({ params }: Props) {
                 <img src={user.pictureUrl} alt="Thumbnail" />
               </div>
             </div>
-            <p>First Name: {user.firstName}</p>
-            <p>Last Name: {user.lastName}</p>
-            <p>Gender: {user.gender}</p>
-            <p>Country: {user.country}</p>
-            <p>City: {user.city}</p>
+            <p>Member since: {user.date_registration}</p>
+            <p>{user.gender}</p>
+            <p>
+              Living in: {user.city}, {user.country}
+            </p>
           </div>
-          <h2>Presentation: {user.presentation}</h2>
+          <h2>About me: {user.presentation}</h2>
           <div>
             <p>
               Available:

@@ -90,11 +90,11 @@ export default function UploadPicture(props) {
           </p>
         )}
 
-        {uploadData && (
+        {/* {uploadData && (
           <code>
             <pre>{JSON.stringify(uploadData, null, 2)}</pre>
           </code>
-        )}
+        )} */}
       </form>
     </div>
   );
