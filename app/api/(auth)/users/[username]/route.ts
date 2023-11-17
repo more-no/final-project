@@ -20,7 +20,7 @@ export type UserResponseBodyDelete =
     };
 
 export async function GET(
-  // request: NextRequest,
+  request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<UserResponseBodyGet>> {
   const username = params.username;

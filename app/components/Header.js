@@ -11,7 +11,7 @@ export default function Header() {
             <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
           </Link>
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <div className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -26,20 +26,14 @@ export default function Header() {
                   d="M4 6h16M4 12h8m-8 6h16"
                 />
               </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
+            </div>
+            <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li>
                 <Link href="/about">About the Project</Link>
               </li>
               <li>
                 <Link href="/how">How it works</Link>
               </li>
-              {/* <li>
-                <Link href="/communities">My Communities</Link>
-              </li> */}
               <li>
                 <Link href="/safety">Safety Tips</Link>
               </li>
@@ -54,9 +48,6 @@ export default function Header() {
             <li>
               <Link href="/how">How it works</Link>
             </li>
-            {/* <li>
-              <Link href="/communities">My Communities</Link>
-            </li> */}
             <li>
               <Link href="/safety">Safety Tips</Link>
             </li>

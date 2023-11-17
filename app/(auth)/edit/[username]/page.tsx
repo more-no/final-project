@@ -4,8 +4,6 @@ import EditUserForm from './EditUserForm';
 import EditHostForm from './EditHostForm';
 import { getHostById } from '../../../../database/hosts';
 import { UserResponseBodyGet } from '../../../api/(auth)/users/[username]/route';
-import { getLanguages } from '../../../../database/languages';
-import Autocomplete from '../../map/[username]/Autocomplete';
 import UploadPicture from './UploadPicture';
 
 type Props = {
@@ -19,14 +17,9 @@ export function generateMetadata() {
 }
 
 export default async function EditPage({ params }: Props) {
-  const languages = await getLanguages();
-
-  const languagesList = languages.map((language) => language.languageName);
-
   const user = await getUserByUsername(params.username);
 
   if (!user) {
-    // Create an error response in the shape of HostResponseBodyGet
     const errorResponse: UserResponseBodyGet = {
       errors: [{ message: 'Error finding the User' }],
     };
@@ -49,7 +42,6 @@ export default async function EditPage({ params }: Props) {
       <p className="pb-2"> Here you can update your profile</p>
       <EditUserForm user={user} />
       <EditHostForm host={host} username={user.username} />
-      {/* <Autocomplete username={user.username} position={host.position} /> */}
       <UploadPicture username={user.username} />
     </div>
   );

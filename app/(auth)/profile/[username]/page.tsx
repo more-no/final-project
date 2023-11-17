@@ -20,6 +20,14 @@ export function generateMetadata() {
 }
 
 export default async function ProfilePage({ params }: Props) {
+  const renderIcon = (value: boolean) => {
+    return value ? (
+      <img src="/true.png" alt="Yes" />
+    ) : (
+      <img src="/false.png" alt="No" />
+    );
+  };
+
   const user = await getUserByUsername(params.username);
 
   const thumbnail = await getUserPictureByUsername(params.username);
@@ -37,7 +45,6 @@ export default async function ProfilePage({ params }: Props) {
   const host = await getHostById(user.id);
 
   if (!host) {
-    // Create an error response in the shape of HostResponseBodyGet
     const errorResponse: UserResponseBodyPut = {
       errors: [{ message: 'Error finding the Host' }],
     };
@@ -64,7 +71,6 @@ export default async function ProfilePage({ params }: Props) {
               <div className="avatar">
                 <div className="rounded">
                   <img src={user.pictureUrl} alt="Thumbnail" />
-                  {/* <img src="/thumbnail.jpg" /> */}
                 </div>
               </div>
               <h2>First Name: {user.firstName}</h2>
@@ -75,13 +81,16 @@ export default async function ProfilePage({ params }: Props) {
             </div>
             <h2>Presentation: {user.presentation}</h2>
             <div>
-              <h2>Available: {`${host.available}`}</h2>
-              <h2>Last Minute requests: {`${host.lastMinute}`}</h2>
-              <h2>Open to meet: {`${host.openToMeet}`}</h2>
-              <h2>Offer a Private Room: {`${host.privateRoom}`}</h2>
-              <h2>Offer a real bed: {`${host.bed}`}</h2>
-              <h2>Has animals: {`${host.haveAnimals}`}</h2>
-              <h2>Accept animals: {`${host.hostAnimals}`}</h2>
+              <div>
+                Available:
+                {renderIcon(host.available)}
+              </div>
+              <div>Last Minute requests: {renderIcon(host.lastMinute)}</div>
+              <div>Open to meet: {renderIcon(host.openToMeet)}</div>
+              <div>Offer a Private Room: {renderIcon(host.privateRoom)}</div>
+              <div>Offer a real bed: {renderIcon(host.bed)}</div>
+              <div>Has animals: {renderIcon(host.haveAnimals)}</div>
+              <div>Accept animals: {renderIcon(host.hostAnimals)}</div>
             </div>
           </div>
         </div>

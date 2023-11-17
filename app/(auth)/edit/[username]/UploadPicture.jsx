@@ -8,7 +8,6 @@ setConfig({
 });
 
 export default function UploadPicture(props) {
-  const [errors, setErrors] = useState([]);
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
 
@@ -51,9 +50,11 @@ export default function UploadPicture(props) {
 
     setImageSrc(data.secure_url);
 
-    console.log('Secure Url: ', data.secure_url);
+    console.log('Secure Url: ', imageSrc);
 
     setUploadData(data);
+
+    console.log('Secure Url: ', uploadData);
 
     const responseUrl = await fetch(`/api/pictureUrl/${props.username}`, {
       method: 'PUT',
@@ -64,14 +65,10 @@ export default function UploadPicture(props) {
 
     console.log('Response Edit User Picture Url: ', responseUrl);
 
-    if (responseUrl.ok) {
-      const data = await responseUrl.json();
-    } else {
+    if (!responseUrl.ok) {
       console.error('Response not okay. Status:', responseUrl.status);
     }
 
-    // revalidatePath() throws unnecessary error, will be used when stable
-    // revalidatePath('/(auth)/register', 'page');
     router.refresh();
   }
 
@@ -82,13 +79,9 @@ export default function UploadPicture(props) {
           <input type="file" name="file" />
         </p>
 
-        {/* <img src={imageSrc} /> */}
-
-        {imageSrc && !uploadData && (
-          <p>
-            <button className="btn btn-active btn-neutral">Upload Files</button>
-          </p>
-        )}
+        <p>
+          <button className="btn btn-active btn-neutral">Upload Files</button>
+        </p>
 
         {/* {uploadData && (
           <code>

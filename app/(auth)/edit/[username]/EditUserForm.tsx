@@ -1,7 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { UserResponseBodyPut } from '../../../api/(auth)/editUser/[username]/route';
 import { User } from '../../../../migrations/00000-createTableUsers';
 
 type Props = {
@@ -9,7 +8,6 @@ type Props = {
 };
 
 export default function EditUserForm({ user }: Props) {
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [gender, setGender] = useState(user.gender);
   const [country, setCountry] = useState(user.country);
   const [city, setCity] = useState(user.city);
@@ -28,15 +26,9 @@ export default function EditUserForm({ user }: Props) {
       }),
     });
 
-    console.log('Response Edit User: ', response);
-
-    if (response.ok) {
-      const data: UserResponseBodyPut = await response.json();
-    } else {
-      console.error('Response not okay. Status:', response.status);
+    if (!response.ok) {
+      console.error('Response Edit User:', response.status);
     }
-
-    console.log('Error Updating User: ', errors);
 
     router.refresh();
   }

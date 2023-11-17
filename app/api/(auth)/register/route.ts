@@ -12,7 +12,7 @@ import {
 import { secureCookieOptions } from '../../../../utils/cookies';
 import { createCsrfSecret } from '../../../../utils/csrf';
 import { createAdmin } from '../../../../database/roles';
-import { createAdminHost, createHost } from '../../../../database/hosts';
+import { createHost } from '../../../../database/hosts';
 
 export type RegisterResponseBodyPost =
   | {

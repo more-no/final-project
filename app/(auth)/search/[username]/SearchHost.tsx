@@ -5,11 +5,6 @@ import DOMPurify from 'dompurify';
 import { SearchResponseBodyGet } from '../../../api/(auth)/search/route';
 import { SearchHost } from '../../../../migrations/00001-createTableHostsInformation';
 
-// interface UserCity {
-//   username: string;
-//   city: string | null;
-// }
-
 export default function SearchHosts() {
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [city, setCity] = useState('');
@@ -40,6 +35,7 @@ export default function SearchHosts() {
 
     if ('errors' in data) {
       setErrors(data.errors);
+      console.log('Response Data', errors);
       return;
     }
 

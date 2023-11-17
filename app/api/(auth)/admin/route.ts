@@ -1,7 +1,5 @@
-import { NextResponse } from 'next/server';
-// import { deleteUserByUsername } from '../../../../database/users';
+import { NextRequest, NextResponse } from 'next/server';
 import { Role } from '../../../../migrations/00008-createTableRoles';
-// import { User } from '../../../../migrations/00000-createTableUsers';
 import { UserResponseBodyDelete } from '../editUser/[username]/route';
 import { deleteUserByUsername } from '../../../../database/users';
 
@@ -14,6 +12,7 @@ export type RoleResponseBodyGet =
     };
 
 export async function DELETE(
+  request: NextRequest,
   username: string,
 ): Promise<NextResponse<UserResponseBodyDelete>> {
   if (!username) {

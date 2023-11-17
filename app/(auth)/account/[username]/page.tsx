@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { getUserByUsername } from '../../../../database/users';
 import { UserResponseBodyGet } from '../../../api/(auth)/users/[username]/route';
 import EditAccountForm from './EditAccountForm';
-import { User } from '../../../../migrations/00000-createTableUsers';
 
 type Props = {
   params: { username: string };

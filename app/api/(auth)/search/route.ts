@@ -12,7 +12,6 @@ export type SearchResponseBodyGet =
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<SearchResponseBodyGet>> {
   // console.log('REQUEST :', request.nextUrl.searchParams);
 

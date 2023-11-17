@@ -37,8 +37,6 @@ export default function LoginForm(props: Props) {
       getSafeReturnToPath(props.returnTo) || `/user/${data.user.username}`,
     );
 
-    // revalidatePath() throws unnecessary error, will be used when stable
-    // revalidatePath('/(auth)/login', 'page');
     router.refresh();
   }
 
@@ -46,7 +44,9 @@ export default function LoginForm(props: Props) {
     <>
       <button
         className="btn btn-neutral"
-        onClick={() => document.getElementById('my_modal_2')!.showModal()}
+        onClick={() =>
+          (document.getElementById('my_modal_2') as HTMLFormElement).showModal()
+        }
       >
         Login
       </button>

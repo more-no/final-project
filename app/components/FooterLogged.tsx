@@ -32,9 +32,9 @@ export default function FooterLogged() {
       <form>
         <header className="footer-title">Newsletter</header>
         <fieldset className="form-control">
-          <label className="label">
-            <span className="label-text">Stay in contact!</span>
-          </label>
+          <div>
+            <span>Stay in contact!</span>
+          </div>
           <div className="relative">
             <input
               placeholder="username@site.com"

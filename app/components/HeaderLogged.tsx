@@ -14,7 +14,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
           <div className="navbar-start">
             <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
             <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <div className="btn btn-ghost lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -29,11 +29,8 @@ export default function HeaderLogged(props: UserLoggedIn) {
                     d="M4 6h16M4 12h8m-8 6h16"
                   />
                 </svg>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
+              </div>
+              <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
                   <Link href="/user/admin">Admin</Link>
                 </li>
@@ -66,10 +63,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
                 />
               </svg>
             </button>
-            <ul
-              tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-            >
+            <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
               <li>
                 <Link href={`/user/${props.username}`}>My Profile</Link>
               </li>
@@ -89,7 +83,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
           <div className="navbar-start">
             <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
             <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <div className="btn btn-ghost lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -104,11 +98,8 @@ export default function HeaderLogged(props: UserLoggedIn) {
                     d="M4 6h16M4 12h8m-8 6h16"
                   />
                 </svg>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
+              </div>
+              <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
                   <Link href={`/user/${props.username}`}>MY PROFILE</Link>
                 </li>
@@ -159,12 +150,9 @@ export default function HeaderLogged(props: UserLoggedIn) {
                 />
               </svg>
             </button>
-            <ul
-              tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-            >
+            <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
               <li>
-                <span className="justify-between">{`${props.username}`}</span>
+                <span className="justify-between">{props.username}</span>
               </li>
               <li />
               <li>
