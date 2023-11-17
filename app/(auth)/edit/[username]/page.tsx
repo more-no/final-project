@@ -37,12 +37,14 @@ export default async function EditPage({ params }: Props) {
   }
 
   return (
-    <div className="flex-row ml-6">
-      <h1 className="text-4xl py-6"> Edit your profile: </h1>
-      <p className="pb-2"> Here you can update your profile</p>
-      <EditUserForm user={user} />
-      <EditHostForm host={host} username={user.username} />
-      <UploadPicture username={user.username} />
+    <div className="ml-6">
+      <h1 className="text-4xl py-6 pb-15"> Edit your profile: </h1>
+      <p className="text-xl pb-2"> Here you can update your profile</p>
+      <div className="border-2 border-solid m-20 p-20">
+        <EditUserForm user={user} />
+        <UploadPicture username={user.username} />
+        <EditHostForm host={host} username={user.username} />
+      </div>
     </div>
   );
 }

@@ -24,7 +24,6 @@ export default function Footer() {
       </nav>
       <nav>
         <header className="footer-title">Project</header>
-        <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>
         <a className="link link-hover">Volunteer</a>
       </nav>
@@ -32,14 +31,11 @@ export default function Footer() {
         <header className="footer-title">Legal</header>
         <a className="link link-hover">Terms of use</a>
         <a className="link link-hover">Privacy policy</a>
-        <a className="link link-hover">Cookie policy</a>
       </nav>
       <form>
         <header className="footer-title">Newsletter</header>
         <fieldset className="form-control">
-          {/* <label className="label"> */}
           <span className="label-text">Stay in contact!</span>
-          {/* </label> */}
           <div className="relative">
             <input
               placeholder="username@site.com"

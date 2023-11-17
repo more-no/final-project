@@ -47,7 +47,7 @@ export default function MyMap(props) {
         {/* Mapping through the markers */}
         {props.positions.map((position) => (
           <Marker
-            key={`key-div-${props.id}`}
+            key={`key-div-${position.lat + position.lng + Math.random()}`}
             position={position}
             icon={customIcon}
           >

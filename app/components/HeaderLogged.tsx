@@ -115,18 +115,27 @@ export default function HeaderLogged(props: UserLoggedIn) {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 gap-8">
               <li>
-                <Link className="font-bold" href={`/user/${props.username}`}>
-                  MY PROFILE
+                <Link
+                  className="text-xl font-bold"
+                  href={`/user/${props.username}`}
+                >
+                  My profile
                 </Link>
               </li>
               <li>
-                <Link className="font-bold" href={`/map/${props.username}`}>
-                  MAP
+                <Link
+                  className="text-xl font-bold"
+                  href={`/map/${props.username}`}
+                >
+                  Map
                 </Link>
               </li>
               <li>
-                <Link className="font-bold" href={`/search/${props.username}`}>
-                  FIND A HOST
+                <Link
+                  className="text-xl font-bold"
+                  href={`/search/${props.username}`}
+                >
+                  Find a host
                 </Link>
               </li>
             </ul>

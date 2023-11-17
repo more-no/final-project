@@ -43,8 +43,6 @@ export default function RegistrationForm(props: Props) {
       getSafeReturnToPath(props.returnTo) || `/user/${data.user.username}`,
     );
 
-    // revalidatePath() throws unnecessary error, will be used when stable
-    // revalidatePath('/(auth)/register', 'page');
     router.refresh();
   }
 

@@ -78,7 +78,7 @@ export default function Autocomplete(props: Position) {
   return (
     <div>
       <h1 className="text-4xl py-6"> Select your location: </h1>
-      <p className="pb-2">
+      <p className="text-xl pb-2">
         {' '}
         Save your positions so other users can find you on the Map
       </p>
@@ -89,18 +89,21 @@ export default function Autocomplete(props: Position) {
             await handleInputChange(inputValue);
           }}
         >
-          <Select
-            instanceId={id}
-            options={options}
-            onChange={(choice) => {
-              console.log('The user has selected:', choice);
-              setSelectedValue(choice!);
-            }}
-            onInputChange={handleInputChange}
-            inputValue={inputValue}
-            isSearchable
-          />
-          <button className="btn btn-neutral">Save Changes</button>
+          <div className="flex flex-col">
+            <Select
+              instanceId={id}
+              options={options}
+              onChange={(choice) => {
+                console.log('The user has selected:', choice);
+                setSelectedValue(choice!);
+              }}
+              onInputChange={handleInputChange}
+              inputValue={inputValue}
+              isSearchable
+              className="min-w-full"
+            />
+            <button className="btn btn-neutral">Save Changes</button>
+          </div>
         </form>
       </div>
     </div>

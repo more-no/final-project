@@ -3,7 +3,6 @@ import MyMap from './MyMap';
 import {
   getHostById,
   getPositionByUsername,
-  // getPositionByUsername,
   getPositions,
 } from '../../../../database/hosts';
 import { LatLngExpression } from 'leaflet';

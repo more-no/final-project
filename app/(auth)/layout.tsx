@@ -7,5 +7,5 @@ type Props = {
 };
 
 export default function ProfileLayout(props: Props) {
-  return <div className="flex">{props.children}</div>;
+  return <div>{props.children}</div>;
 }

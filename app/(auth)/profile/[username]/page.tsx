@@ -51,50 +51,43 @@ export default async function ProfilePage({ params }: Props) {
     return NextResponse.json(errorResponse, { status: 500 });
   }
 
-  const admin = await confirmAdmin(user.id);
-
-  console.log('Confirm Admin result: ', admin);
-
-  const users = await getUsersForAdmin();
-
-  if (admin?.isAdmin === true) {
-    return <UsersList users={users} />;
-  } else {
-    return (
-      <div className="container">
-        <div className="flex flex-col">
+  return (
+    <div className="ml-6">
+      <div>
+        <p className="text-4xl py-6 pb-15">Profile of {params.username}</p>
+      </div>
+      <div className="border-2 border-solid m-20 p-20">
+        <div className="grid grid-cols-2 pb-10">
           <div>
-            <h1>Profile of {params.username}</h1>
+            <div className="avatar">
+              <div className="rounded">
+                <img src={user.pictureUrl} alt="Thumbnail" />
+              </div>
+            </div>
+            <p>Member since: {user.date_registration}</p>
+            <p>Gender: {user.gender}</p>
+            <p>Living in: {`${user.city}, ${user.country}`}</p>
           </div>
-          <div className="flex flex-row">
+          <div>
+            <h2 className="text-2xl p-2">About me:</h2>
+            <h2 className="text-2xl">{user.presentation}</h2>
+          </div>
+        </div>
+        <div>
+          <div className="grid grid-cols-4">
             <div>
-              <div className="avatar">
-                <div className="rounded">
-                  <img src={user.pictureUrl} alt="Thumbnail" />
-                </div>
-              </div>
-              <h2>First Name: {user.firstName}</h2>
-              <h2>Last Name: {user.lastName}</h2>
-              <h2>Gender: {user.gender}</h2>
-              <h2>Country: {user.country}</h2>
-              <h2>City: {user.city}</h2>
+              Available:
+              {renderIcon(host.available)}
             </div>
-            <h2>Presentation: {user.presentation}</h2>
-            <div>
-              <div>
-                Available:
-                {renderIcon(host.available)}
-              </div>
-              <div>Last Minute requests: {renderIcon(host.lastMinute)}</div>
-              <div>Open to meet: {renderIcon(host.openToMeet)}</div>
-              <div>Offer a Private Room: {renderIcon(host.privateRoom)}</div>
-              <div>Offer a real bed: {renderIcon(host.bed)}</div>
-              <div>Has animals: {renderIcon(host.haveAnimals)}</div>
-              <div>Accept animals: {renderIcon(host.hostAnimals)}</div>
-            </div>
+            <div>Last Minute requests: {renderIcon(host.lastMinute)}</div>
+            <div>Open to meet: {renderIcon(host.openToMeet)}</div>
+            <div>Offer a Private Room: {renderIcon(host.privateRoom)}</div>
+            <div>Offer a real bed: {renderIcon(host.bed)}</div>
+            <div>Has animals: {renderIcon(host.haveAnimals)}</div>
+            <div>Accept animals: {renderIcon(host.hostAnimals)}</div>
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
