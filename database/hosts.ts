@@ -168,6 +168,7 @@ export const searchHostsInMap = cache(async () => {
       users.id,
       users.username,
       users.picture_url,
+      hosts_information.position,
       hosts_information.available,
       hosts_information.last_minute,
       hosts_information.open_to_meet

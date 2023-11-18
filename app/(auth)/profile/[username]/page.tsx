@@ -2,11 +2,8 @@ import { NextResponse } from 'next/server';
 import {
   getUserByUsername,
   getUserPictureByUsername,
-  getUsersForAdmin,
 } from '../../../../database/users';
 import { UserResponseBodyPut } from '../../../api/(auth)/editUser/[username]/route';
-import { confirmAdmin } from '../../../../database/roles';
-import UsersList from '../../user/[username]/UsersList';
 import { getHostById } from '../../../../database/hosts';
 
 type Props = {
@@ -56,7 +53,7 @@ export default async function ProfilePage({ params }: Props) {
       <div>
         <p className="text-4xl py-6 pb-15">Profile of {params.username}</p>
       </div>
-      <div className="border-2 border-solid m-20 p-20">
+      <div className="border-2 border-solid p-24">
         <div className="grid grid-cols-2 pb-10">
           <div>
             <div className="avatar">

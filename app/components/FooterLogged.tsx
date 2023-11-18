@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function FooterLogged() {
   return (
-    <footer className="footer p-6 bg-base-200 text-base-content">
+    <footer className="footer p-5 bg-base-200 text-base-content">
       <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
       <nav>
         <header className="footer-title">Help us</header>

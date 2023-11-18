@@ -44,18 +44,64 @@ export default function MyMap(props) {
         chunkedLoading
         iconCreateFunction={createClusterCustomIcon}
       >
-        {/* Mapping through the markers */}
-        {props.positions.map((position) => (
-          <Marker
-            key={`key-div-${position.lat + position.lng + Math.random()}`}
-            position={position}
-            icon={customIcon}
-          >
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        ))}
+        {/* Mapping through hosts data for markers and popups */}
+        {props.hosts.map((host) => {
+          const renderIcon = (value) => {
+            return value ? (
+              <img src="/true.png" alt="Yes" />
+            ) : (
+              <img src="/false.png" alt="No" />
+            );
+          };
+
+          // Parse the JSON-encoded position string into an object
+          const positionParsed = JSON.parse(host.position);
+          const position = { lat: positionParsed.lat, lng: positionParsed.lng };
+
+          return (
+            <Marker
+              key={`key-div-${host.id}`}
+              position={position}
+              icon={customIcon}
+            >
+              <Popup>
+                <a
+                  href={`/profile/${host.username}`}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="text-xl font-bold">{host.username}</div>
+                  <figure>
+                    <img
+                      src={host.pictureUrl}
+                      alt="Thumbnail"
+                      className="w-full max-w-150 h-auto"
+                    />
+                  </figure>
+                  <div className="pt-4">
+                    <div className="flex flex-row flex-nowrap text-lg">
+                      Available:
+                      <div className="pl-2 w-8 h-8 inline-block">
+                        {renderIcon(host.available)}
+                      </div>
+                    </div>
+                    <div className="flex flex-row flex-nowrap text-lg">
+                      Last minute:
+                      <div className="pl-2 w-8 h-8 inline-block">
+                        {renderIcon(host.lastMinute)}
+                      </div>
+                    </div>
+                    <div className="flex flex-row flex-nowrap text-lg">
+                      Open to meet:
+                      <div className="pl-2 w-8 h-8 inline-block">
+                        {renderIcon(host.openToMeet)}
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </Popup>
+            </Marker>
+          );
+        })}
       </MarkerClusterGroup>
       {/* <LeafletControlGeocoder /> */}
     </MapContainer>

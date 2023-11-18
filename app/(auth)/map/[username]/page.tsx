@@ -3,7 +3,7 @@ import MyMap from './MyMap';
 import {
   getHostById,
   getPositionByUsername,
-  getPositions,
+  searchHostsInMap,
 } from '../../../../database/hosts';
 import { LatLngExpression } from 'leaflet';
 import Autocomplete from './Autocomplete';
@@ -22,43 +22,7 @@ export function generateMetadata() {
 }
 
 export default async function page({ params }: Props) {
-  // const userPositionArray = await getPositionByUsername(params.username);
-
-  // const userPosition = JSON.parse(userPositionArray[0]?.position);
-
-  let mapCoords: LatLngExpression = [54.525963, 15.255119];
-
-  const userPosition = await getPositionByUsername(params.username);
-
-  if (userPosition[0]?.position) {
-    const coords = JSON.parse(userPosition[0].position);
-
-    const lat = coords.lat;
-    const lng = coords.lng;
-
-    mapCoords = [lat, lng];
-  }
-
-  console.log('User position: ', mapCoords);
-
-  const positionsArray = await getPositions();
-
-  console.log('Positions Array', positionsArray);
-
-  const positions = positionsArray.map((positionData) => {
-    // Parse the JSON-encoded position string into an object
-    const position = JSON.parse(positionData.position);
-
-    // Extract lat and lng values
-    return { lat: position.lat, lng: position.lng };
-  });
-
-  const usersId = positionsArray.map((positionData) => {
-    return positionData.id;
-  });
-
-  console.log('Positions: ', positions);
-
+  // get data for Autocomplete component
   const user = await getUserByUsername(params.username);
 
   if (!user) {
@@ -79,10 +43,29 @@ export default async function page({ params }: Props) {
     return NextResponse.json(errorResponse, { status: 500 });
   }
 
+  // get data for MyMap component
+  let mapCoords: LatLngExpression = [54.525963, 15.255119];
+
+  const userPosition = await getPositionByUsername(params.username);
+
+  if (userPosition[0]?.position) {
+    const coords = JSON.parse(userPosition[0].position);
+
+    const lat = coords.lat;
+    const lng = coords.lng;
+
+    mapCoords = [lat, lng];
+  }
+
+  const hosts = await searchHostsInMap();
+
+  console.log('Hosts array: ', hosts);
+
   return (
     <div className="ml-6">
       <Autocomplete username={user.username} position={host.position} />
-      <MyMap positions={positions} id={usersId} mapCoords={mapCoords} />
+      <MyMap hosts={hosts} mapCoords={mapCoords} />
+      {/* positions={positions} id={usersId} */}
     </div>
   );
 }
