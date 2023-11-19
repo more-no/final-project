@@ -62,10 +62,14 @@ export default async function page({ params }: Props) {
   console.log('Hosts array: ', hosts);
 
   return (
-    <div className="ml-6">
+    <div className="ml-24">
+      <h1 className="text-4xl py-6"> Select your location: </h1>
+      {/* <p className="text-xl pb-2">
+        {' '}
+        Save your positions so other users can find you on the Map
+      </p> */}
       <Autocomplete username={user.username} position={host.position} />
       <MyMap hosts={hosts} mapCoords={mapCoords} />
-      {/* positions={positions} id={usersId} */}
     </div>
   );
 }

@@ -101,13 +101,13 @@ export default function HeaderLogged(props: UserLoggedIn) {
               </div>
               <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                  <Link href={`/user/${props.username}`}>MY PROFILE</Link>
+                  <Link href={`/user/${props.username}`}>My profile</Link>
                 </li>
                 <li>
-                  <Link href={`/map/${props.username}`}>MAP</Link>
+                  <Link href={`/map/${props.username}`}>Map</Link>
                 </li>
                 <li>
-                  <Link href={`/search/${props.username}`}>FIND A HOST</Link>
+                  <Link href={`/search/${props.username}`}>Find a host</Link>
                 </li>
               </ul>
             </div>
@@ -116,7 +116,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
             <ul className="menu menu-horizontal px-1 gap-8">
               <li>
                 <Link
-                  className="text-xl font-bold"
+                  className="text-xl font-semibold"
                   href={`/user/${props.username}`}
                 >
                   My profile
@@ -124,7 +124,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               </li>
               <li>
                 <Link
-                  className="text-xl font-bold"
+                  className="text-xl font-semibold"
                   href={`/map/${props.username}`}
                 >
                   Map
@@ -132,7 +132,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               </li>
               <li>
                 <Link
-                  className="text-xl font-bold"
+                  className="text-xl font-semibold"
                   href={`/search/${props.username}`}
                 >
                   Find a host

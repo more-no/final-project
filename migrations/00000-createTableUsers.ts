@@ -11,7 +11,7 @@ export type User = {
   city: string;
   pictureUrl: string;
   presentation: string;
-  date_registration: string;
+  dateString: string;
   reported: boolean;
 };
 

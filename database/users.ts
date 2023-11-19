@@ -222,3 +222,18 @@ export const getUserPictureByUsername = cache(async (username: string) => {
   `;
   return user;
 });
+
+export const getDateRegistrationByUsername = cache(async (username: string) => {
+  const user = await sql<User[]>`
+    SELECT
+      TO_CHAR (
+        users.date_registration,
+        'YYYY-MM'
+      ) AS date_string
+    FROM
+      users
+    WHERE
+      users.username = ${username}
+  `;
+  return user;
+});

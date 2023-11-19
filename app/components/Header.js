@@ -7,7 +7,7 @@ export default function Header() {
     <header className="header header-center bg-base-200 text-base-content rounded Text Size 2">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          <Link className="normal-case text-xl" href="/">
+          <Link className="normal-case text-xl ml-5" href="/">
             <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
           </Link>
           <div className="dropdown">
@@ -43,17 +43,17 @@ export default function Header() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link href="/about" className="text-xl font-bold">
+              <Link href="/about" className="text-xl font-semibold">
                 About the Project
               </Link>
             </li>
             <li>
-              <Link href="/how" className="text-xl font-bold">
+              <Link href="/how" className="text-xl font-semibold">
                 How it works
               </Link>
             </li>
             <li>
-              <Link href="/safety" className="text-xl font-bold">
+              <Link href="/safety" className="text-xl font-semibold">
                 Safety Tips
               </Link>
             </li>

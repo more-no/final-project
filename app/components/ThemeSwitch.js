@@ -20,7 +20,7 @@ export default function ThemeSwitch() {
   };
 
   return (
-    <label className="swap swap-rotate">
+    <label className="swap swap-rotate mr-5">
       {/* this hidden checkbox controls the state */}
       <input type="checkbox" onChange={toggleTheme} />
       {/* sun icon */}

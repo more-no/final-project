@@ -49,7 +49,7 @@ export default function SearchHosts() {
   }
 
   return (
-    <div className="flex-row ml-6">
+    <div className="flex-row ml-24">
       <h1 className="text-4xl py-6"> Search for a Host: </h1>
       <p className="text-xl pb-2">
         {' '}

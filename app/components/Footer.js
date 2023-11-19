@@ -3,9 +3,9 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer className="footer p-5 bg-base-200 text-base-content justify-around">
-      <Link className="normal-case text-xl p-5" href="/">
+      {/* <Link className="normal-case text-xl p-5" href="/">
         <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
-      </Link>
+      </Link> */}
       <nav>
         <header className="footer-title">Help us</header>
         <fieldset className="form-control">
@@ -24,7 +24,7 @@ export default function Footer() {
       </nav>
       <nav>
         <header className="footer-title">Project</header>
-        <a className="link link-hover">Contact</a>
+        <a className="link link-hover">Contact us</a>
         <a className="link link-hover">Volunteer</a>
       </nav>
       <nav>

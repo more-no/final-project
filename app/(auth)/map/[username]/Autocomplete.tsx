@@ -76,36 +76,30 @@ export default function Autocomplete(props: Position) {
   const id = useId();
 
   return (
-    <div>
-      <h1 className="text-4xl py-6"> Select your location: </h1>
-      <p className="text-xl pb-2">
-        {' '}
-        Save your positions so other users can find you on the Map
-      </p>
-      <div className="flex-row py-6">
-        <form
-          onSubmit={async (event) => {
-            event.preventDefault();
-            await handleInputChange(inputValue);
-          }}
-        >
-          <div className="flex flex-col">
-            <Select
-              instanceId={id}
-              options={options}
-              onChange={(choice) => {
-                console.log('The user has selected:', choice);
-                setSelectedValue(choice!);
-              }}
-              onInputChange={handleInputChange}
-              inputValue={inputValue}
-              isSearchable
-              className="min-w-full"
-            />
-            <button className="btn btn-neutral">Save Changes</button>
-          </div>
-        </form>
-      </div>
+    <div className="flex flex-col max-w-screen-xl mr-auto py-6">
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
+          await handleInputChange(inputValue);
+        }}
+      >
+        <div className="grid grid-cols-6">
+          <Select
+            instanceId={id}
+            options={options}
+            placeholder="Put yourself on the map..."
+            onChange={(choice) => {
+              console.log('The user has selected:', choice);
+              setSelectedValue(choice!);
+            }}
+            onInputChange={handleInputChange}
+            inputValue={inputValue}
+            isSearchable
+            className="mr-44 mb-8 col-span-5"
+          />
+          <button className="btn btn-neutral col-span-1">Save Changes</button>
+        </div>
+      </form>
     </div>
   );
 }

@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function FooterLogged() {
   return (
-    <footer className="footer p-5 bg-base-200 text-base-content">
-      <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" />
+    <footer className="footer p-5 bg-base-200 text-base-content justify-around">
+      {/* <img src="/logo-transp-bg.png" alt="logo" width="80" height="80" /> */}
       <nav>
         <header className="footer-title">Help us</header>
         <fieldset className="form-control">
@@ -19,7 +19,7 @@ export default function FooterLogged() {
       </nav>
       <nav>
         <header className="footer-title">Project</header>
-        <a className="link link-hover">Contact</a>
+        <a className="link link-hover">Contact us</a>
         <a className="link link-hover">Volunteer</a>
       </nav>
       <nav>

@@ -83,11 +83,7 @@ export default function UploadPicture(props) {
           <button className="btn btn-active btn-neutral">Upload Files</button>
         </p>
 
-        {/* {uploadData && (
-          <code>
-            <pre>{JSON.stringify(uploadData, null, 2)}</pre>
-          </code>
-        )} */}
+        {uploadData && <span>Picture uploaded!</span>}
       </form>
     </div>
   );
