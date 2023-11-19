@@ -49,7 +49,7 @@ export async function up(sql: Sql) {
         country VARCHAR(20),
         city VARCHAR(20),
         picture_url VARCHAR(200),
-        presentation VARCHAR(300),
+        presentation VARCHAR(900),
         date_registration DATE DEFAULT CURRENT_DATE,
         reported BOOLEAN DEFAULT FALSE,
         password_hash VARCHAR(80) NOT NULL

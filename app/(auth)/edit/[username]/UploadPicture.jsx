@@ -75,14 +75,12 @@ export default function UploadPicture(props) {
   return (
     <div>
       <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
-        <p>
+        <div>
           <input type="file" name="file" />
-        </p>
-
-        <p>
+        </div>
+        <div className="pt-4 text-right">
           <button className="btn btn-active btn-neutral">Upload Files</button>
-        </p>
-
+        </div>
         {uploadData && <span>Picture uploaded!</span>}
       </form>
     </div>

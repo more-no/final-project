@@ -34,7 +34,7 @@ const userSchema = z.object({
   presentation: z
     .string()
     .trim()
-    .max(300, { message: 'Max 300 characters' })
+    .max(900, { message: 'Max 900 characters' })
     .nullish(),
 });
 

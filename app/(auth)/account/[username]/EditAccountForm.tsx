@@ -87,7 +87,9 @@ export default function EditAccountForm({ user }: Props) {
               />
             </label>
           </div>
-          <button className="btn btn-neutral">Save Changes</button>
+          <div className="text-right pt-4">
+            <button className="btn btn-neutral">Save Changes</button>
+          </div>
         </form>
       </div>
     </div>

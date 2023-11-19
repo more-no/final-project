@@ -34,8 +34,8 @@ export default function EditUserForm({ user }: Props) {
   }
 
   return (
-    <div className="flex flex-row gap-4">
-      <div className="basis-5/7">
+    <div className="flex flex-row">
+      <div>
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -43,7 +43,7 @@ export default function EditUserForm({ user }: Props) {
           }}
         >
           <div className="form-control">
-            <label className="label">
+            <label className="label pb-12">
               <span className="label-text font-bold p-3">Gender</span>
               <select
                 name="Gender"
@@ -66,7 +66,7 @@ export default function EditUserForm({ user }: Props) {
             </label>
           </div>
           <div className="form-control">
-            <label className="label">
+            <label className="label pb-12">
               <span className="label-text font-bold p-3">Country</span>
               <input
                 name="Country"
@@ -79,7 +79,7 @@ export default function EditUserForm({ user }: Props) {
             </label>
           </div>
           <div className="form-control">
-            <label className="label">
+            <label className="label pb-12">
               <span className="label-text font-bold p-3">City</span>
               <input
                 name="City"
@@ -92,10 +92,10 @@ export default function EditUserForm({ user }: Props) {
             </label>
           </div>
           <div className="form-control">
-            <label className="label">
+            <label className="label pb-12">
               <span className="label-text font-bold p-3">Presentation</span>
               <textarea
-                className="textarea textarea-bordered"
+                className="input input-bordered input-lg w-full max-w-xs"
                 placeholder="A few words about yourself..."
                 name="Presentation"
                 value={presentation}
@@ -105,7 +105,9 @@ export default function EditUserForm({ user }: Props) {
               />
             </label>
           </div>
-          <button className="btn btn-neutral">Save Changes</button>
+          <div className="text-right">
+            <button className="btn btn-neutral">Save Changes</button>
+          </div>
         </form>
       </div>
     </div>

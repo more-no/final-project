@@ -34,7 +34,7 @@ const createClusterCustomIcon = function (cluster) {
 
 export default function MyMap(props) {
   return (
-    <MapContainer center={props.mapCoords} zoom={7}>
+    <MapContainer center={props.mapCoords} zoom={11}>
       OPEN STREET MAPS TILES
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

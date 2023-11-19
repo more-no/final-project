@@ -40,7 +40,7 @@ export default function RegistrationForm(props: Props) {
     }
 
     router.push(
-      getSafeReturnToPath(props.returnTo) || `/user/${data.user.username}`,
+      getSafeReturnToPath(props.returnTo) || `/edit/${data.user.username}`,
     );
 
     router.refresh();
