@@ -7,11 +7,9 @@
         "name": "next"
       }
     ],
-    "jsx": "preserve",
-    "types": ["leaflet"]
+    "jsx": "preserve"
   },
   "include": [
-    "**/.eslintrc.cjs",
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
