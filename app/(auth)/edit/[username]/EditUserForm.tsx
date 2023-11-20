@@ -95,8 +95,8 @@ export default function EditUserForm({ user }: Props) {
             <label className="label pb-12">
               <span className="label-text font-bold p-3">Presentation</span>
               <textarea
-                className="input input-bordered input-lg w-full max-w-xs"
-                placeholder="A few words about yourself..."
+                className="input input-bordered w-80 h-60"
+                placeholder="Tell us about yourself (max 900 characters)"
                 name="Presentation"
                 value={presentation}
                 onChange={(event) => {

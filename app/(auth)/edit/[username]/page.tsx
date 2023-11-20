@@ -44,25 +44,29 @@ export default async function EditPage({ params }: Props) {
         Here you can update the info about yourself
       </p>
 
-      <div className="container mx-auto px-4 sw-full">
-        <div className="flex flex-row min-w-full border-2 border-solid place-content-center">
-          <div className="flex flex-col">
-            <div className="rounded pb-10">
-              <img src={user.pictureUrl} alt="Thumbnail" />
-            </div>
-            <div className="pr-16 pt-1">
-              <UploadPicture username={user.username} />
-            </div>
-          </div>
-          <div>
-            <div className="flex min-w-[50%]">
-              <div className="flex-col">
-                <div className="">
-                  <EditUserForm user={user} />
+      <div className="container mx-auto sw-full">
+        <div className="border-2 border-solid p-22">
+          <div className="card lg:card-side pb-16 pt-16">
+            <figure className="pl-16">
+              <div className="flex flex-col">
+                <div className="rounded pb-10">
+                  <img src={user.pictureUrl} alt="Thumbnail" />
+                </div>
+                <div className="pr-16 pt-1">
+                  <UploadPicture username={user.username} />
                 </div>
               </div>
-              <div className="ml-24">
-                <EditHostForm host={host} username={user.username} />
+            </figure>
+            <div className="card-body">
+              <div className="flex min-w-[50%]">
+                <div className="flex-col">
+                  <div className="">
+                    <EditUserForm user={user} />
+                  </div>
+                </div>
+                <div className="ml-24">
+                  <EditHostForm host={host} username={user.username} />
+                </div>
               </div>
             </div>
           </div>

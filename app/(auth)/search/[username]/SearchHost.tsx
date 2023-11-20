@@ -117,7 +117,6 @@ export default function SearchHosts() {
                       <div className="ml-16">{renderIcon(host.openToMeet)}</div>
                     </div>
 
-                    {/* <span> Open to meet: {renderIcon(host.openToMeet)}</span> */}
                     <div className="flex flex-row space-x-10">
                       <div className="card-actions pt-6">
                         <a

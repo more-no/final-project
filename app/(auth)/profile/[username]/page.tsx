@@ -58,7 +58,7 @@ export default async function ProfilePage({ params }: Props) {
       </div>
       <div className="container mx-auto">
         <div className="border-2 border-solid p-22">
-          <div className="grid grid-cols-3 pb-10 place-content-between">
+          <div className="grid grid-cols-3 pb-16 pt-16 place-content-between">
             <div className="pl-16">
               <div className="avatar pb-8">
                 <div className="rounded">
@@ -72,6 +72,12 @@ export default async function ProfilePage({ params }: Props) {
               <p className="text-2xl pb-4">
                 Living in: {`${user.city}, ${user.country}`}
               </p>
+              <div className="card-actions pt-6">
+                <a className="btn btn-primary" href={`mailto:${user.email}`}>
+                  {' '}
+                  Contact
+                </a>
+              </div>
             </div>
             <div className="pr-16 pt-1">
               <h2 className="text-3xl pb-4">About me:</h2>

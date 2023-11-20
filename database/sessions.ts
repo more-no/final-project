@@ -64,3 +64,15 @@ export const getValidSessionByToken = cache(async (token: string) => {
 
   return session;
 });
+
+export const getSessionCsrfSecret = cache(async (id: number) => {
+  const [session] = await sql<{ csrfSecret: string }[]>`
+    SELECT
+      sessions.csrf_secret
+    FROM
+      sessions
+    WHERE
+      user_id = ${id}
+  `;
+  return session;
+});

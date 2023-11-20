@@ -78,7 +78,7 @@ export default function UploadPicture(props) {
           <input type="file" name="file" />
         </div>
         <div className="pt-4 text-right">
-          <button className="btn btn-active btn-neutral">Upload Files</button>
+          <button className="btn btn-neutral">Upload Files</button>
         </div>
         <div className="pt-4 text-right">
           {isUploaded && <span>Picture uploaded!</span>}

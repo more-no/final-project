@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import {
   getDateRegistrationByUsername,
   getUserByUsername,
-  getUserPictureByUsername,
   getUsersForAdmin,
 } from '../../../../database/users';
 import { UserResponseBodyPut } from '../../../api/(auth)/editUser/[username]/route';
@@ -29,14 +28,7 @@ export default async function UserPage({ params }: Props) {
     );
   };
 
-  const date = await getDateRegistrationByUsername(params.username);
-
   const user = await getUserByUsername(params.username);
-
-  const thumbnail = await getUserPictureByUsername(params.username);
-
-  console.log('User: ', user);
-  console.log('Thumbnail: ', thumbnail);
 
   if (!user) {
     const errorResponse: UserResponseBodyPut = {
@@ -44,6 +36,8 @@ export default async function UserPage({ params }: Props) {
     };
     return NextResponse.json(errorResponse, { status: 500 });
   }
+
+  const date = await getDateRegistrationByUsername(params.username);
 
   const admin = await confirmAdmin(user.id);
 
@@ -64,7 +58,7 @@ export default async function UserPage({ params }: Props) {
       </div>
       <div className="container mx-auto">
         <div className="border-2 border-solid p-22">
-          <div className="grid grid-cols-3 pb-10 place-content-between">
+          <div className="grid grid-cols-3 pb-16 pt-16 place-content-between">
             <div className="pl-16">
               <div className="avatar pb-8">
                 <div className="rounded">

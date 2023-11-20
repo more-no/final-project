@@ -34,7 +34,7 @@ export default function LoginForm(props: Props) {
     }
 
     router.push(
-      getSafeReturnToPath(props.returnTo) || `/user/${data.user.username}`,
+      getSafeReturnToPath(props.returnTo) || `/search/${data.user.username}`,
     );
 
     router.refresh();
