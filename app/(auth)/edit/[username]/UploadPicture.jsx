@@ -10,6 +10,7 @@ setConfig({
 export default function UploadPicture(props) {
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
+  const [isUploaded, setIsUploaded] = useState(false);
 
   const router = useRouter();
 
@@ -18,7 +19,9 @@ export default function UploadPicture(props) {
 
     reader.onload = function (onLoadEvent) {
       setImageSrc(onLoadEvent.target.result);
+      console.log('ImageSrc: ', imageSrc);
       setUploadData(undefined);
+      console.log('uploadData: ', uploadData);
     };
 
     reader.readAsDataURL(changeEvent.target.files[0]);
@@ -50,11 +53,7 @@ export default function UploadPicture(props) {
 
     setImageSrc(data.secure_url);
 
-    console.log('Secure Url: ', imageSrc);
-
     setUploadData(data);
-
-    console.log('Secure Url: ', uploadData);
 
     const responseUrl = await fetch(`/api/pictureUrl/${props.username}`, {
       method: 'PUT',
@@ -63,11 +62,11 @@ export default function UploadPicture(props) {
       }),
     });
 
-    console.log('Response Edit User Picture Url: ', responseUrl);
-
     if (!responseUrl.ok) {
-      console.error('Response not okay. Status:', responseUrl.status);
+      console.error('Response error - status:', responseUrl.status);
     }
+
+    setIsUploaded(true);
 
     router.refresh();
   }
@@ -81,7 +80,9 @@ export default function UploadPicture(props) {
         <div className="pt-4 text-right">
           <button className="btn btn-active btn-neutral">Upload Files</button>
         </div>
-        {uploadData && <span>Picture uploaded!</span>}
+        <div className="pt-4 text-right">
+          {isUploaded && <span>Picture uploaded!</span>}
+        </div>
       </form>
     </div>
   );

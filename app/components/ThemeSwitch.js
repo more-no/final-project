@@ -16,7 +16,7 @@ export default function ThemeSwitch() {
   }
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === 'retro' ? 'dark' : 'retro');
   };
 
   return (

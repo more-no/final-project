@@ -99,19 +99,25 @@ export default function SearchHosts() {
                       />
                     </figure>
                   </div>
-                  <div className="card-body justify-end pl-6 mt-3">
+                  <div className="card-body justify-end pl-6 pt-16 mt-3">
                     <span> Member since: {host.dateString} </span>
                     <span>
                       {' '}
                       Currently living in: {host.city}, {host.country}{' '}
                     </span>
-                    <span>
-                      Accept last-minute requests: {renderIcon(host.lastMinute)}
-                    </span>
-                    <span>
-                      {' '}
-                      Open to Meet travelers: {renderIcon(host.openToMeet)}
-                    </span>
+                    <div className="flex items-center">
+                      <div className="flex flex-row">
+                        Last-minute requests:{' '}
+                      </div>
+                      <div className="ml-4">{renderIcon(host.lastMinute)}</div>
+                    </div>
+
+                    <div className="flex items-center">
+                      <div className="flex flex-row">Open to meet: </div>
+                      <div className="ml-16">{renderIcon(host.openToMeet)}</div>
+                    </div>
+
+                    {/* <span> Open to meet: {renderIcon(host.openToMeet)}</span> */}
                     <div className="flex flex-row space-x-10">
                       <div className="card-actions pt-6">
                         <a

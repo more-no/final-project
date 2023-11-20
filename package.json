@@ -10,14 +10,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@algolia/autocomplete-js": "^1.12.1",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/bcrypt": "^5.0.1",
-    "@types/dompurify": "^3.0.5",
-    "@types/leaflet": "^1.9.7",
     "@types/node": "^20.8.10",
-    "@types/react": "^18.2.35",
-    "@types/react-dom": "^18.2.14",
     "autoprefixer": "^10.4.16",
     "bcrypt": "^5.1.1",
     "cloudinary-build-url": "^0.2.4",
@@ -48,5 +42,12 @@
     "tsm": "^2.3.0",
     "typescript": "^5.2.2",
     "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.1",
+    "@types/dompurify": "^3.0.5",
+    "@types/leaflet": "^1.9.7",
+    "@types/react": "^18.2.35",
+    "@types/react-dom": "^18.2.14"
   }
 }
