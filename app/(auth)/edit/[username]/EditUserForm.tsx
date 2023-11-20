@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { User } from '../../../../migrations/00000-createTableUsers';
+import DOMPurify from 'dompurify';
 
 type Props = {
   user: User;
@@ -73,7 +74,7 @@ export default function EditUserForm({ user }: Props) {
                 value={country}
                 className="input input-bordered"
                 onChange={(event) => {
-                  setCountry(event.currentTarget.value);
+                  setCountry(DOMPurify.sanitize(event.currentTarget.value));
                 }}
               />
             </label>
@@ -86,7 +87,7 @@ export default function EditUserForm({ user }: Props) {
                 value={city}
                 className="input input-bordered"
                 onChange={(event) => {
-                  setCity(event.currentTarget.value);
+                  setCity(DOMPurify.sanitize(event.currentTarget.value));
                 }}
               />
             </label>
@@ -102,7 +103,9 @@ export default function EditUserForm({ user }: Props) {
                 name="Presentation"
                 value={presentation}
                 onChange={(event) => {
-                  setPresentation(event.currentTarget.value);
+                  setPresentation(
+                    DOMPurify.sanitize(event.currentTarget.value),
+                  );
                 }}
               />
             </label>

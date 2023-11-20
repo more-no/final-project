@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { UserAccountResponseBodyPut } from '../../../api/(auth)/editAccount/[username]/route';
 import { User } from '../../../../migrations/00000-createTableUsers';
+import DOMPurify from 'dompurify';
 
 type Props = {
   user: User;
@@ -59,7 +60,7 @@ export default function EditAccountForm({ user }: Props) {
                 value={firstName}
                 className="input input-bordered"
                 onChange={(event) => {
-                  setFirstName(event.currentTarget.value);
+                  setFirstName(DOMPurify.sanitize(event.currentTarget.value));
                 }}
               />
             </label>
@@ -70,7 +71,7 @@ export default function EditAccountForm({ user }: Props) {
                 value={lastName}
                 className="input input-bordered"
                 onChange={(event) => {
-                  setLastName(event.target.value);
+                  setLastName(DOMPurify.sanitize(event.target.value));
                 }}
               />
             </label>
@@ -82,7 +83,7 @@ export default function EditAccountForm({ user }: Props) {
                 value={email}
                 className="input input-bordered"
                 onChange={(event) => {
-                  setEmail(event.currentTarget.value);
+                  setEmail(DOMPurify.sanitize(event.currentTarget.value));
                 }}
               />
             </label>

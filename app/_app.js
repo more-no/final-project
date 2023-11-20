@@ -55,6 +55,7 @@ export default function MyApp({ Component, pageProps }) {
           href="https://cdn.jsdelivr.net/npm/@opencage/geosearch-bundle/dist/css/autocomplete-theme-classic.min.css"
         />
         <script src="https://cdn.jsdelivr.net/npm/@opencage/geosearch-bundle" />
+        <script type="text/javascript" src="dist/purify.min.js" />
       </Head>
       <Component {...pageProps} />
     </RootLayout>
