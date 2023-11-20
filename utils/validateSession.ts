@@ -16,7 +16,7 @@ export default async function validateSession(username: string) {
   // 2. check if the token has a valid session
   const session =
     sessionTokenCookie &&
-    (await getValidSessionByToken(sessionTokenCookie.value));
+    (await getValidSessionByToken(sessionTokenCookie.value, user.id));
 
   console.log('Session:', session);
 

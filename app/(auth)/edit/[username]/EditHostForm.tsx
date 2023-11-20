@@ -65,7 +65,7 @@ export default function EditHostForm(props: Props) {
       >
         <div className="form-control">
           <label className="label cursor-pointer">
-            <span className="label-text font-bold p-3">
+            <span className="label-text font-bold text-lg p-3">
               Available to host:{' '}
             </span>
             <input
@@ -79,7 +79,7 @@ export default function EditHostForm(props: Props) {
             />
           </label>
           <label className="label cursor-pointer">
-            <span className="label-text font-bold p-3">
+            <span className="label-text font-bold text-lg p-3">
               Last minute requests:{' '}
             </span>
             <input
@@ -93,7 +93,9 @@ export default function EditHostForm(props: Props) {
             />
           </label>
           <label className="label cursor-pointer">
-            <span className="label-text font-bold p-3">Open to meet: </span>
+            <span className="label-text font-bold text-lg p-3">
+              Open to meet:{' '}
+            </span>
             <input
               name="openToMeet"
               type="checkbox"
@@ -105,7 +107,9 @@ export default function EditHostForm(props: Props) {
             />
           </label>
           <label className="label cursor-pointer">
-            <span className="label-text font-bold p-3">Private room: </span>
+            <span className="label-text font-bold text-lg p-3">
+              Private room:{' '}
+            </span>
             <input
               name="privateRoom"
               type="checkbox"
@@ -117,7 +121,9 @@ export default function EditHostForm(props: Props) {
             />
           </label>
           <label className="label cursor-pointer">
-            <span className="label-text font-bold p-3">Bed to offer: </span>
+            <span className="label-text font-bold text-lg p-3">
+              Bed to offer:{' '}
+            </span>
             <input
               name="bed"
               type="checkbox"
@@ -129,7 +135,9 @@ export default function EditHostForm(props: Props) {
             />
           </label>
           <label className="label cursor-pointer">
-            <span className="label-text font-bold p-3">Have animals: </span>
+            <span className="label-text font-bold text-lg p-3">
+              Have animals:{' '}
+            </span>
             <input
               name="haveAnimals"
               type="checkbox"
@@ -141,7 +149,9 @@ export default function EditHostForm(props: Props) {
             />
           </label>
           <label className="label cursor-pointer">
-            <span className="label-text font-bold p-3">Host animals: </span>
+            <span className="label-text font-bold text-lg p-3">
+              Host animals:{' '}
+            </span>
             <input
               name="hostAnimals"
               type="checkbox"

@@ -4,8 +4,10 @@ import {
   getUserByUsername,
   getUserPictureByUsername,
 } from '../../../../database/users';
-import { UserResponseBodyPut } from '../../../api/(auth)/editUser/[username]/route';
 import { getHostById } from '../../../../database/hosts';
+import { redirect } from 'next/navigation';
+import { getValidSessionByToken } from '../../../../database/sessions';
+import { cookies } from 'next/headers';
 
 type Props = {
   params: { username: string };
@@ -26,26 +28,51 @@ export default async function ProfilePage({ params }: Props) {
     );
   };
 
-  const date = await getDateRegistrationByUsername(params.username);
+  // BEGIN VALIDATION LOGIC
+  // ----------------------
 
   const user = await getUserByUsername(params.username);
+
+  if (!user) {
+    const errorResponse = {
+      errors: [{ message: 'Error finding the User' }],
+    };
+    return NextResponse.json(errorResponse, { status: 500 });
+  }
+
+  // 1. get the token from the cookie
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  // 2. check if the token has a valid session
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value, user.id));
+
+  console.log('Is session Valid?', session);
+
+  if (!session) {
+    // Redirect or handle the case where the session is not valid
+    redirect('/');
+    const errorResponse = {
+      errors: [{ message: 'Session token is not valid' }],
+    };
+    return NextResponse.json(errorResponse, { status: 401 });
+  }
+
+  // END VALIDATION LOGIC
+  // ----------------------
+
+  const date = await getDateRegistrationByUsername(params.username);
 
   const thumbnail = await getUserPictureByUsername(params.username);
 
   console.log('User: ', user);
   console.log('Thumbnail: ', thumbnail);
 
-  if (!user) {
-    const errorResponse: UserResponseBodyPut = {
-      errors: [{ message: 'Error finding the User' }],
-    };
-    return NextResponse.json(errorResponse, { status: 500 });
-  }
-
   const host = await getHostById(user.id);
 
   if (!host) {
-    const errorResponse: UserResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Error finding the Host' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });

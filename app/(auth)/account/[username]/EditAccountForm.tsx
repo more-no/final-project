@@ -44,7 +44,7 @@ export default function EditAccountForm({ user }: Props) {
 
   return (
     <div className="flex flex-row gap-4">
-      <div className="basis-5/7">
+      <div className="">
         <form
           onSubmit={async (event) => {
             event.preventDefault();

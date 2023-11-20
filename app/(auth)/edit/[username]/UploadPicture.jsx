@@ -44,7 +44,7 @@ export default function UploadPicture(props) {
     formData.append('upload_preset', 'opentribe');
 
     const data = await fetch(
-      'https://api.cloudinary.com/v1_1/detgpj4yy/image/upload',
+      `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
       {
         method: 'PUT',
         body: formData,
@@ -77,8 +77,8 @@ export default function UploadPicture(props) {
         <div>
           <input type="file" name="file" />
         </div>
-        <div className="pt-4 text-right">
-          <button className="btn btn-neutral">Upload Files</button>
+        <div className="pt-8 text-right">
+          <button className="btn btn-neutral">Upload Picture</button>
         </div>
         <div className="pt-4 text-right">
           {isUploaded && <span>Picture uploaded!</span>}

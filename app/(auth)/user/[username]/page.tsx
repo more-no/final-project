@@ -4,10 +4,12 @@ import {
   getUserByUsername,
   getUsersForAdmin,
 } from '../../../../database/users';
-import { UserResponseBodyPut } from '../../../api/(auth)/editUser/[username]/route';
 import { confirmAdmin } from '../../../../database/roles';
 import UsersList from './UsersList';
 import { getHostById } from '../../../../database/hosts';
+import { getValidSessionByToken } from '../../../../database/sessions';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 type Props = {
   params: { username: string };
@@ -28,14 +30,39 @@ export default async function UserPage({ params }: Props) {
     );
   };
 
+  // BEGIN VALIDATION LOGIC
+  // ----------------------
+
   const user = await getUserByUsername(params.username);
 
   if (!user) {
-    const errorResponse: UserResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Error finding the User' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });
   }
+
+  // 1. get the token from the cookie
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  // 2. check if the token has a valid session
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value, user.id));
+
+  console.log('Is session Valid?', session);
+
+  if (!session) {
+    // Redirect or handle the case where the session is not valid
+    redirect('/');
+    const errorResponse = {
+      errors: [{ message: 'Session token is not valid' }],
+    };
+    return NextResponse.json(errorResponse, { status: 401 });
+  }
+
+  // END VALIDATION LOGIC
+  // ----------------------
 
   const date = await getDateRegistrationByUsername(params.username);
 

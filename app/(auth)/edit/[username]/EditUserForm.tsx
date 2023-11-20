@@ -34,7 +34,7 @@ export default function EditUserForm({ user }: Props) {
   }
 
   return (
-    <div className="flex flex-row">
+    <div className="">
       <div>
         <form
           onSubmit={async (event) => {
@@ -44,7 +44,7 @@ export default function EditUserForm({ user }: Props) {
         >
           <div className="form-control">
             <label className="label pb-12">
-              <span className="label-text font-bold p-3">Gender</span>
+              <span className="label-text font-bold text-lg p-3">Gender</span>
               <select
                 name="Gender"
                 value={gender}
@@ -67,7 +67,7 @@ export default function EditUserForm({ user }: Props) {
           </div>
           <div className="form-control">
             <label className="label pb-12">
-              <span className="label-text font-bold p-3">Country</span>
+              <span className="label-text font-bold text-lg p-3">Country</span>
               <input
                 name="Country"
                 value={country}
@@ -80,7 +80,7 @@ export default function EditUserForm({ user }: Props) {
           </div>
           <div className="form-control">
             <label className="label pb-12">
-              <span className="label-text font-bold p-3">City</span>
+              <span className="label-text font-bold text-lg p-3">City</span>
               <input
                 name="City"
                 value={city}
@@ -92,8 +92,10 @@ export default function EditUserForm({ user }: Props) {
             </label>
           </div>
           <div className="form-control">
-            <label className="label pb-12">
-              <span className="label-text font-bold p-3">Presentation</span>
+            <label className="flex flex-col text-left label pb-12">
+              <span className="label-text font-bold text-lg p-3">
+                About you
+              </span>
               <textarea
                 className="input input-bordered w-80 h-60"
                 placeholder="Tell us about yourself (max 900 characters)"

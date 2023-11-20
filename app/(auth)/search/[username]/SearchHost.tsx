@@ -39,8 +39,6 @@ export default function SearchHosts() {
       return;
     }
 
-    console.log('Hosts Data: ', data.host);
-
     const hostsArray = data.host;
 
     setCityHosts(hostsArray);
