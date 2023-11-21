@@ -25,6 +25,11 @@ export type RegisterResponseBodyPost =
     };
 
 const registerSchema = z.object({
+  username: z
+    .string()
+    .trim()
+    .min(4, { message: 'Username be 4 or more characters long' })
+    .max(15, { message: 'Username be 15 or fewer characters long' }),
   firstName: z
     .string()
     .trim()
@@ -36,11 +41,8 @@ const registerSchema = z.object({
     .min(3, { message: 'Last name must be 3 or more characters long' })
     .max(20, { message: 'Last name must be 20 or fewer characters long' }),
   email: z.string().email({ message: 'Invalid email address' }),
-  username: z
-    .string()
-    .trim()
-    .min(4, { message: 'Username be 4 or more characters long' })
-    .max(15, { message: 'Username be 15 or fewer characters long' }),
+  country: z.string(),
+  city: z.string(),
   password: z
     .string()
     .trim()
@@ -101,6 +103,8 @@ export async function POST(
     result.data.firstName,
     result.data.lastName,
     result.data.email,
+    result.data.country,
+    result.data.city,
     pictureUrl,
     passwordHash,
   );

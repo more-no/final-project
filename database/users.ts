@@ -22,6 +22,8 @@ export const registerUser = cache(
     firstName: string,
     lastName: string,
     email: string,
+    country: string,
+    city: string,
     pictureUrl: string,
     passwordHash: string,
   ) => {
@@ -32,6 +34,8 @@ export const registerUser = cache(
           first_name,
           last_name,
           email,
+          country,
+          city,
           picture_url,
           password_hash
         )
@@ -41,6 +45,8 @@ export const registerUser = cache(
           ${firstName},
           ${lastName},
           ${email},
+          ${country},
+          ${city},
           ${pictureUrl},
           ${passwordHash}
         ) RETURNING *

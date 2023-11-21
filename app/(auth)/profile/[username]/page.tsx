@@ -97,7 +97,7 @@ export default async function ProfilePage({ params }: Props) {
               </p>
               <p className="text-2xl pb-4">Gender: {user.gender}</p>
               <p className="text-2xl pb-4">
-                Living in: {`${user.city}, ${user.country}`}
+                Living in: {`${user.city} ${user.country}`}
               </p>
               <div className="card-actions pt-6">
                 <a className="btn btn-primary" href={`mailto:${user.email}`}>

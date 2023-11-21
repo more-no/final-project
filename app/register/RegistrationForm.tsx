@@ -13,6 +13,8 @@ export default function RegistrationForm(props: Props) {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const country = ' ';
+  const city = ' ';
 
   const router = useRouter();
 
@@ -26,6 +28,8 @@ export default function RegistrationForm(props: Props) {
         firstName,
         lastName,
         email,
+        country,
+        city,
         password,
       }),
     });

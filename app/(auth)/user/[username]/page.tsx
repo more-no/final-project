@@ -97,7 +97,7 @@ export default async function UserPage({ params }: Props) {
               </p>
               <p className="text-2xl pb-4">Gender: {user.gender}</p>
               <p className="text-2xl pb-4">
-                Living in: {`${user.city}, ${user.country}`}
+                Living in: {`${user.city} ${user.country}`}
               </p>
             </div>
             <div className="pr-16 pt-1">
