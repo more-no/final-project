@@ -24,6 +24,7 @@ export function generateMetadata() {
 }
 
 export default async function page({ params }: Props) {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const DynamicMapComponent = dynamic(() => import('./MyMap'), {
     ssr: false, // Disable server-side rendering
   });
