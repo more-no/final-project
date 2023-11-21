@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getUserByUsername } from '../../../../database/users';
 import EditAccountForm from './EditAccountForm';
 import { cookies } from 'next/headers';
-import { getValidSessionByToken } from '../../../../database/sessions';
+import { getValidSessionByTokenWithId } from '../../../../database/sessions';
 import { redirect } from 'next/navigation';
 
 type Props = {
@@ -34,7 +34,7 @@ export default async function AccountPage({ params }: Props) {
   // 2. check if the token has a valid session
   const session =
     sessionTokenCookie &&
-    (await getValidSessionByToken(sessionTokenCookie.value, user.id));
+    (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   console.log('Is session Valid?', session);
 

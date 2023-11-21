@@ -47,7 +47,7 @@ export const deleteSessionByToken = cache(async (token: string) => {
   return session;
 });
 
-export const getValidSessionByToken = cache(
+export const getValidSessionByTokenWithId = cache(
   async (token: string, id: number) => {
     const [session] = await sql<
       { id: number; token: string; userId: number; csrfSecret: string }[]
@@ -68,6 +68,25 @@ export const getValidSessionByToken = cache(
     return session;
   },
 );
+
+export const getValidSessionByToken = cache(async (token: string) => {
+  const [session] = await sql<
+    { id: number; token: string; userId: number; csrfSecret: string }[]
+  >`
+    SELECT
+      sessions.id,
+      sessions.token,
+      sessions.user_id,
+      sessions.csrf_secret
+    FROM
+      sessions
+    WHERE
+      sessions.token = ${token}
+      AND sessions.expiry_timestamp > now ()
+  `;
+
+  return session;
+});
 
 export const getSessionCsrfSecret = cache(async (id: number) => {
   const [session] = await sql<{ csrfSecret: string }[]>`

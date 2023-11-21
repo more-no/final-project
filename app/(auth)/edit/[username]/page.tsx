@@ -5,7 +5,7 @@ import EditHostForm from './EditHostForm';
 import { getHostById } from '../../../../database/hosts';
 import UploadPicture from './UploadPicture';
 import { cookies } from 'next/headers';
-import { getValidSessionByToken } from '../../../../database/sessions';
+import { getValidSessionByTokenWithId } from '../../../../database/sessions';
 import { redirect } from 'next/navigation';
 
 type Props = {
@@ -37,7 +37,7 @@ export default async function EditPage({ params }: Props) {
   // 2. check if the token has a valid session
   const session =
     sessionTokenCookie &&
-    (await getValidSessionByToken(sessionTokenCookie.value, user.id));
+    (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   console.log('Is session Valid?', session);
 

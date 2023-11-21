@@ -7,7 +7,7 @@ import {
 import { confirmAdmin } from '../../../../database/roles';
 import UsersList from './UsersList';
 import { getHostById } from '../../../../database/hosts';
-import { getValidSessionByToken } from '../../../../database/sessions';
+import { getValidSessionByTokenWithId } from '../../../../database/sessions';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -48,7 +48,7 @@ export default async function UserPage({ params }: Props) {
   // 2. check if the token has a valid session
   const session =
     sessionTokenCookie &&
-    (await getValidSessionByToken(sessionTokenCookie.value, user.id));
+    (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   console.log('Is session Valid?', session);
 

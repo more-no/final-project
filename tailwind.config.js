@@ -9,28 +9,8 @@ module.exports = {
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
 
   daisyui: {
-    themes: [ 'retro',
-      // {
-      //   light: {
-      //     primary: '#d400ff',
-
-      //     secondary: '#b07b00',
-
-      //     accent: '#00bcff',
-
-      //     neutral: '#15121c',
-
-      //     'base-100': '#f3ffed',
-
-      //     info: '#00a0d7',
-
-      //     success: '#00b42c',
-
-      //     warning: '#ff9f00',
-
-      //     error: '#ff98a6',
-      //   },
-      // },
+    themes: [
+      'retro',
       {
         dark: {
           primary: '#c500ff',

@@ -1,7 +1,24 @@
 import RootLayout from './layout';
 import Head from 'next/head';
+import { useEffect } from 'react';
+
+function determineInitialTheme() {
+  // Check system preferences or set a default theme
+  const prefersDarkMode = window.matchMedia(
+    '(prefers-color-scheme: dark)',
+  ).matches;
+  return prefersDarkMode ? 'dark' : 'retro';
+}
 
 export default function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    // Ensure that the initial theme is set on the server side
+    document.documentElement.setAttribute(
+      'data-theme',
+      determineInitialTheme(),
+    );
+  }, []);
+
   return (
     <RootLayout>
       <Head>

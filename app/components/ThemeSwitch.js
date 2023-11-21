@@ -8,7 +8,9 @@ export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true);
+    if (typeof window !== 'undefined') {
+      setMounted(true);
+    }
   }, []);
 
   if (!mounted) {

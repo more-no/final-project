@@ -28,7 +28,7 @@ export default async function ProfilePage({ params }: Props) {
     );
   };
 
-  // BEGIN VALIDATION LOGIC
+  // BEGIN VALIDATION LOGIC WITHOUT THE USER ID
   // ----------------------
 
   const user = await getUserByUsername(params.username);
@@ -46,7 +46,7 @@ export default async function ProfilePage({ params }: Props) {
   // 2. check if the token has a valid session
   const session =
     sessionTokenCookie &&
-    (await getValidSessionByToken(sessionTokenCookie.value, user.id));
+    (await getValidSessionByToken(sessionTokenCookie.value));
 
   console.log('Is session Valid?', session);
 
@@ -59,7 +59,7 @@ export default async function ProfilePage({ params }: Props) {
     return NextResponse.json(errorResponse, { status: 401 });
   }
 
-  // END VALIDATION LOGIC
+  // END VALIDATION LOGIC WITHOUT THE USER ID
   // ----------------------
 
   const date = await getDateRegistrationByUsername(params.username);

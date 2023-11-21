@@ -1,5 +1,4 @@
 import React from 'react';
-import MyMap from './MyMap';
 import {
   getHostById,
   getPositionByUsername,
@@ -10,8 +9,9 @@ import Autocomplete from './Autocomplete';
 import { getUserByUsername } from '../../../../database/users';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { getValidSessionByToken } from '../../../../database/sessions';
+import { getValidSessionByTokenWithId } from '../../../../database/sessions';
 import { redirect } from 'next/navigation';
+import dynamic from 'next/dynamic';
 
 type Props = {
   params: { username: string };
@@ -24,6 +24,10 @@ export function generateMetadata() {
 }
 
 export default async function page({ params }: Props) {
+  const DynamicMapComponent = dynamic(() => import('./MyMap'), {
+    ssr: false, // Disable server-side rendering
+  });
+
   // BEGIN VALIDATION LOGIC
   // ----------------------
 
@@ -42,7 +46,7 @@ export default async function page({ params }: Props) {
   // 2. check if the token has a valid session
   const session =
     sessionTokenCookie &&
-    (await getValidSessionByToken(sessionTokenCookie.value, user.id));
+    (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   console.log('Is session Valid?', session);
 
@@ -88,7 +92,7 @@ export default async function page({ params }: Props) {
     <div className="ml-24">
       <h1 className="text-4xl py-6"> Select your location: </h1>
       <Autocomplete username={user.username} position={host.position} />
-      <MyMap hosts={hosts} mapCoords={mapCoords} />
+      <DynamicMapComponent hosts={hosts} mapCoords={mapCoords} />
     </div>
   );
 }
