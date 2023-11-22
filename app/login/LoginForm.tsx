@@ -56,7 +56,7 @@ export default function LoginForm(props: Props) {
             <div className="text-center lg:text-left">
               <h1 className="text-5xl font-bold">Welcome back!</h1>
               <p className="py-6">
-                Join the community, and find a new guest or a host!
+                Join the community and find a new guest or a host!
               </p>
               <img
                 src="/logo-transp-bg.png"
