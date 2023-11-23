@@ -32,8 +32,6 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<UserAccountResponseBodyPut>> {
-  console.log('params: ', params);
-
   const username = params.username!;
 
   const userToUpdate = await getUserByUsername(username);

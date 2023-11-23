@@ -4,11 +4,10 @@ import Select from 'react-select';
 import { useRouter } from 'next/navigation';
 // import { PositionResponseBodyPut } from '../../../api/(auth)/editPosition/[username]/route';
 
-const apiKey = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY;
-
 export type Position = {
   position: string;
   username: string;
+  apiKey: string;
 };
 
 export default function Autocomplete(props: Position) {
@@ -24,7 +23,7 @@ export default function Autocomplete(props: Position) {
 
     const params = new URLSearchParams();
     params.append('q', input);
-    params.append('key', apiKey!);
+    params.append('key', props.apiKey);
     params.append('limit', '5');
 
     const url = `https://api.opencagedata.com/geocode/v1/json?${params.toString()}`;
@@ -76,30 +75,54 @@ export default function Autocomplete(props: Position) {
   const id = useId();
 
   return (
-    <div className="flex flex-col max-w-screen-xl mr-auto pt-8 pb-12">
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-          await handleInputChange(inputValue);
-        }}
-      >
-        <div className="grid grid-cols-6">
-          <Select
-            instanceId={id}
-            options={options}
-            placeholder="Put yourself on the map..."
-            onChange={(choice) => {
-              console.log('The user has selected:', choice);
-              setSelectedValue(choice!);
-            }}
-            onInputChange={handleInputChange}
-            inputValue={inputValue}
-            isSearchable
-            className="mr-44 mb-8 col-span-5"
+    <>
+      {/* <form>
+        <AddressAutofill accessToken="pk.eyJ1IjoibW9yZS1ubyIsImEiOiJjbG9tcHBsamcydmp5MmpxcHQ5bWdwbmtnIn0.0at-Yl0apcp5_fvvNhDjKQ">
+          <input
+            name="address"
+            placeholder="Address"
+            type="text"
+            autoComplete="address-line1"
           />
-          <button className="btn btn-neutral col-span-1">Save Changes</button>
-        </div>
-      </form>
-    </div>
+        </AddressAutofill>
+        <input
+          name="city"
+          placeholder="City"
+          type="text"
+          autoComplete="address-level2"
+        />
+        <input
+          name="state"
+          placeholder="State"
+          type="text"
+          autoComplete="address-level1"
+        />
+      </form> */}
+      <div className="flex flex-col max-w-screen-xl mr-auto pt-8 pb-12">
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+            await handleInputChange(inputValue);
+          }}
+        >
+          <div className="grid grid-cols-6">
+            <Select
+              instanceId={id}
+              options={options}
+              placeholder="Put yourself on the map..."
+              onChange={(choice) => {
+                console.log('The user has selected:', choice);
+                setSelectedValue(choice!);
+              }}
+              onInputChange={handleInputChange}
+              inputValue={inputValue}
+              isSearchable
+              className="mr-44 mb-8 col-span-5"
+            />
+            <button className="btn btn-neutral col-span-1">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

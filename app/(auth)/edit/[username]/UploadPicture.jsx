@@ -20,6 +20,7 @@ export default function UploadPicture(props) {
     reader.onload = function (onLoadEvent) {
       setImageSrc(onLoadEvent.target.result);
       console.log('ImageSrc: ', imageSrc);
+
       setUploadData(undefined);
       console.log('uploadData: ', uploadData);
     };
@@ -49,7 +50,7 @@ export default function UploadPicture(props) {
         method: 'PUT',
         body: formData,
       },
-    ).then((r) => r.json());
+    ).then((response) => response.json());
 
     setImageSrc(data.secure_url);
 

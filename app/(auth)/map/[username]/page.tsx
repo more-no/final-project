@@ -23,6 +23,8 @@ export function generateMetadata() {
   };
 }
 
+const openCageApiKey = '5e70f4447b4445019cfcaf3c311de496';
+
 export default async function page({ params }: Props) {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const DynamicMapComponent = dynamic(() => import('./MyMap'), {
@@ -92,7 +94,11 @@ export default async function page({ params }: Props) {
   return (
     <div className="ml-24">
       <h1 className="text-4xl py-6"> Select your location: </h1>
-      <Autocomplete username={user.username} position={host.position} />
+      <Autocomplete
+        username={user.username}
+        position={host.position}
+        apiKey={openCageApiKey}
+      />
       <DynamicMapComponent hosts={hosts} mapCoords={mapCoords} />
     </div>
   );
