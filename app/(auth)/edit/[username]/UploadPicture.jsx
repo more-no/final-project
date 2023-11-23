@@ -1,16 +1,18 @@
 'use client';
 import { useState } from 'react';
-import { setConfig } from 'cloudinary-build-url';
+// import { setConfig } from 'cloudinary-build-url';
 import { useRouter } from 'next/navigation';
-
-setConfig({
-  cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-});
 
 export default function UploadPicture(props) {
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
   const [isUploaded, setIsUploaded] = useState(false);
+
+  // setConfig({
+  //   cloudName: props.cloudName,
+  // });
+
+  const cloudName = props.cloudName;
 
   const router = useRouter();
 
@@ -45,7 +47,7 @@ export default function UploadPicture(props) {
     formData.append('upload_preset', 'opentribe');
 
     const data = await fetch(
-      `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
       {
         method: 'PUT',
         body: formData,

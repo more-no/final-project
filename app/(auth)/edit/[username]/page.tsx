@@ -19,6 +19,8 @@ export function generateMetadata() {
 }
 
 export default async function EditPage({ params }: Props) {
+  const cloudinaryCloudName = 'detgpj4yy';
+
   // BEGIN VALIDATION LOGIC
   // ----------------------
 
@@ -80,7 +82,10 @@ export default async function EditPage({ params }: Props) {
                   <img src={user.pictureUrl} alt="Thumbnail" />
                 </div>
                 <div className="pr-16 pt-1">
-                  <UploadPicture username={user.username} />
+                  <UploadPicture
+                    cloudName={cloudinaryCloudName}
+                    username={user.username}
+                  />
                 </div>
               </div>
             </figure>
