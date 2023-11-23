@@ -90,16 +90,12 @@ export default async function EditPage({ params }: Props) {
               </div>
             </figure>
             <div className="card-body">
-              <div className="">
-                <div className="flex-col">
-                  <EditUserForm user={user} />
-                </div>
+              <div className="flex-col">
+                <EditUserForm user={user} />
               </div>
             </div>
             <div className="card-body">
-              <div className="">
-                <EditHostForm host={host} username={user.username} />
-              </div>
+              <EditHostForm host={host} username={user.username} />
             </div>
           </div>
         </div>

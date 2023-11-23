@@ -11,15 +11,11 @@ export default function LeafletControlGeocoder() {
   const map = useMap();
 
   useEffect(() => {
-    console.log('Montaggio del componente LeafletControlGeocoder');
-
     const geocoder = L.Control.geocoder({
       query: '',
       placeholder: 'Search here...',
       defaultMarkGeocode: false,
     });
-
-    geocoder.addTo(map);
 
     geocoder.on('markgeocode', function (e) {
       const latlng = e.geocode.center;
@@ -29,9 +25,13 @@ export default function LeafletControlGeocoder() {
         .openPopup();
       map.fitBounds(e.geocode.bbox);
     });
-  }, [map]);
 
-  console.log('Render del componente LeafletControlGeocoder');
+    geocoder.addTo(map);
+
+    return () => {
+      geocoder.remove();
+    };
+  }, [map]);
 
   return null;
 }

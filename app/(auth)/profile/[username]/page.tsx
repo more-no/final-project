@@ -8,6 +8,9 @@ import { getHostById } from '../../../../database/hosts';
 import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import { cookies } from 'next/headers';
+import BasicInfo from './BasicInfo';
+import AboutMe from './AboutMe';
+import AboutHost from './AboutHost';
 
 type Props = {
   params: { username: string };
@@ -20,14 +23,6 @@ export function generateMetadata() {
 }
 
 export default async function ProfilePage({ params }: Props) {
-  const renderIcon = (value: boolean) => {
-    return value ? (
-      <img src="/true.png" alt="Yes" />
-    ) : (
-      <img src="/false.png" alt="No" />
-    );
-  };
-
   // BEGIN VALIDATION LOGIC WITHOUT THE USER ID
   // ----------------------
 
@@ -83,76 +78,38 @@ export default async function ProfilePage({ params }: Props) {
       <div>
         <p className="text-4xl py-6 pb-24">{params.username}'s profile</p>
       </div>
-      <div className="container mx-auto">
+      <div className="container mx-auto sw-full">
         <div className="border-2 border-solid p-22">
-          <div className="grid grid-cols-3 pb-16 pt-16 place-content-between">
-            <div className="pl-16">
-              <div className="avatar pb-8">
-                <div className="rounded">
+          <div className="card lg:card-side pb-16 pt-16">
+            <figure className="pl-16 max-w-2xl">
+              <div className="flex flex-col">
+                <div className="rounded pb-10">
                   <img src={user.pictureUrl} alt="Thumbnail" />
                 </div>
+                <BasicInfo
+                  date={date[0]?.dateString}
+                  gender={user.gender}
+                  city={user.city}
+                  country={user.country}
+                  email={user.email}
+                />
               </div>
-              <p className="text-2xl pb-4">
-                Member since: {date[0]?.dateString}
-              </p>
-              <p className="text-2xl pb-4">Gender: {user.gender}</p>
-              <p className="text-2xl pb-4">
-                Living in: {`${user.city} ${user.country}`}
-              </p>
-              <div className="card-actions pt-6">
-                <a className="btn btn-primary" href={`mailto:${user.email}`}>
-                  {' '}
-                  Contact
-                </a>
+            </figure>
+            <div className="card-body pr-16 pt-1">
+              <div className="flex-col max-w-xs mx-auto">
+                <AboutMe presentation={user.presentation} />
               </div>
             </div>
-            <div className="pr-16 pt-1">
-              <h2 className="text-3xl pb-4">About me:</h2>
-              <h2 className="text-lg pl-4">{user.presentation}</h2>
-            </div>
-            <div className="pb-8 pl-8">
-              <div className="flex flex-row flex-nowrap text-2xl pr-3 pt-8">
-                Available:
-                <div className="pl-2 pt-1 w-8 h-8 inline-block">
-                  {renderIcon(host.available)}
-                </div>
-              </div>
-              <div className="flex flex-row flex-nowrap text-2xl pt-8">
-                Last-minute requests:
-                <div className="pl-2 pt-1 w-8 h-8 inline-block">
-                  {renderIcon(host.lastMinute)}
-                </div>
-              </div>
-              <div className="flex flex-row flex-nowrap text-2xl pt-8">
-                Open to meet:
-                <div className="pl-2 pt-1 w-8 h-8 inline-block">
-                  {renderIcon(host.openToMeet)}
-                </div>
-              </div>
-              <div className="flex flex-row flex-nowrap text-2xl pt-8">
-                Offer a Private Room:
-                <div className="pl-2 pt-1 w-8 h-8 inline-block">
-                  {renderIcon(host.privateRoom)}
-                </div>
-              </div>
-              <div className="flex flex-row flex-nowrap text-2xl pt-8">
-                Offer a real bed:
-                <div className="pl-2 pt-1 w-8 h-8 inline-block">
-                  {renderIcon(host.bed)}
-                </div>
-              </div>
-              <div className="flex flex-row flex-nowrap text-2xl pt-8">
-                Has animals:
-                <div className="pl-2 pt-1 w-8 h-8 inline-block">
-                  {renderIcon(host.haveAnimals)}
-                </div>
-              </div>
-              <div className="flex flex-row flex-nowrap text-2xl pt-8">
-                Accept animals:
-                <div className="pl-2 pt-1 w-8 h-8 inline-block">
-                  {renderIcon(host.hostAnimals)}
-                </div>
-              </div>
+            <div className="card-body">
+              <AboutHost
+                available={host.available}
+                lastMinute={host.lastMinute}
+                openToMeet={host.openToMeet}
+                privateRoom={host.privateRoom}
+                bed={host.bed}
+                haveAnimals={host.haveAnimals}
+                hostAnimals={host.hostAnimals}
+              />
             </div>
           </div>
         </div>

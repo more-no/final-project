@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon, divIcon, point } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
-// import LeafletControlGeocoder from './LeafletControlGeocoder';
+import LeafletControlGeocoder from './LeafletControlGeocoder';
 // import { L } from 'leaflet';
 
 // type Position = {
@@ -104,7 +104,7 @@ export default function MyMap(props) {
           );
         })}
       </MarkerClusterGroup>
-      {/* <LeafletControlGeocoder /> */}
+      <LeafletControlGeocoder />
     </MapContainer>
   );
 }
