@@ -1,16 +1,11 @@
 'use client';
 import { useState } from 'react';
-// import { setConfig } from 'cloudinary-build-url';
 import { useRouter } from 'next/navigation';
 
 export default function UploadPicture(props) {
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
   const [isUploaded, setIsUploaded] = useState(false);
-
-  // setConfig({
-  //   cloudName: props.cloudName,
-  // });
 
   const cloudName = props.cloudName;
 
