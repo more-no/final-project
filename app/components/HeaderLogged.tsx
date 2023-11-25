@@ -166,7 +166,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               </li>
               <li>
                 <span className="justify-between">
-                  Contacts
+                  Friends
                   <span className="badge">Soon!</span>
                 </span>
               </li>
