@@ -18,7 +18,7 @@ export default function ThemeSwitch() {
   }
 
   const toggleTheme = () => {
-    setTheme(theme === 'retro' ? 'dark' : 'retro');
+    setTheme(theme === 'autumn' ? 'dracula' : 'autumn');
   };
 
   return (

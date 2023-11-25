@@ -39,12 +39,7 @@ export default async function AccountPage({ params }: Props) {
   console.log('Is session Valid?', session);
 
   if (!session) {
-    // Redirect or handle the case where the session is not valid
-    redirect('/');
-    const errorResponse = {
-      errors: [{ message: 'Session token is not valid' }],
-    };
-    return NextResponse.json(errorResponse, { status: 401 });
+    redirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC

@@ -23,8 +23,8 @@ export function generateMetadata() {
 }
 
 export default async function ProfilePage({ params }: Props) {
-  // // BEGIN VALIDATION LOGIC WITHOUT THE USER ID
-  // // ----------------------
+  // BEGIN VALIDATION LOGIC WITHOUT THE USER ID
+  // ----------------------
 
   const user = await getUserByUsername(params.username);
 
@@ -46,12 +46,7 @@ export default async function ProfilePage({ params }: Props) {
   console.log('Is session Valid?', session);
 
   if (!session) {
-    // Redirect or handle the case where the session is not valid
-    redirect('/');
-    const errorResponse = {
-      errors: [{ message: 'Session token is not valid' }],
-    };
-    return NextResponse.json(errorResponse, { status: 401 });
+    redirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC WITHOUT THE USER ID
