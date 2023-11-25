@@ -78,9 +78,9 @@ export default function UploadPicture(props) {
         <div className="pt-8 text-right">
           <button className="btn btn-neutral">Upload Picture</button>
         </div>
-        <div className="pt-4 text-right">
+        {/* <div className="pt-4 text-right">
           {isUploaded && <span>Picture uploaded!</span>}
-        </div>
+        </div> */}
       </form>
     </div>
   );

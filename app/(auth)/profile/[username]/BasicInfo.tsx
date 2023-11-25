@@ -13,9 +13,7 @@ export default function BasicInfo(props: Props) {
     <>
       <p className="text-2xl pb-4">Member since: {props.date}</p>
       <p className="text-2xl pb-4">Gender: {props.gender}</p>
-      <p className="text-2xl pb-4">
-        Living in: {`${props.city} ${props.country}`}
-      </p>
+      <p className="text-2xl pb-4">From: {`${props.city} ${props.country}`}</p>
       <div className="card-actions pt-6 pb-12">
         <a className="btn btn-primary" href={`mailto:${props.email}`}>
           {' '}

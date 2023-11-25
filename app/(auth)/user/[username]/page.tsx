@@ -53,12 +53,7 @@ export default async function UserPage({ params }: Props) {
   console.log('Is session Valid?', session);
 
   if (!session) {
-    // Redirect or handle the case where the session is not valid
-    redirect('/');
-    const errorResponse = {
-      errors: [{ message: 'Session token is not valid' }],
-    };
-    return NextResponse.json(errorResponse, { status: 401 });
+    redirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC
@@ -97,7 +92,7 @@ export default async function UserPage({ params }: Props) {
               </p>
               <p className="text-2xl pb-4">Gender: {user.gender}</p>
               <p className="text-2xl pb-4">
-                Living in: {`${user.city} ${user.country}`}
+                From: {`${user.city} ${user.country}`}
               </p>
             </div>
             <div className="pr-16 pt-1">

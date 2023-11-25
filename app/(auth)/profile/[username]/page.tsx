@@ -23,8 +23,8 @@ export function generateMetadata() {
 }
 
 export default async function ProfilePage({ params }: Props) {
-  // BEGIN VALIDATION LOGIC WITHOUT THE USER ID
-  // ----------------------
+  // // BEGIN VALIDATION LOGIC WITHOUT THE USER ID
+  // // ----------------------
 
   const user = await getUserByUsername(params.username);
 

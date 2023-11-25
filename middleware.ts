@@ -8,10 +8,9 @@ export const config = {
     '/host/:path*',
     '/edit/:path*',
     '/communities',
-    '/search',
-    '/map',
-    '/messages',
-    '/logout',
+    '/search/:path*',
+    '/map/:path*',
+    '/messages/:path*',
   ],
 };
 
