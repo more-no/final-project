@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# OpenTribe: A social network for travellers. 
 
-## Getting Started
+<img align="center" src="/public/preview/landing_page.jpg" alt="landing page" />
 
-First, run the development server:
+## Tehcnologies used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- JavaScript
+- TypeScript
+- HTML/CSS
+- React
+- Next.js
+- PostgreSQL 
+- Ley 
+- Playwright 
+- Tailwind CSS 
+- Daisy UI 
+- Leaflet
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup instructions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Clone the repository
+- Navigate to the project directory
+- Install dependencies with <code>pnpm install</code>
+- Install PostgreSQL
+- Setup the database
+- Create an .env file following the .env.example you will find in the repo
+- Run <code>pnpm migrate up</code>
+- Run the development server <code>pnpm dev</code>
+- See the project at http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Deployment
 
-## Learn More
+Check the project here [OpenTribe](https://final-project-upleveled.fly.dev/)
 
-To learn more about Next.js, take a look at the following resources:
+## Search Page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<img align="center" src="/public/preview/search_page.jpg" alt="search page" />
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Map
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img align="center" src="/public/preview/map.jpg" alt="map page" />
