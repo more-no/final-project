@@ -73,7 +73,7 @@ export default async function ProfilePage({ params }: Props) {
       <div>
         <p className="text-4xl py-6 pb-24">{params.username}'s profile</p>
       </div>
-      <div className="container mx-auto sw-full">
+      <div className="container mx-auto">
         <div className="border-2 border-solid p-22">
           <div className="card lg:card-side pb-16 pt-16">
             <figure className="pl-16 max-w-2xl">
