@@ -1,12 +1,12 @@
+import React from 'react';
+
 export default function Footer() {
   return (
     <footer className="footer p-5 bg-base-200 text-base-content justify-around">
       <nav>
         <header className="footer-title">Help us</header>
         <fieldset className="form-control">
-          {/* <label className="label"> */}
           <span className="label-text">Sustain the project!</span>
-          {/* </label> */}
           <div className="relative">
             <a
               className="btn btn-sm btn-accent top-0 right-0 rounded"
