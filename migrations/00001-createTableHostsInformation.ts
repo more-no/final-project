@@ -23,6 +23,7 @@ export type SearchHost = {
   pictureUrl: string;
   dateString: string;
   available: boolean;
+  position: string;
   lastMinute: boolean;
   openToMeet: boolean;
 };
@@ -34,6 +35,7 @@ export type HostsMap = {
   available: boolean;
   lastMinute: boolean;
   openToMeet: boolean;
+  position: string;
 };
 
 export type Positions = {

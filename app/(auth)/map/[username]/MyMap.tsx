@@ -2,21 +2,15 @@
 import './styles.css';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Icon, divIcon, point } from 'leaflet';
+import { Icon, LatLngExpression, divIcon, point } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import LeafletControlGeocoder from './LeafletControlGeocoder';
-// import { L } from 'leaflet';
+import { HostsMap } from '../../../../migrations/00001-createTableHostsInformation';
 
-// type Position = {
-//   lat: number;
-//   lng: number;
-// };
-
-// type Props = {
-//   positions: Position[];
-//   id: number[];
-//   mapCoords: LatLngExpression;
-// };
+type Props = {
+  hosts: HostsMap[];
+  mapCoords: LatLngExpression;
+};
 
 // create custom icon
 const customIcon = new Icon({
@@ -25,15 +19,17 @@ const customIcon = new Icon({
 });
 
 // custom cluster icon
-const createClusterCustomIcon = function (cluster) {
-  return new divIcon({
+const createClusterCustomIcon = function (cluster: {
+  getChildCount: () => any;
+}) {
+  return divIcon({
     html: `<span class="cluster-icon">${cluster.getChildCount()}</span>`,
     className: 'custom-marker-cluster',
     iconSize: point(33, 33, true),
   });
 };
 
-export default function MyMap(props) {
+export default function MyMap(props: Props) {
   return (
     <MapContainer center={props.mapCoords} zoom={11}>
       OPEN STREET MAPS TILES
@@ -47,7 +43,7 @@ export default function MyMap(props) {
       >
         {/* Mapping through hosts data for markers and popups */}
         {props.hosts.map((host) => {
-          const renderIcon = (value) => {
+          const renderIcon = (value: boolean) => {
             return value ? (
               <img src="/true.png" alt="Yes" />
             ) : (

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
-import L from 'leaflet';
+import * as L from 'leaflet';
 import icon from './constants';
 
 export default function LeafletControlGeocoder() {
@@ -16,14 +16,23 @@ export default function LeafletControlGeocoder() {
       defaultMarkGeocode: false,
     });
 
-    geocoder.on('markgeocode', function (e) {
-      const latlng = e.geocode.center;
-      L.marker(latlng, { icon })
-        .addTo(map)
-        .bindPopup(e.geocode.name)
-        .openPopup();
-      map.fitBounds(e.geocode.bbox);
-    });
+    geocoder.on(
+      'markgeocode',
+      function (e: {
+        geocode: {
+          center: any;
+          name: ((layer: L.Layer) => L.Content) | L.Content | L.Popup;
+          bbox: L.LatLngBoundsExpression;
+        };
+      }) {
+        const latlng = e.geocode.center;
+        L.marker(latlng, { icon })
+          .addTo(map)
+          .bindPopup(e.geocode.name)
+          .openPopup();
+        map.fitBounds(e.geocode.bbox);
+      },
+    );
 
     geocoder.addTo(map);
 
