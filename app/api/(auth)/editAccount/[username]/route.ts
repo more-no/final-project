@@ -45,15 +45,12 @@ export async function PUT(
 
   // Get the user data from the request
   const body = await request.json();
-  console.log('Request Body Account: ', body);
 
   // ==========  Check Schemas for ZOD  ==================
   // =====================================================
 
   // zod verify the body matches my schema
   const resultAccount = userAccountSchema.safeParse(body);
-
-  console.log('Schema Account result: ', resultAccount);
 
   if (!resultAccount.success) {
     const errorResponse: UserAccountResponseBodyPut = {
@@ -83,8 +80,6 @@ export async function PUT(
     };
     return NextResponse.json(errorResponse, { status: 500 });
   }
-
-  console.log('Result query userAccount:', userAccount);
 
   return NextResponse.json({
     userAccount: userAccount,

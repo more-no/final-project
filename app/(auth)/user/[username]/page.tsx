@@ -45,8 +45,6 @@ export default async function UserPage({ params }: Props) {
     sessionTokenCookie &&
     (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
-  console.log('Is session Valid?', session);
-
   if (!session) {
     redirect(`/not-found`);
   }
@@ -57,8 +55,6 @@ export default async function UserPage({ params }: Props) {
   const date = await getDateRegistrationByUsername(params.username);
 
   const admin = await confirmAdmin(user.id);
-
-  console.log('Confirm Admin result: ', admin);
 
   const users = await getUsersForAdmin();
 

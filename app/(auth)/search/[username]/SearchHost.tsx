@@ -23,19 +23,14 @@ export default function SearchHosts() {
   async function handleSearch(selectedCity: string) {
     const sanitizedCityName = DOMPurify.sanitize(selectedCity);
 
-    console.log('Sanitized name: ', sanitizedCityName);
-
     const response = await fetch(`/api/search?city=${sanitizedCityName}`, {
       method: 'GET',
     });
-
-    console.log('Response Data Hosts', response);
 
     const data: SearchResponseBodyGet = await response.json();
 
     if ('errors' in data) {
       setErrors(data.errors);
-      console.log('Response Data', errors);
       return;
     }
 

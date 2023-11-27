@@ -43,8 +43,6 @@ export default async function ProfilePage({ params }: Props) {
     sessionTokenCookie &&
     (await getValidSessionByToken(sessionTokenCookie.value));
 
-  console.log('Is session Valid?', session);
-
   if (!session) {
     redirect(`/not-found`);
   }
@@ -55,9 +53,6 @@ export default async function ProfilePage({ params }: Props) {
   const date = await getDateRegistrationByUsername(params.username);
 
   const thumbnail = await getUserPictureByUsername(params.username);
-
-  console.log('User: ', user);
-  console.log('Thumbnail: ', thumbnail);
 
   const host = await getHostById(user.id);
 

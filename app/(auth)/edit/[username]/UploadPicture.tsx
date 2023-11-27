@@ -27,7 +27,6 @@ export default function UploadPicture(props: Props) {
 
         if (typeof result === 'string') {
           setImageSrc(result);
-          console.log('ImageSrc: ', imageSrc);
         }
       };
 
@@ -69,7 +68,6 @@ export default function UploadPicture(props: Props) {
       setImageSrc(data.secure_url);
 
       setUploadData(data);
-      console.log('Upload Data: ', uploadData);
 
       const responseUrl = await fetch(`/api/pictureUrl/${props.username}`, {
         method: 'PUT',
@@ -83,7 +81,6 @@ export default function UploadPicture(props: Props) {
       }
 
       setIsUploaded(true);
-      console.log('isUploaded? ', isUploaded);
 
       router.refresh();
     }

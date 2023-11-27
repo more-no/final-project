@@ -71,8 +71,6 @@ export async function PUT(
   // zod verify the body matches my schema
   const result = hostSchema.safeParse(body);
 
-  console.log('Update Host Post request: ', result);
-
   if (!result.success) {
     const errorResponse: HostResponseBodyPut = {
       errors: [{ message: 'Data is incomplete' }],

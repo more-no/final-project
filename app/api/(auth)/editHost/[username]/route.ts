@@ -38,8 +38,6 @@ export async function PUT(
 
   const hostToUpdate = await getUserByUsername(username);
 
-  console.log('CHECK ROUTE: ', hostToUpdate!.id);
-
   if (!hostToUpdate) {
     const errorResponse: HostResponseBodyPut = {
       errors: [{ message: 'User not found' }],
@@ -49,15 +47,12 @@ export async function PUT(
 
   // Get the user data from the request
   const body = await request.json();
-  console.log('Request Body: ', body);
 
   // ==========  Check Schemas for ZOD  ==================
   // =====================================================
 
   // zod verify the body matches my schema
   const result = hostSchema.safeParse(body);
-
-  console.log('Schema Host result: ', result);
 
   if (!result.success) {
     const errorResponse: HostResponseBodyPut = {
@@ -80,8 +75,6 @@ export async function PUT(
     result.data.hostAnimals,
     hostToUpdate.id,
   );
-
-  console.log('Result query host:', host);
 
   if (!host) {
     const errorResponse: HostResponseBodyPut = {

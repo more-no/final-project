@@ -36,15 +36,11 @@ export async function PUT(
   // Get the user data from the request
   const body = await request.json();
 
-  console.log('Request Body Picture Url: ', body);
-
   // ==========  Check Schemas for ZOD  ==================
   // =====================================================
 
   // zod verify the body matches my schema
   const result = pictureUrlSchema.safeParse(body);
-
-  console.log('Schema Position result: ', result);
 
   if (!result.success) {
     const errorResponse: PictureResponseBodyPut = {
@@ -60,8 +56,6 @@ export async function PUT(
     userToUpdate.username,
     result.data.pictureUrl,
   );
-
-  console.log('Result query User Url:', userPictureUrl);
 
   return NextResponse.json({
     username: userToUpdate.username,

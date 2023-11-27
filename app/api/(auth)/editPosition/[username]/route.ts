@@ -40,15 +40,12 @@ export async function PUT(
 
   // Get the user data from the request
   const body = await request.json();
-  console.log('Request Body Position: ', body);
 
   // ==========  Check Schemas for ZOD  ==================
   // =====================================================
 
   // zod verify the body matches my schema
   const result = hostPositionSchema.safeParse(body);
-
-  console.log('Schema Position result: ', result);
 
   if (!result.success) {
     const errorResponse: PositionResponseBodyPut = {
@@ -62,14 +59,10 @@ export async function PUT(
 
   const valueAsString = JSON.stringify(body.position.value);
 
-  console.log('Position as string: ', valueAsString);
-
   const hostPosition = await updateHostPositionById(
     valueAsString,
     hostToUpdate.id,
   );
-
-  console.log('Result query host:', hostPosition);
 
   if (!hostPosition) {
     const errorResponse: PositionResponseBodyPut = {

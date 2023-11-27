@@ -34,8 +34,6 @@ export default function RegistrationForm(props: Props) {
       }),
     });
 
-    console.log('response Register: ', response);
-
     const data: RegisterResponseBodyPost = await response.json();
 
     if ('errors' in data) {
@@ -44,7 +42,7 @@ export default function RegistrationForm(props: Props) {
     }
 
     router.push(
-      getSafeReturnToPath(props.returnTo) || `/edit/${data.user.username}`,
+      getSafeReturnToPath(props.returnTo) || `/search/${data.user.username}`,
     );
 
     router.refresh();

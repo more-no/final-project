@@ -34,8 +34,6 @@ export async function POST(
   // Validate the user data
   const result = loginSchema.safeParse(body);
 
-  console.log('Login Post request: ', result);
-
   if (!result.success) {
     return NextResponse.json(
       { errors: result.error.issues },
@@ -75,12 +73,8 @@ export async function POST(
   // Create a token
   const token = crypto.randomBytes(100).toString('base64');
 
-  console.log('Login Token: ', token);
-
   // Create a csrf seed
   const csrfSecret = createCsrfSecret();
-
-  console.log('CSRF Login: ', csrfSecret);
 
   // Create the session record
   const session = await createSession(

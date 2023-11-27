@@ -51,8 +51,6 @@ export default async function page({ params }: Props) {
     sessionTokenCookie &&
     (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
-  console.log('Is session Valid?', session);
-
   if (!session) {
     redirect(`/not-found`);
   }

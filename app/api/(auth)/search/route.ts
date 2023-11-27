@@ -13,8 +13,6 @@ export type SearchResponseBodyGet =
 export async function GET(
   request: NextRequest,
 ): Promise<NextResponse<SearchResponseBodyGet>> {
-  // console.log('REQUEST :', request.nextUrl.searchParams);
-
   const city = request.nextUrl.searchParams.get('city');
 
   if (!city) {

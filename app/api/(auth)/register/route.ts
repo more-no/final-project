@@ -61,8 +61,6 @@ export async function POST(
   // Validate the user data
   const result = registerSchema.safeParse(body);
 
-  console.log('Register Post request: ', result);
-
   if (!result.success) {
     return NextResponse.json(
       { errors: result.error.issues },
@@ -132,19 +130,13 @@ export async function POST(
         { status: 406 },
       );
     }
-
-    console.log('New Host created: ', newHost.id, newHost.userId);
   }
 
   // Create a token
   const token = crypto.randomBytes(100).toString('base64');
 
-  console.log('Register Token: ', token);
-
   // Create a csrf seed
   const csrfSecret = createCsrfSecret();
-
-  console.log('CSRF Register: ', csrfSecret);
 
   // Create the session record
   const session = await createSession(newUser.id, token, csrfSecret);

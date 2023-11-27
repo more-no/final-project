@@ -24,8 +24,6 @@ export default function LoginForm(props: Props) {
       }),
     });
 
-    console.log('Response Login: ', response);
-
     const data: LoginResponseBodyPost = await response.json();
 
     if ('errors' in data) {

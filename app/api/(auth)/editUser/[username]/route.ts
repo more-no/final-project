@@ -42,8 +42,6 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<UserResponseBodyPut>> {
-  console.log('params: ', params);
-
   const username = params.username!;
 
   const userToUpdate = await getUserByUsername(username);
@@ -57,15 +55,12 @@ export async function PUT(
 
   // Get the user data from the request
   const body = await request.json();
-  console.log('Request Body: ', body);
 
   // ==========  Check Schemas for ZOD  ==================
   // =====================================================
 
   // zod verify the body matches my schema
   const resultUser = userSchema.safeParse(body);
-
-  console.log('Schema User result: ', resultUser);
 
   if (!resultUser.success) {
     const errorResponse: UserResponseBodyPut = {
@@ -96,8 +91,6 @@ export async function PUT(
     return NextResponse.json(errorResponse, { status: 500 });
   }
 
-  console.log('Result query user:', user);
-
   return NextResponse.json({
     user: user,
   });
@@ -107,8 +100,6 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<UserResponseBodyDelete>> {
-  console.log('params: ', params);
-
   const username = params.username!;
 
   if (!username) {

@@ -5,9 +5,9 @@ import { useEffect } from 'react';
 function determineInitialTheme() {
   // Check system preferences or set a default theme
   const prefersDarkMode = window.matchMedia(
-    '(prefers-color-scheme: dark)',
+    '(prefers-color-scheme: dracula)',
   ).matches;
-  return prefersDarkMode ? 'dark' : 'retro';
+  return prefersDarkMode ? 'dracula' : 'autumn';
 }
 
 export default function MyApp({ Component, pageProps }) {

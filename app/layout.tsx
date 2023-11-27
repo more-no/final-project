@@ -29,7 +29,7 @@ export default async function RootLayout(props: Props) {
     sessionToken && (await getUserBySessionToken(sessionToken.value));
 
   return (
-    <html lang="en" data-theme="retro">
+    <html lang="en" data-theme="autumn">
       <body>
         <Theme>
           {user ? <HeaderLogged username={user.username} /> : <Header />}

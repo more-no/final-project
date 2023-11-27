@@ -12,7 +12,6 @@ type Props = {
 export default function EditHostForm(props: Props) {
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [available, setAvailable] = useState(props.host.available);
-  // const [position, setPosition] = useState(props.host.position);
   const [lastMinute, setLastMinute] = useState(props.host.lastMinute);
   const [openToMeet, setOpenToMeet] = useState(props.host.openToMeet);
   const [privateRoom, setPrivateRoom] = useState(props.host.privateRoom);
@@ -37,10 +36,6 @@ export default function EditHostForm(props: Props) {
       }),
     });
 
-    console.log('CHECK FORM: ', userId);
-
-    console.log('Response Edit Host: ', response);
-
     const data: HostResponseBodyPut = await response.json();
 
     if ('errors' in data) {
@@ -50,8 +45,6 @@ export default function EditHostForm(props: Props) {
 
     console.log(errors);
 
-    // revalidatePath() throws unnecessary error, will be used when stable
-    // revalidatePath('/(auth)/register', 'page');
     router.refresh();
   }
 

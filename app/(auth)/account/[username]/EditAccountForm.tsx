@@ -27,8 +27,6 @@ export default function EditAccountForm({ user }: Props) {
       }),
     });
 
-    console.log('Response Edit Account: ', response);
-
     const data: UserAccountResponseBodyPut = await response.json();
 
     if ('errors' in data) {
@@ -36,10 +34,6 @@ export default function EditAccountForm({ user }: Props) {
       return;
     }
 
-    console.log(errors);
-
-    // revalidatePath() throws unnecessary error, will be used when stable
-    // revalidatePath('/(auth)/register', 'page');
     router.refresh();
   }
 

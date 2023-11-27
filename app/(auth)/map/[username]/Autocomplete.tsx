@@ -33,8 +33,6 @@ export default function Autocomplete(props: Position) {
 
     const data = await responseAPI.json();
 
-    console.log('Data: ', data);
-
     if (data) {
       const suggestions = data.results.map(
         (result: { formatted: any; geometry: any }) => ({
@@ -43,7 +41,6 @@ export default function Autocomplete(props: Position) {
         }),
       );
       setOptions(suggestions);
-      console.log('Suggestion: ', suggestions);
     }
 
     if ('errors' in data) {
@@ -58,15 +55,11 @@ export default function Autocomplete(props: Position) {
       }),
     });
 
-    console.log('Response Edit Position: ', responseDB);
-
     if (responseDB.ok) {
       await responseDB.json();
     } else {
       console.error('Response not okay. Status:', responseDB.status);
     }
-
-    console.log(errors);
 
     router.refresh();
   }
@@ -87,7 +80,6 @@ export default function Autocomplete(props: Position) {
             options={options}
             placeholder="Put yourself on the map..."
             onChange={(choice) => {
-              console.log('The user has selected:', choice);
               setSelectedValue(choice!);
             }}
             onInputChange={handleInputChange}

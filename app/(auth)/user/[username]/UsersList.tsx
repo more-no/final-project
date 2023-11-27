@@ -19,11 +19,7 @@ export default function UsersList({ users }: Props) {
       method: 'DELETE',
     });
 
-    console.log('Response Delete: ', response);
-
     const data: UserResponseBodyDelete = await response.json();
-
-    console.log('Data response: ', data);
 
     if ('errors' in data) {
       setErrors(data.errors);
