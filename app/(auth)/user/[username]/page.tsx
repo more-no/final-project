@@ -13,6 +13,7 @@ import { redirect } from 'next/navigation';
 import BasicInfo from './BasicInfo';
 import AboutMe from './AboutMe';
 import AboutHost from './AboutHost';
+import React from 'react';
 
 type Props = {
   params: { username: string };

@@ -1,4 +1,4 @@
-app = "final-project-upleveled"
+app = "opentribe"
 primary_region = "otp"
 
 # Apps without volume: Comment out the [mounts] configuration below

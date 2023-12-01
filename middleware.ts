@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export const config = {
-  //  The matcher config can also take an array of path
   matcher: [
     '/admin',
     '/user/:path*',
