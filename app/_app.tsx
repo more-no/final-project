@@ -1,3 +1,4 @@
+import type { AppProps } from 'next/app';
 import RootLayout from './layout';
 import Head from 'next/head';
 import { useEffect } from 'react';
@@ -10,7 +11,7 @@ function determineInitialTheme() {
   return prefersDarkMode ? 'dracula' : 'autumn';
 }
 
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // Ensure that the initial theme is set on the server side
     document.documentElement.setAttribute(
@@ -60,13 +61,6 @@ export default function MyApp({ Component, pageProps }) {
         />
         {/* leaflet-control-geocoder */}
         <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js" />
-
-        {/* GEOCODE */}
-        {/* <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@opencage/geosearch-bundle/dist/css/autocomplete-theme-classic.min.css"
-        />
-        <script src="https://cdn.jsdelivr.net/npm/@opencage/geosearch-bundle" /> */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@opencage/geosearch-bundle/dist/css/autocomplete-theme-classic.min.css"
