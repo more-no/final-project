@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Props = {
+type Profile = {
   available: boolean;
   lastMinute: boolean;
   openToMeet: boolean;
@@ -10,7 +10,7 @@ type Props = {
   hostAnimals: boolean;
 };
 
-export default function AboutProps(props: Props) {
+export default function AboutProps(props: Profile) {
   const renderIcon = (value: boolean) => {
     return value ? (
       <img src="/true.png" alt="Yes" />

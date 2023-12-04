@@ -31,6 +31,7 @@ export default function EditAccountForm({ user }: Props) {
 
     if ('errors' in data) {
       setErrors(data.errors);
+      console.log('Error editing the account data. ', errors);
       return;
     }
 

@@ -10,7 +10,6 @@ type Props = {
 export default function UploadPicture(props: Props) {
   const [imageSrc, setImageSrc] = useState<string | undefined>();
   const [uploadData, setUploadData] = useState(undefined);
-  const [isUploaded, setIsUploaded] = useState(false);
 
   const cloudName = props.cloudName;
 
@@ -79,8 +78,6 @@ export default function UploadPicture(props: Props) {
       if (!responseUrl.ok) {
         console.error('Response error - status:', responseUrl.status);
       }
-
-      setIsUploaded(true);
 
       router.refresh();
     }

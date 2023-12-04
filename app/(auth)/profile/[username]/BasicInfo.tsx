@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Props = {
+type BasicInfo = {
   date: string | undefined;
   gender: string;
   city: string;
@@ -8,7 +8,7 @@ type Props = {
   email: string;
 };
 
-export default function BasicInfo(props: Props) {
+export default function BasicInfo(props: BasicInfo) {
   return (
     <>
       <p className="text-2xl pb-4">Member since: {props.date}</p>

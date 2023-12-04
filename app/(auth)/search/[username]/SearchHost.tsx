@@ -31,6 +31,7 @@ export default function SearchHosts() {
 
     if ('errors' in data) {
       setErrors(data.errors);
+      console.log('Error searching for city: ', errors);
       return;
     }
 

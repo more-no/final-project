@@ -81,7 +81,6 @@ export async function PUT(
   // query the database to update the host
   const host = await updateHostById(
     result.data.available,
-    // result.data.position,
     result.data.lastMinute,
     result.data.openToMeet,
     result.data.privateRoom,

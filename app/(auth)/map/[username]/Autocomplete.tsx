@@ -45,6 +45,7 @@ export default function Autocomplete(props: Position) {
 
     if ('errors' in data) {
       setErrors(data.errors);
+      console.log('Error retrieving suggestions: ', errors);
       return;
     }
 

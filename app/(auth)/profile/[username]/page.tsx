@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import {
   getDateRegistrationByUsername,
   getUserByUsername,
-  getUserPictureByUsername,
 } from '../../../../database/users';
 import { getHostById } from '../../../../database/hosts';
 import { redirect } from 'next/navigation';
@@ -51,8 +50,6 @@ export default async function ProfilePage({ params }: Props) {
   // ----------------------
 
   const date = await getDateRegistrationByUsername(params.username);
-
-  const thumbnail = await getUserPictureByUsername(params.username);
 
   const host = await getHostById(user.id);
 

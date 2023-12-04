@@ -13,7 +13,6 @@ export type PositionResponseBodyPut =
     };
 
 const hostPositionSchema = z.object({
-  // csrfToken: z.string(),
   position: z.object({
     label: z.string(),
     value: z.object({

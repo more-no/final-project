@@ -53,8 +53,6 @@ const registerSchema = z.object({
 export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<RegisterResponseBodyPost>> {
-  // Task: Implement the user registration workflow
-
   // Get the user data from the request
   const body = await request.json();
 
