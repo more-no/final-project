@@ -2,6 +2,7 @@
 import { useId, useState } from 'react';
 import Select from 'react-select';
 import { useRouter } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
 export type Position = {
   position: string;
@@ -45,7 +46,7 @@ export default function Autocomplete(props: Position) {
 
     if ('errors' in data) {
       setErrors(data.errors);
-      console.log('Error retrieving suggestions: ', errors);
+      console.log('Error fetching suggestions: ', errors);
       return;
     }
 
@@ -56,10 +57,8 @@ export default function Autocomplete(props: Position) {
       }),
     });
 
-    if (responseDB.ok) {
-      await responseDB.json();
-    } else {
-      console.error('Response not okay. Status:', responseDB.status);
+    if (!responseDB.ok) {
+      return NextResponse.json(responseDB.status);
     }
 
     router.refresh();

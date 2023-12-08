@@ -23,10 +23,9 @@ export default function UsersList({ users }: Props) {
 
     if ('errors' in data) {
       setErrors(data.errors);
+      console.log('Error fetching the users: ', errors);
       return;
     }
-
-    console.log(errors);
 
     setUsersList(
       usersList.filter((user) => user.username !== data.user.username),

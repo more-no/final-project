@@ -4,7 +4,7 @@ import {
   getUserByUsername,
 } from '../../../../database/users';
 import { getHostById } from '../../../../database/hosts';
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import { cookies } from 'next/headers';
 import BasicInfo from './BasicInfo';
@@ -43,7 +43,7 @@ export default async function ProfilePage({ params }: Props) {
     (await getValidSessionByToken(sessionTokenCookie.value));
 
   if (!session) {
-    redirect(`/not-found`);
+    permanentRedirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC WITHOUT THE USER ID
@@ -57,7 +57,7 @@ export default async function ProfilePage({ params }: Props) {
     const errorResponse = {
       errors: [{ message: 'Error finding the Host' }],
     };
-    return NextResponse.json(errorResponse, { status: 500 });
+    return NextResponse.json(errorResponse, { status: 404 });
   }
 
   return (

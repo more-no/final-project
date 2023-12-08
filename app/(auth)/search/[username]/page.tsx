@@ -4,7 +4,7 @@ import { UserResponseBodyPut } from '../../../api/(auth)/editUser/[username]/rou
 import SearchHosts from './SearchHost';
 import { cookies } from 'next/headers';
 import { getValidSessionByTokenWithId } from '../../../../database/sessions';
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 
 type Props = {
   params: { username: string };
@@ -26,7 +26,7 @@ export default async function SearchPage({ params }: Props) {
     const errorResponse: UserResponseBodyPut = {
       errors: [{ message: 'Error finding the User' }],
     };
-    return NextResponse.json(errorResponse, { status: 500 });
+    return NextResponse.json(errorResponse, { status: 404 });
   }
 
   // 1. get the token from the cookie
@@ -38,7 +38,7 @@ export default async function SearchPage({ params }: Props) {
     (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   if (!session) {
-    redirect(`/not-found`);
+    permanentRedirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC

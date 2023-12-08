@@ -1,7 +1,7 @@
 'use server';
 import { cookies } from 'next/headers';
 import { deleteSessionByToken } from '../../../database/sessions';
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 
 export async function Logout() {
   // Get the session token from the cookie
@@ -17,5 +17,5 @@ export async function Logout() {
     maxAge: -1,
   });
 
-  redirect('/');
+  permanentRedirect('/');
 }

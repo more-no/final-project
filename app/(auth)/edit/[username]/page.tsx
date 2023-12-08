@@ -6,7 +6,7 @@ import { getHostById } from '../../../../database/hosts';
 import UploadPicture from './UploadPicture';
 import { cookies } from 'next/headers';
 import { getValidSessionByTokenWithId } from '../../../../database/sessions';
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 
 type Props = {
   params: { username: string };
@@ -42,7 +42,7 @@ export default async function EditPage({ params }: Props) {
     (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   if (!session) {
-    redirect(`/not-found`);
+    permanentRedirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC

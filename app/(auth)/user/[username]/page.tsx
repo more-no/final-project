@@ -9,7 +9,7 @@ import UsersList from './UsersList';
 import { getHostById } from '../../../../database/hosts';
 import { getValidSessionByTokenWithId } from '../../../../database/sessions';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 import BasicInfo from './BasicInfo';
 import AboutMe from './AboutMe';
 import AboutHost from './AboutHost';
@@ -35,7 +35,7 @@ export default async function UserPage({ params }: Props) {
     const errorResponse = {
       errors: [{ message: 'Error finding the User' }],
     };
-    return NextResponse.json(errorResponse, { status: 500 });
+    return NextResponse.json(errorResponse, { status: 404 });
   }
 
   // 1. get the token from the cookie
@@ -47,7 +47,7 @@ export default async function UserPage({ params }: Props) {
     (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   if (!session) {
-    redirect(`/not-found`);
+    permanentRedirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC

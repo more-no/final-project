@@ -40,10 +40,9 @@ export default function EditHostForm(props: Props) {
 
     if ('errors' in data) {
       setErrors(data.errors);
+      console.log('Error editing the Host: ', errors);
       return;
     }
-
-    console.log(errors);
 
     router.refresh();
   }

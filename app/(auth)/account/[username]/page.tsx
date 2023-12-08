@@ -3,7 +3,7 @@ import { getUserByUsername } from '../../../../database/users';
 import EditAccountForm from './EditAccountForm';
 import { cookies } from 'next/headers';
 import { getValidSessionByTokenWithId } from '../../../../database/sessions';
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 
 type Props = {
   params: { username: string };
@@ -25,7 +25,7 @@ export default async function AccountPage({ params }: Props) {
     const errorResponse = {
       errors: [{ message: 'Error finding the User' }],
     };
-    return NextResponse.json(errorResponse, { status: 500 });
+    return NextResponse.json(errorResponse, { status: 404 });
   }
 
   // 1. get the token from the cookie
@@ -37,7 +37,7 @@ export default async function AccountPage({ params }: Props) {
     (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   if (!session) {
-    redirect(`/not-found`);
+    permanentRedirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC

@@ -1,6 +1,7 @@
 'use client';
 import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
 type Props = {
   cloudName: string;
@@ -76,7 +77,7 @@ export default function UploadPicture(props: Props) {
       });
 
       if (!responseUrl.ok) {
-        console.error('Response error - status:', responseUrl.status);
+        return NextResponse.json(responseUrl.status, { status: 500 });
       }
 
       router.refresh();

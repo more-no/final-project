@@ -10,7 +10,7 @@ import { getUserByUsername } from '../../../../database/users';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getValidSessionByTokenWithId } from '../../../../database/sessions';
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 type Props = {
@@ -51,7 +51,7 @@ export default async function page({ params }: Props) {
     (await getValidSessionByTokenWithId(sessionTokenCookie.value, user.id));
 
   if (!session) {
-    redirect(`/not-found`);
+    permanentRedirect(`/not-found`);
   }
 
   // END VALIDATION LOGIC
@@ -64,7 +64,7 @@ export default async function page({ params }: Props) {
     const errorResponse = {
       errors: [{ message: 'Error finding the Host' }],
     };
-    return NextResponse.json(errorResponse, { status: 500 });
+    return NextResponse.json(errorResponse, { status: 404 });
   }
 
   // get data for MyMap component
