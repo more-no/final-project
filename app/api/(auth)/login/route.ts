@@ -38,7 +38,7 @@ export async function POST(
     return NextResponse.json(
       { errors: result.error.issues },
       {
-        status: 400,
+        status: 401,
       },
     );
   }
@@ -51,7 +51,7 @@ export async function POST(
   if (!userWithPasswordHash) {
     return NextResponse.json(
       { errors: [{ message: 'Username or password not valid' }] },
-      { status: 403 },
+      { status: 401 },
     );
   }
 
@@ -87,7 +87,7 @@ export async function POST(
     return NextResponse.json(
       { errors: [{ message: 'Error creating the new session' }] },
       {
-        status: 401,
+        status: 500,
       },
     );
   }

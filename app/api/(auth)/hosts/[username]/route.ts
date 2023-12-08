@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getHostById, updateHostById } from '../../../../../database/hosts';
 import { Host } from '../../../../../migrations/00001-createTableHostsInformation';
-// import { validateTokenAgainstSecret } from '../../../../../utils/csrf';
 
 export type HostResponseBodyGet =
   | {

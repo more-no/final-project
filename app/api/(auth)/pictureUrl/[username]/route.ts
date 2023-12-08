@@ -18,7 +18,7 @@ const pictureUrlSchema = z.object({
   pictureUrl: z.string().url(),
 });
 
-export async function PUT(
+export async function POST(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<PictureResponseBodyPut>> {
@@ -44,7 +44,7 @@ export async function PUT(
 
   if (!result.success) {
     const errorResponse: PictureResponseBodyPut = {
-      errors: [{ message: 'Data is incomplete' }],
+      errors: [{ message: 'Uploading was unsuccessful' }],
     };
     return NextResponse.json(errorResponse, { status: 400 });
   }
@@ -52,7 +52,7 @@ export async function PUT(
   // ==========  End Check Schemas for ZOD  ==============
   // =====================================================
 
-  const userPictureUrl = await updateUserPictureByUsername(
+  await updateUserPictureByUsername(
     userToUpdate.username,
     result.data.pictureUrl,
   );

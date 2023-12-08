@@ -74,7 +74,7 @@ export async function POST(
   if (user) {
     return NextResponse.json(
       { errors: [{ message: 'Username is already taken' }] },
-      { status: 403 },
+      { status: 422 },
     );
   }
 
@@ -83,7 +83,7 @@ export async function POST(
   if (email) {
     return NextResponse.json(
       { errors: [{ message: 'Email is already taken' }] },
-      { status: 403 },
+      { status: 422 },
     );
   }
 
@@ -108,7 +108,7 @@ export async function POST(
   if (!newUser) {
     return NextResponse.json(
       { errors: [{ message: 'Error creating the new user' }] },
-      { status: 406 },
+      { status: 500 },
     );
   }
 
@@ -125,7 +125,7 @@ export async function POST(
     if (!newHost) {
       return NextResponse.json(
         { errors: [{ message: 'Error creating the new host' }] },
-        { status: 406 },
+        { status: 500 },
       );
     }
   }
@@ -143,7 +143,7 @@ export async function POST(
     return NextResponse.json(
       { errors: [{ message: 'Error creating the new session' }] },
       {
-        status: 401,
+        status: 500,
       },
     );
   }

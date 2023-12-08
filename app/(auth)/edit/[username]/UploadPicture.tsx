@@ -59,7 +59,7 @@ export default function UploadPicture(props: Props) {
       const data = await fetch(
         `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
         {
-          method: 'PUT',
+          method: 'POST',
           body: formData,
         },
       ).then((response) => response.json());
@@ -69,7 +69,7 @@ export default function UploadPicture(props: Props) {
       setUploadData(data);
 
       const responseUrl = await fetch(`/api/pictureUrl/${props.username}`, {
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify({
           pictureUrl: data.secure_url,
         }),
