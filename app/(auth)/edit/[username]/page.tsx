@@ -19,7 +19,7 @@ export function generateMetadata() {
 }
 
 export default async function EditPage({ params }: Props) {
-  const cloudinaryCloudName = 'detgpj4yy';
+  const cloudinaryCloudName = process.env.CLOUDINARY_CLOUD_NAME;
 
   // BEGIN VALIDATION LOGIC
   // ----------------------

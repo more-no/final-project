@@ -23,7 +23,7 @@ export function generateMetadata() {
   };
 }
 
-const openCageApiKey = '5e70f4447b4445019cfcaf3c311de496';
+const openCageApiKey = process.env.OPENCAGE_API_KEY;
 
 export default async function page({ params }: Props) {
   const DynamicMapComponent = dynamic(() => import('./MyMap'), {

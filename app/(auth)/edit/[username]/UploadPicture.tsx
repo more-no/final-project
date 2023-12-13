@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
 type Props = {
-  cloudName: string;
+  cloudName: string | undefined;
   username: string;
 };
 
