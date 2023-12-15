@@ -1,11 +1,11 @@
 'use client';
+import { HostsMap } from '../../../../migrations/00001-createTableHostsInformation';
 import './styles.css';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon, LatLngExpression, divIcon, point } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import LeafletControlGeocoder from './LeafletControlGeocoder';
-import { HostsMap } from '../../../../migrations/00001-createTableHostsInformation';
 
 type Props = {
   hosts: HostsMap[];

@@ -6,12 +6,7 @@ export function generateMetadata() {
 
 export default function Safety() {
   return (
-    <div
-      className="hero min-h-screen"
-      style={{
-        backgroundImage: 'url(/bg_safety.jpg)',
-      }}
-    >
+    <div className="hero min-h-screen">
       <div className="flex flex-col text-center">
         <div className="font-bold text-4xl pb-8">Safety tips</div>
         <div className="grid md:grid-cols-2 gap-16 px-32">

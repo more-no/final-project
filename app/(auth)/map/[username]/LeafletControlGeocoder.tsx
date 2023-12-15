@@ -1,10 +1,10 @@
 'use client';
 import { useEffect } from 'react';
+import icon from './constants';
 import { useMap } from 'react-leaflet';
+import * as L from 'leaflet';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
-import * as L from 'leaflet';
-import icon from './constants';
 
 export default function LeafletControlGeocoder() {
   const map = useMap();
