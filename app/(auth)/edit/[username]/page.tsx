@@ -59,7 +59,7 @@ export default async function EditPage({ params }: Props) {
   }
 
   return (
-    <div className="ml-12">
+    <>
       <h1 className="text-4xl py-6 pb-15"> Edit your profile: </h1>
       <p className="text-xl pb-8">
         {' '}
@@ -93,6 +93,6 @@ export default async function EditPage({ params }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

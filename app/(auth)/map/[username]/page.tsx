@@ -84,7 +84,7 @@ export default async function page({ params }: Props) {
   const hosts = await searchHostsInMap();
 
   return (
-    <div className="ml-12">
+    <>
       <h1 className="text-4xl py-6"> Select your location: </h1>
       <Autocomplete
         username={user.username}
@@ -92,6 +92,6 @@ export default async function page({ params }: Props) {
         apiKey={openCageApiKey}
       />
       <DynamicMapComponent hosts={hosts} mapCoords={mapCoords} />
-    </div>
+    </>
   );
 }
