@@ -66,7 +66,7 @@ export default async function UserPage({ params }: Props) {
   }
 
   return (
-    <div className="ml-24">
+    <div className="ml-12">
       <div>
         <p className="text-4xl py-6 pb-24">{params.username}'s profile</p>
       </div>

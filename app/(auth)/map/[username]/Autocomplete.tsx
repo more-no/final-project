@@ -85,7 +85,7 @@ export default function Autocomplete(props: Position) {
             onInputChange={handleInputChange}
             inputValue={inputValue}
             isSearchable
-            className="mr-44 mb-8 col-span-5"
+            className="min-w-[30%] mr-44 mb-8 col-span-5"
             styles={{
               option: (provided) => ({
                 ...provided,

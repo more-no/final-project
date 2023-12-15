@@ -44,7 +44,7 @@ export default async function AccountPage({ params }: Props) {
   // ----------------------
 
   return (
-    <div className="ml-24">
+    <div className="ml-12">
       <h1 className="text-4xl py-6 pb-15"> Edit your account: </h1>
       <p className="text-xl pb-8">
         {' '}
