@@ -34,7 +34,7 @@ export default function MyMap(props: Props) {
     <MapContainer center={props.mapCoords} zoom={11}>
       OPEN STREET MAPS TILES
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, CC BY-SA license'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <MarkerClusterGroup

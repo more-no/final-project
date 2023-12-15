@@ -86,6 +86,13 @@ export default function Autocomplete(props: Position) {
             inputValue={inputValue}
             isSearchable
             className="mr-44 mb-8 col-span-5"
+            styles={{
+              option: (provided) => ({
+                ...provided,
+                color: 'black',
+                backgroundColor: 'white',
+              }),
+            }}
           />
           <button className="btn btn-neutral col-span-1">Save Changes</button>
         </div>

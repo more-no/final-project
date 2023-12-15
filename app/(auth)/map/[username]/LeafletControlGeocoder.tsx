@@ -5,6 +5,7 @@ import { useMap } from 'react-leaflet';
 import * as L from 'leaflet';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
+import './styles.css';
 
 export default function LeafletControlGeocoder() {
   const map = useMap();
@@ -14,6 +15,7 @@ export default function LeafletControlGeocoder() {
       query: '',
       placeholder: 'Search here...',
       defaultMarkGeocode: false,
+      collapsed: false,
     });
 
     geocoder.on(
@@ -26,6 +28,7 @@ export default function LeafletControlGeocoder() {
         };
       }) {
         const latlng = e.geocode.center;
+
         L.marker(latlng, { icon })
           .addTo(map)
           .bindPopup(e.geocode.name)
