@@ -15,7 +15,7 @@ type Props = {
 // create custom icon
 const customIcon = new Icon({
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/447/447031.png',
-  iconSize: [38, 38], // size of the icon
+  iconSize: [38, 38],
 });
 
 // custom cluster icon

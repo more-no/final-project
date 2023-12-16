@@ -5,15 +5,17 @@ import { permanentRedirect } from 'next/navigation';
 
 export async function Logout() {
   // Get the session token from the cookie
-  const cookieStore = cookies();
+  const cookieStored = cookies();
 
-  const token = cookieStore.get('sessionToken');
+  const token = cookieStored.get('sessionToken');
 
   //  Delete the session from the database based on the token
-  if (token) await deleteSessionByToken(token.value);
+  if (token) {
+    await deleteSessionByToken(token.value);
+  }
 
   // Delete the session cookie from the browser
-  cookieStore.set('sessionToken', '', {
+  cookieStored.set('sessionToken', '', {
     maxAge: -1,
   });
 

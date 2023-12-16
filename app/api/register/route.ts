@@ -3,16 +3,16 @@ import bcrypt from 'bcrypt';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createSession } from '../../../../database/sessions';
+import { createSession } from '../../../database/sessions';
 import {
   registerUser,
   getUserByUsername,
   getUserByEmail,
-} from '../../../../database/users';
-import { secureCookieOptions } from '../../../../utils/cookies';
-import { createCsrfSecret } from '../../../../utils/csrf';
-import { createAdmin } from '../../../../database/roles';
-import { createHost } from '../../../../database/hosts';
+} from '../../../database/users';
+import { secureCookieOptions } from '../../../utils/cookies';
+import { createCsrfSecret } from '../../../utils/csrf';
+import { createAdmin } from '../../../database/roles';
+import { createHost } from '../../../database/hosts';
 
 export type RegisterResponseBodyPost =
   | {

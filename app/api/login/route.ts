@@ -1,12 +1,11 @@
-import crypto from 'node:crypto';
 import bcrypt from 'bcrypt';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createSession } from '../../../../database/sessions';
-import { getUserWithPasswordHashByUsername } from '../../../../database/users';
-import { secureCookieOptions } from '../../../../utils/cookies';
-import { createCsrfSecret } from '../../../../utils/csrf';
+import { createSession } from '../../../database/sessions';
+import { getUserWithPasswordHashByUsername } from '../../../database/users';
+import { secureCookieOptions } from '../../../utils/cookies';
+import { createCsrfSecret, createTokenFromSecret } from '../../../utils/csrf';
 
 export type LoginResponseBodyPost =
   | {
@@ -70,11 +69,11 @@ export async function POST(
     );
   }
 
-  // Create a token
-  const token = crypto.randomBytes(100).toString('base64');
-
   // Create a csrf seed
   const csrfSecret = createCsrfSecret();
+
+  // Create a token
+  const token = createTokenFromSecret(csrfSecret);
 
   // Create the session record
   const session = await createSession(
