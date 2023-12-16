@@ -28,40 +28,48 @@ export default function Autocomplete(props: Position) {
 
     const url = `https://api.opencagedata.com/geocode/v1/json?${params.toString()}`;
 
-    const responseAPI = await fetch(url, {
-      method: 'GET',
-    });
+    try {
+      const responseAPI = await fetch(url, {
+        method: 'GET',
+      });
 
-    const data = await responseAPI.json();
+      const data = await responseAPI.json();
 
-    if (data) {
-      const suggestions = data.results.map(
-        (result: { formatted: any; geometry: any }) => ({
-          label: result.formatted,
-          value: result.geometry,
+      if (data) {
+        const suggestions = data.results.map(
+          (result: { formatted: any; geometry: any }) => ({
+            label: result.formatted,
+            value: result.geometry,
+          }),
+        );
+        setOptions(suggestions);
+      }
+
+      if ('errors' in data) {
+        setErrors(data.errors);
+        console.log('Error fetching suggestions: ', errors);
+        return;
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
+    }
+
+    try {
+      const responseDB = await fetch(`/api/editPosition/${props.username}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          position: selectedValue,
         }),
-      );
-      setOptions(suggestions);
+      });
+
+      if (!responseDB.ok) {
+        return NextResponse.json(responseDB.status);
+      }
+
+      router.refresh();
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
     }
-
-    if ('errors' in data) {
-      setErrors(data.errors);
-      console.log('Error fetching suggestions: ', errors);
-      return;
-    }
-
-    const responseDB = await fetch(`/api/editPosition/${props.username}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        position: selectedValue,
-      }),
-    });
-
-    if (!responseDB.ok) {
-      return NextResponse.json(responseDB.status);
-    }
-
-    router.refresh();
   }
 
   const id = useId();

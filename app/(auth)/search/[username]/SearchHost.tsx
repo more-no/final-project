@@ -23,23 +23,27 @@ export default function SearchHosts() {
   async function handleSearch(selectedCity: string) {
     const sanitizedCityName = DOMPurify.sanitize(selectedCity);
 
-    const response = await fetch(`/api/search?city=${sanitizedCityName}`, {
-      method: 'GET',
-    });
+    try {
+      const response = await fetch(`/api/search?city=${sanitizedCityName}`, {
+        method: 'GET',
+      });
 
-    const data: SearchResponseBodyGet = await response.json();
+      const data: SearchResponseBodyGet = await response.json();
 
-    if ('errors' in data) {
-      setErrors(data.errors);
-      console.log('Could not find the city: ', errors);
-      return;
+      if ('errors' in data) {
+        setErrors(data.errors);
+        console.log('Could not find the city: ', errors);
+        return;
+      }
+
+      const hostsArray = data.host;
+
+      setCityHosts(hostsArray);
+
+      router.refresh();
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
     }
-
-    const hostsArray = data.host;
-
-    setCityHosts(hostsArray);
-
-    router.refresh();
   }
 
   return (

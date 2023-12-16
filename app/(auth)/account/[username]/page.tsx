@@ -51,6 +51,6 @@ export default async function AccountPage({ params }: Props) {
         Here you can update your account information
       </p>
       <EditAccountForm user={user} />
-      </>
+    </>
   );
 }

@@ -22,29 +22,33 @@ export default function EditHostForm(props: Props) {
   const router = useRouter();
 
   async function handleEditHost(userId: number) {
-    const response = await fetch(`/api/editHost/${props.username}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        available,
-        lastMinute,
-        openToMeet,
-        privateRoom,
-        bed,
-        haveAnimals,
-        hostAnimals,
-        userId,
-      }),
-    });
+    try {
+      const response = await fetch(`/api/editHost/${props.username}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          available,
+          lastMinute,
+          openToMeet,
+          privateRoom,
+          bed,
+          haveAnimals,
+          hostAnimals,
+          userId,
+        }),
+      });
 
-    const data: HostResponseBodyPut = await response.json();
+      const data: HostResponseBodyPut = await response.json();
 
-    if ('errors' in data) {
-      setErrors(data.errors);
-      console.log('Error editing the Host: ', errors);
-      return;
+      if ('errors' in data) {
+        setErrors(data.errors);
+        console.log('Error editing the Host: ', errors);
+        return;
+      }
+
+      router.refresh();
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
     }
-
-    router.refresh();
   }
 
   return (

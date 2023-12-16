@@ -18,24 +18,28 @@ export default function EditAccountForm({ user }: Props) {
   const router = useRouter();
 
   async function handleEditAccount() {
-    const response = await fetch(`/api/editAccount/${user.username}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-      }),
-    });
+    try {
+      const response = await fetch(`/api/editAccount/${user.username}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+        }),
+      });
 
-    const data: UserAccountResponseBodyPut = await response.json();
+      const data: UserAccountResponseBodyPut = await response.json();
 
-    if ('errors' in data) {
-      setErrors(data.errors);
-      console.log('Error editing the account data. ', errors);
-      return;
+      if ('errors' in data) {
+        setErrors(data.errors);
+        console.log('Error editing the account data. ', errors);
+        return;
+      }
+
+      router.refresh();
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
     }
-
-    router.refresh();
   }
 
   return (

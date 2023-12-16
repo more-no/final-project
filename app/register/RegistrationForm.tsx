@@ -21,31 +21,35 @@ export default function RegistrationForm(props: Props) {
   async function handleRegister(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      body: JSON.stringify({
-        username,
-        firstName,
-        lastName,
-        email,
-        country,
-        city,
-        password,
-      }),
-    });
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          username,
+          firstName,
+          lastName,
+          email,
+          country,
+          city,
+          password,
+        }),
+      });
 
-    const data: RegisterResponseBodyPost = await response.json();
+      const data: RegisterResponseBodyPost = await response.json();
 
-    if ('errors' in data) {
-      setErrors(data.errors);
-      return;
+      if ('errors' in data) {
+        setErrors(data.errors);
+        return;
+      }
+
+      router.push(
+        getSafeReturnToPath(props.returnTo) || `/search/${data.user.username}`,
+      );
+
+      router.refresh();
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
     }
-
-    router.push(
-      getSafeReturnToPath(props.returnTo) || `/search/${data.user.username}`,
-    );
-
-    router.refresh();
   }
 
   return (

@@ -16,26 +16,30 @@ export default function LoginForm(props: Props) {
   async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
 
-    const data: LoginResponseBodyPost = await response.json();
+      const data: LoginResponseBodyPost = await response.json();
 
-    if ('errors' in data) {
-      setErrors(data.errors);
-      return;
+      if ('errors' in data) {
+        setErrors(data.errors);
+        return;
+      }
+
+      router.push(
+        getSafeReturnToPath(props.returnTo) || `/search/${data.user.username}`,
+      );
+
+      router.refresh();
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
     }
-
-    router.push(
-      getSafeReturnToPath(props.returnTo) || `/search/${data.user.username}`,
-    );
-
-    router.refresh();
   }
 
   return (

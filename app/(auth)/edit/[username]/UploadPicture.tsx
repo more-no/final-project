@@ -57,30 +57,40 @@ export default function UploadPicture(props: Props) {
 
       formData.append('upload_preset', 'opentribe');
 
-      const data = await fetch(
-        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-        {
-          method: 'POST',
-          body: formData,
-        },
-      ).then((response) => response.json());
+      let data;
 
-      setImageSrc(data.secure_url);
+      try {
+        data = await fetch(
+          `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+          {
+            method: 'POST',
+            body: formData,
+          },
+        ).then((response) => response.json());
 
-      setUploadData(data);
+        setImageSrc(data.secure_url);
 
-      const responseUrl = await fetch(`/api/pictureUrl/${props.username}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          pictureUrl: data.secure_url,
-        }),
-      });
-
-      if (!responseUrl.ok) {
-        return NextResponse.json(responseUrl.status, { status: 500 });
+        setUploadData(data);
+      } catch (error) {
+        console.error('An error occurred while fetching the data: ', error);
       }
 
-      router.refresh();
+      try {
+        const responseUrl = await fetch(`/api/pictureUrl/${props.username}`, {
+          method: 'POST',
+          body: JSON.stringify({
+            pictureUrl: data.secure_url,
+          }),
+        });
+
+        if (!responseUrl.ok) {
+          return NextResponse.json(responseUrl.status, { status: 500 });
+        }
+
+        router.refresh();
+      } catch (error) {
+        console.error('An error occurred while fetching the data: ', error);
+      }
     }
   }
 

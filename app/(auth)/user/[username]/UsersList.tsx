@@ -15,23 +15,27 @@ export default function UsersList({ users }: Props) {
   const router = useRouter();
 
   async function handleDeleteUser(username: string) {
-    const response = await fetch(`/api/editUser/${username}`, {
-      method: 'DELETE',
-    });
+    try {
+      const response = await fetch(`/api/editUser/${username}`, {
+        method: 'DELETE',
+      });
 
-    const data: UserResponseBodyDelete = await response.json();
+      const data: UserResponseBodyDelete = await response.json();
 
-    if ('errors' in data) {
-      setErrors(data.errors);
-      console.log('Error fetching the users: ', errors);
-      return;
+      if ('errors' in data) {
+        setErrors(data.errors);
+        console.log('Error fetching the users: ', errors);
+        return;
+      }
+
+      setUsersList(
+        usersList.filter((user) => user.username !== data.user.username),
+      );
+
+      router.refresh();
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
     }
-
-    setUsersList(
-      usersList.filter((user) => user.username !== data.user.username),
-    );
-
-    router.refresh();
   }
 
   return (
