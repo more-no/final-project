@@ -7,15 +7,15 @@ export default function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setMounted(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     setMounted(true);
+  //   }
+  // }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  // if (!mounted) {
+  //   return null;
+  // }
 
   const toggleTheme = () => {
     setTheme(theme === 'autumn' ? 'dracula' : 'autumn');
