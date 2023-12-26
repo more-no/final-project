@@ -29,9 +29,9 @@ export default async function RootLayout(props: Props) {
     sessionToken && (await getUserBySessionToken(sessionToken.value));
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <Theme>
+        <Theme defaultTheme="system" enableSystem={true}>
           {user ? <HeaderLogged username={user.username} /> : <Header />}
           <div className="min-h-screen bg-base-200">{props.children}</div>
           {user ? <FooterLogged /> : <Footer />}
