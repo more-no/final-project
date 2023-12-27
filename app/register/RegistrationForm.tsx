@@ -43,7 +43,7 @@ export default function RegistrationForm(props: Props) {
       }
 
       router.push(
-        getSafeReturnToPath(props.returnTo) || `/search/${data.user.username}`,
+        getSafeReturnToPath(props.returnTo) || `/${data.user.username}/search`,
       );
 
       router.refresh();

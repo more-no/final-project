@@ -3,5 +3,5 @@ type Props = {
 };
 
 export default function ProfileLayout(props: Props) {
-  return <div className="ml-12">{props.children}</div>;
+  return <div className="ml-12 pb-12">{props.children}</div>;
 }

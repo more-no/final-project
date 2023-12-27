@@ -1,4 +1,5 @@
-import LogoutLink from '../(auth)/logout/LogoutLink';
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+import LogoutLink from '../(auth)/[username]/logout/LogoutLink';
 import Link from 'next/link';
 import Theme from './ThemeSwitch';
 
@@ -32,7 +33,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               </div>
               <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                  <Link href="/user/admin">Admin</Link>
+                  <Link href="/admin/user">Admin</Link>
                 </li>
               </ul>
             </div>
@@ -40,7 +41,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               <li>
-                <Link href="/user/admin">Admin</Link>
+                <Link href="/admin/user">Admin</Link>
               </li>
             </ul>
           </div>
@@ -98,13 +99,13 @@ export default function HeaderLogged(props: UserLoggedIn) {
               </div>
               <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                  <Link href={`/user/${props.username}`}>My profile</Link>
+                  <Link href={`/${props.username}/user`}>My profile</Link>
                 </li>
                 <li>
-                  <Link href={`/map/${props.username}`}>Map</Link>
+                  <Link href={`/${props.username}/map`}>Map</Link>
                 </li>
                 <li>
-                  <Link href={`/search/${props.username}`}>Find a host</Link>
+                  <Link href={`/${props.username}/search`}>Find a host</Link>
                 </li>
               </ul>
             </div>
@@ -114,7 +115,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               <li>
                 <Link
                   className="text-xl font-semibold"
-                  href={`/user/${props.username}`}
+                  href={`/${props.username}/user`}
                 >
                   My profile
                 </Link>
@@ -122,7 +123,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               <li>
                 <Link
                   className="text-xl font-semibold"
-                  href={`/map/${props.username}`}
+                  href={`/${props.username}/map`}
                 >
                   Map
                 </Link>
@@ -130,7 +131,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               <li>
                 <Link
                   className="text-xl font-semibold"
-                  href={`/search/${props.username}`}
+                  href={`/${props.username}/search`}
                 >
                   Find a host
                 </Link>
@@ -162,7 +163,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               </li>
               <li />
               <li>
-                <Link href={`/edit/${props.username}`}>Edit Profile</Link>
+                <Link href={`/${props.username}/edit`}>Edit Profile</Link>
               </li>
               <li>
                 <span className="justify-between">
@@ -171,10 +172,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
                 </span>
               </li>
               <li>
-                <span className="justify-between">
-                  Messages
-                  <span className="badge">Soon!</span>
-                </span>
+                <Link href={`/${props.username}/chat`}>Chat</Link>
               </li>
               <li>
                 <span className="justify-between">
@@ -184,7 +182,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
               </li>
               <li />
               <li>
-                <Link href={`/account/${props.username}`}>Account</Link>
+                <Link href={`/${props.username}/account`}>Account</Link>
               </li>
               <li>
                 <LogoutLink />

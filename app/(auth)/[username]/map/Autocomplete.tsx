@@ -75,7 +75,7 @@ export default function Autocomplete(props: Position) {
   const id = useId();
 
   return (
-    <div className="flex flex-col max-w-screen-xl mr-auto pt-8 pb-12">
+    <div className="flex flex-col max-w-screen-xl pt-8 pb-12 mr-12">
       <form
         onSubmit={async (event) => {
           event.preventDefault();

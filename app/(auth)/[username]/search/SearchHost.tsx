@@ -49,10 +49,7 @@ export default function SearchHosts() {
   return (
     <div className="flex-row">
       <h1 className="text-4xl py-6"> Search for a Host: </h1>
-      <p className="text-xl pb-2">
-        {' '}
-        Save your positions so other users can find you on the Map
-      </p>
+      <p className="text-xl pb-2"> Choose a city and see who is around!</p>
       <div className="py-6">
         <form
           onSubmit={async (event) => {
@@ -119,7 +116,7 @@ export default function SearchHosts() {
                       <div className="card-actions pt-6">
                         <a
                           className="btn btn-primary"
-                          href={`/profile/${host.username}`}
+                          href={`/${host.username}/profile`}
                         >
                           {' '}
                           See Profile

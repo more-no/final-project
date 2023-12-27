@@ -1,6 +1,6 @@
 'use server';
 import { cookies } from 'next/headers';
-import { deleteSessionByToken } from '../../../database/sessions';
+import { deleteSessionByToken } from '../../../../database/sessions';
 import { permanentRedirect } from 'next/navigation';
 
 export async function Logout() {
