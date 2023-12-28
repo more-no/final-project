@@ -3,14 +3,12 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { User } from '../../../../migrations/00000-createTableUsers';
 import DOMPurify from 'dompurify';
-import { UserResponseBodyPut } from '../../../api/(auth)/editUser/[username]/route';
 
 type Props = {
   user: User;
 };
 
 export default function EditUserForm({ user }: Props) {
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [gender, setGender] = useState(user.gender);
   const [country, setCountry] = useState(user.country);
   const [city, setCity] = useState(user.city);
@@ -30,11 +28,10 @@ export default function EditUserForm({ user }: Props) {
         }),
       });
 
-      const data: UserResponseBodyPut = await response.json();
+      const data = await response.json();
 
       if ('errors' in data) {
-        setErrors(data.errors);
-        console.log('Error editing the User: ', errors);
+        console.log('Error editing the User: ', data.errors);
         return;
       }
 

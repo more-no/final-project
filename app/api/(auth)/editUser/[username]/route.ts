@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { UserResponse } from '../../../login/route';
 import {
-  deleteUserByUsername,
   getUserByUsername,
   updateUserById,
 } from '../../../../../database/users';
@@ -71,33 +70,6 @@ export async function PUT(
   if (!user) {
     const errorResponse = {
       errors: [{ message: 'Error updating the User' }],
-    };
-    return NextResponse.json(errorResponse, { status: 500 });
-  }
-
-  return NextResponse.json({
-    user: user,
-  });
-}
-
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Record<string, string> },
-): Promise<NextResponse<UserResponse>> {
-  const username = params.username!;
-
-  if (!username) {
-    const errorResponse = {
-      errors: [{ message: 'User not found' }],
-    };
-    return NextResponse.json(errorResponse, { status: 404 });
-  }
-
-  const user = await deleteUserByUsername(username);
-
-  if (!user) {
-    const errorResponse = {
-      errors: [{ message: 'Error deleting the User' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });
   }

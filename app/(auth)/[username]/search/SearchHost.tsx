@@ -2,13 +2,11 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import DOMPurify from 'dompurify';
-import { SearchResponseBodyGet } from '../../../api/(auth)/search/route';
 import { SearchHost } from '../../../../migrations/00001-createTableHostsInformation';
 
 export default function SearchHosts() {
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [city, setCity] = useState('');
-  const [cityHosts, setCityHosts] = useState<SearchHost[]>([]);
+  const [cityHosts, setCityHosts] = useState([]);
 
   const renderIcon = (value: boolean) => {
     return value ? (
@@ -28,11 +26,10 @@ export default function SearchHosts() {
         method: 'GET',
       });
 
-      const data: SearchResponseBodyGet = await response.json();
+      const data = await response.json();
 
       if ('errors' in data) {
-        setErrors(data.errors);
-        console.log('Could not find the city: ', errors);
+        console.log('Could not find the city: ', data.errors);
         return;
       }
 

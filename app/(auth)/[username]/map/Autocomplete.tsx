@@ -11,7 +11,6 @@ export type Position = {
 };
 
 export default function Autocomplete(props: Position) {
-  const [errors, setErrors] = useState([]);
   const [options, setOptions] = useState([]);
   const [selectedValue, setSelectedValue] = useState(props.position);
   const [inputValue, setInputValue] = useState('');
@@ -46,8 +45,7 @@ export default function Autocomplete(props: Position) {
       }
 
       if ('errors' in data) {
-        setErrors(data.errors);
-        console.log('Error fetching suggestions: ', errors);
+        console.log('Error fetching suggestions: ', data.errors);
         return;
       }
     } catch (error) {

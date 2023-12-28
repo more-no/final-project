@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import LogoutLink from '../(auth)/[username]/logout/LogoutLink';
+import Logout from '../(auth)/[username]/logout/Logout';
 import Link from 'next/link';
 import Theme from './ThemeSwitch';
 
@@ -67,7 +67,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
             <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
               <li />
               <li>
-                <LogoutLink />
+                <Logout />
               </li>
             </ul>
           </div>
@@ -185,7 +185,7 @@ export default function HeaderLogged(props: UserLoggedIn) {
                 <Link href={`/${props.username}/account`}>Account</Link>
               </li>
               <li>
-                <LogoutLink />
+                <Logout />
               </li>
             </ul>
           </div>

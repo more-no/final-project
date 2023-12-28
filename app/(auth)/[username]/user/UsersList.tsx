@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { User } from '../../../../migrations/00000-createTableUsers';
-import { UserResponseBodyDelete } from '../../../api/(auth)/editUser/[username]/route';
 import { useRouter } from 'next/navigation';
 
 type Props = {
@@ -9,7 +8,6 @@ type Props = {
 };
 
 export default function UsersList({ users }: Props) {
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [usersList, setUsersList] = useState(users);
 
   const router = useRouter();
@@ -20,11 +18,10 @@ export default function UsersList({ users }: Props) {
         method: 'DELETE',
       });
 
-      const data: UserResponseBodyDelete = await response.json();
+      const data = await response.json();
 
       if ('errors' in data) {
-        setErrors(data.errors);
-        console.log('Error fetching the users: ', errors);
+        console.log('Error fetching the users: ', data.errors);
         return;
       }
 

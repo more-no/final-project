@@ -51,10 +51,17 @@ export async function POST(
   // ==========  End Check Schemas for ZOD  ==============
   // =====================================================
 
-  await updateUserPictureByUsername(
+  const userPicture = await updateUserPictureByUsername(
     userToUpdate.username,
     result.data.pictureUrl,
   );
+
+  if (!userPicture) {
+    const errorResponse = {
+      errors: [{ message: 'Error saving the url in the Database' }],
+    };
+    return NextResponse.json(errorResponse, { status: 500 });
+  }
 
   return NextResponse.json({
     picture_url: result.data.pictureUrl,

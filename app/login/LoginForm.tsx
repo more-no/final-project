@@ -27,6 +27,7 @@ export default function LoginForm(props: Props) {
       const data = await response.json();
 
       if ('errors' in data) {
+        console.log('Error during the login: ', data.errors);
         setErrors(data.errors);
         return;
       }

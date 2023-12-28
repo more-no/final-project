@@ -1,7 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { HostResponseBodyPut } from '../../../api/(auth)/hosts/[username]/route';
 import { Host } from '../../../../migrations/00001-createTableHostsInformation';
 
 type Props = {
@@ -10,7 +9,6 @@ type Props = {
 };
 
 export default function EditHostForm(props: Props) {
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [available, setAvailable] = useState(props.host.available);
   const [lastMinute, setLastMinute] = useState(props.host.lastMinute);
   const [openToMeet, setOpenToMeet] = useState(props.host.openToMeet);
@@ -37,11 +35,10 @@ export default function EditHostForm(props: Props) {
         }),
       });
 
-      const data: HostResponseBodyPut = await response.json();
+      const data = await response.json();
 
       if ('errors' in data) {
-        setErrors(data.errors);
-        console.log('Error editing the Host: ', errors);
+        console.log('Error editing the Host: ', data.errors);
         return;
       }
 

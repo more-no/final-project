@@ -62,7 +62,6 @@ export async function PUT(
   // ==========  End Check Schemas for ZOD  ==============
   // =====================================================
 
-  // query the database to update the user
   const userAccount = await updateUserAccountById(
     userToUpdate.id,
     resultAccount.data.firstName,

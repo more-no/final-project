@@ -28,7 +28,7 @@ const openCageApiKey = process.env.OPENCAGE_API_KEY;
 export default async function page({ params }: Props) {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const DynamicMapComponent = dynamic(() => import('./MyMap'), {
-    ssr: false, // Disable server-side rendering : NextJs generates the code for web-app pages before-hand on a server before it reaches the browser. As a result of this, trying to access the window object in NextJs will not work on loading the page, since the server will not recognize a window - like the browser would.
+    ssr: false, // Disable server-side rendering : NextJs generates the code for web-app pages before-hand on a server before it reaches the browser.
   });
 
   // BEGIN VALIDATION LOGIC

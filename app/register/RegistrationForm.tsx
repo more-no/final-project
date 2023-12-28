@@ -37,6 +37,7 @@ export default function RegistrationForm(props: Props) {
       const data = await response.json();
 
       if ('errors' in data) {
+        console.log('Error during registration: ', data.errors);
         setErrors(data.errors);
         return;
       }

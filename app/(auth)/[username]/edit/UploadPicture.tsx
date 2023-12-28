@@ -1,7 +1,6 @@
 'use client';
 import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { NextResponse } from 'next/server';
 
 type Props = {
   cloudName: string | undefined;
@@ -10,7 +9,6 @@ type Props = {
 
 export default function UploadPicture(props: Props) {
   const [imageSrc, setImageSrc] = useState<string | undefined>();
-  const [uploadData, setUploadData] = useState(undefined);
 
   const cloudName = props.cloudName;
 
@@ -57,34 +55,36 @@ export default function UploadPicture(props: Props) {
 
       formData.append('upload_preset', 'opentribe');
 
-      let data;
+      let dataUpload;
 
       try {
-        data = await fetch(
+        dataUpload = await fetch(
           `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
           {
             method: 'POST',
             body: formData,
           },
         ).then((response) => response.json());
-
-        setImageSrc(data.secure_url);
-
-        setUploadData(data);
       } catch (error) {
-        console.error('An error occurred while fetching the data: ', error);
+        console.error(
+          'An error occurred while fetching the data from the cloud: ',
+          error,
+        );
       }
 
       try {
-        const responseUrl = await fetch(`/api/pictureUrl/${props.username}`, {
+        const response = await fetch(`/api/pictureUrl/${props.username}`, {
           method: 'POST',
           body: JSON.stringify({
-            pictureUrl: data.secure_url,
+            pictureUrl: dataUpload.secure_url,
           }),
         });
 
-        if (!responseUrl.ok) {
-          return NextResponse.json(responseUrl.status, { status: 500 });
+        const data = await response.json();
+
+        if ('errors' in data) {
+          console.log(data.errors);
+          return;
         }
 
         router.refresh();

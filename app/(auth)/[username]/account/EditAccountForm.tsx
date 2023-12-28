@@ -1,7 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { UserAccountResponseBodyPut } from '../../../api/(auth)/editAccount/[username]/route';
 import { User } from '../../../../migrations/00000-createTableUsers';
 import DOMPurify from 'dompurify';
 
@@ -10,7 +9,6 @@ type Props = {
 };
 
 export default function EditAccountForm({ user }: Props) {
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [email, setEmail] = useState(user.email);
@@ -28,11 +26,10 @@ export default function EditAccountForm({ user }: Props) {
         }),
       });
 
-      const data: UserAccountResponseBodyPut = await response.json();
+      const data = await response.json();
 
       if ('errors' in data) {
-        setErrors(data.errors);
-        console.log('Error editing the account data. ', errors);
+        console.log('Error editing the account data. ', data.errors);
         return;
       }
 
@@ -44,54 +41,52 @@ export default function EditAccountForm({ user }: Props) {
 
   return (
     <div className="flex flex-row gap-4">
-      <div className="">
-        <form
-          onSubmit={async (event) => {
-            event.preventDefault();
-            await handleEditAccount();
-          }}
-        >
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text font-bold p-3">First Name</span>
-              <input
-                name="First Name"
-                value={firstName}
-                className="input input-bordered"
-                onChange={(event) => {
-                  setFirstName(DOMPurify.sanitize(event.currentTarget.value));
-                }}
-              />
-            </label>
-            <label className="label">
-              <span className="label-text font-bold p-3">Last Name</span>
-              <input
-                name="Last Name"
-                value={lastName}
-                className="input input-bordered"
-                onChange={(event) => {
-                  setLastName(DOMPurify.sanitize(event.target.value));
-                }}
-              />
-            </label>
-            <label className="label">
-              <span className="label-text font-bold p-3">Email</span>
-              <input
-                name="Email"
-                type="Email"
-                value={email}
-                className="input input-bordered"
-                onChange={(event) => {
-                  setEmail(DOMPurify.sanitize(event.currentTarget.value));
-                }}
-              />
-            </label>
-          </div>
-          <div className="text-right pt-4">
-            <button className="btn btn-neutral">Save Changes</button>
-          </div>
-        </form>
-      </div>
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
+          await handleEditAccount();
+        }}
+      >
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text font-bold p-3">First Name</span>
+            <input
+              name="First Name"
+              value={firstName}
+              className="input input-bordered"
+              onChange={(event) => {
+                setFirstName(DOMPurify.sanitize(event.currentTarget.value));
+              }}
+            />
+          </label>
+          <label className="label">
+            <span className="label-text font-bold p-3">Last Name</span>
+            <input
+              name="Last Name"
+              value={lastName}
+              className="input input-bordered"
+              onChange={(event) => {
+                setLastName(DOMPurify.sanitize(event.target.value));
+              }}
+            />
+          </label>
+          <label className="label">
+            <span className="label-text font-bold p-3">Email</span>
+            <input
+              name="Email"
+              type="Email"
+              value={email}
+              className="input input-bordered"
+              onChange={(event) => {
+                setEmail(DOMPurify.sanitize(event.currentTarget.value));
+              }}
+            />
+          </label>
+        </div>
+        <div className="text-right pt-4">
+          <button className="btn btn-neutral">Save Changes</button>
+        </div>
+      </form>
     </div>
   );
 }

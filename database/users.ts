@@ -209,7 +209,7 @@ export const updateUserPictureByUsername = cache(
       WHERE
         username = ${username} RETURNING *
     `;
-    return [user];
+    return user;
   },
 );
 

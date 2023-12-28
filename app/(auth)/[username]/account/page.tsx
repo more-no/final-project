@@ -4,6 +4,7 @@ import EditAccountForm from './EditAccountForm';
 import { cookies } from 'next/headers';
 import { getValidSessionByTokenWithId } from '../../../../database/sessions';
 import { permanentRedirect } from 'next/navigation';
+import DeleteAccountForm from './DeleteAccountForm';
 
 type Props = {
   params: { username: string };
@@ -47,10 +48,12 @@ export default async function AccountPage({ params }: Props) {
     <>
       <h1 className="text-4xl py-6 pb-15"> Edit your account: </h1>
       <p className="text-xl pb-8">
-        {' '}
         Here you can update your account information
       </p>
       <EditAccountForm user={user} />
+      <h1 className="text-4xl py-6 pt-24"> Delete your account: </h1>
+      <p className="text-xl pb-8"> Attention: this cannot be undone!</p>
+      <DeleteAccountForm user={user} />
     </>
   );
 }
