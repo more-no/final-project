@@ -30,7 +30,7 @@
 
 ## Deployment
 
-Check the project here [OpenTribe](https://final-project-upleveled.fly.dev/)
+Check the project here [OpenTribe](https://opentribe.fly.dev/)
 
 ## Search Page
 
