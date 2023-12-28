@@ -23,7 +23,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="manifest" href="/site.webmanifest" />;
         {/* <!-- Leaflet CSS file --> */}
         <link
           rel="stylesheet"

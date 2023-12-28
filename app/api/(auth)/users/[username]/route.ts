@@ -1,32 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getUserByUsername } from '../../../../../database/users';
-import { User } from '../../../../../migrations/00000-createTableUsers';
-import { UserForAdmin } from '../../../../../migrations/00000-createTableUsers';
-
-export type UserResponseBodyGet =
-  | {
-      user: User;
-    }
-  | {
-      errors: { message: string }[];
-    };
-
-export type UserResponseBodyDelete =
-  | {
-      user: UserForAdmin;
-    }
-  | {
-      errors: { message: string }[];
-    };
+import { UserResponse } from '../../../login/route';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Record<string, string> },
-): Promise<NextResponse<UserResponseBodyGet>> {
+): Promise<NextResponse<UserResponse>> {
   const username = params.username;
 
   if (!username) {
-    const errorResponse: UserResponseBodyGet = {
+    const errorResponse = {
       errors: [{ message: 'Username not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -35,7 +18,7 @@ export async function GET(
   const user = await getUserByUsername(username);
 
   if (!user) {
-    const errorResponse: UserResponseBodyGet = {
+    const errorResponse = {
       errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });

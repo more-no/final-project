@@ -5,9 +5,8 @@ import {
   updateUserPictureByUsername,
 } from '../../../../../database/users';
 
-export type PictureResponseBodyPut =
+type PictureResponse =
   | {
-      username: string;
       picture_url: string;
     }
   | {
@@ -21,13 +20,13 @@ const pictureUrlSchema = z.object({
 export async function POST(
   request: NextRequest,
   { params }: { params: Record<string, string> },
-): Promise<NextResponse<PictureResponseBodyPut>> {
+): Promise<NextResponse<PictureResponse>> {
   const username = params.username!;
 
   const userToUpdate = await getUserByUsername(username);
 
   if (!userToUpdate) {
-    const errorResponse: PictureResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -43,7 +42,7 @@ export async function POST(
   const result = pictureUrlSchema.safeParse(body);
 
   if (!result.success) {
-    const errorResponse: PictureResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Uploading was unsuccessful' }],
     };
     return NextResponse.json(errorResponse, { status: 400 });
@@ -58,7 +57,6 @@ export async function POST(
   );
 
   return NextResponse.json({
-    username: userToUpdate.username,
     picture_url: result.data.pictureUrl,
   });
 }

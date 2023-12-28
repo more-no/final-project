@@ -1,16 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Host } from '../../../../../migrations/00001-createTableHostsInformation';
 import { getUserByUsername } from '../../../../../database/users';
 import { updateHostPositionById } from '../../../../../database/hosts';
-
-export type PositionResponseBodyPut =
-  | {
-      host: Host;
-    }
-  | {
-      errors: { message: string }[];
-    };
+import { HostResponse } from '../../editHost/[username]/route';
 
 const hostPositionSchema = z.object({
   position: z.object({
@@ -25,13 +17,13 @@ const hostPositionSchema = z.object({
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
-): Promise<NextResponse<PositionResponseBodyPut>> {
+): Promise<NextResponse<HostResponse>> {
   const username = params.username!;
 
   const hostToUpdate = await getUserByUsername(username);
 
   if (!hostToUpdate) {
-    const errorResponse: PositionResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -47,7 +39,7 @@ export async function PUT(
   const result = hostPositionSchema.safeParse(body);
 
   if (!result.success) {
-    const errorResponse: PositionResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Data is incomplete' }],
     };
     return NextResponse.json(errorResponse, { status: 400 });
@@ -64,7 +56,7 @@ export async function PUT(
   );
 
   if (!hostPosition) {
-    const errorResponse: PositionResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Error updating the Host Position' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });

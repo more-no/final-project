@@ -1,27 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { User } from '../../../../../migrations/00000-createTableUsers';
+import { UserResponse } from '../../../login/route';
 import {
   deleteUserByUsername,
   getUserByUsername,
   updateUserById,
 } from '../../../../../database/users';
-
-export type UserResponseBodyPut =
-  | {
-      user: User;
-    }
-  | {
-      errors: { message: string }[];
-    };
-
-export type UserResponseBodyDelete =
-  | {
-      user: User;
-    }
-  | {
-      errors: { message: string }[];
-    };
 
 const userSchema = z.object({
   gender: z.string().max(20, { message: 'Max 20 characters' }).nullish(),
@@ -41,13 +25,13 @@ const userSchema = z.object({
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
-): Promise<NextResponse<UserResponseBodyPut>> {
+): Promise<NextResponse<UserResponse>> {
   const username = params.username!;
 
   const userToUpdate = await getUserByUsername(username);
 
   if (!userToUpdate) {
-    const errorResponse: UserResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -63,7 +47,7 @@ export async function PUT(
   const resultUser = userSchema.safeParse(body);
 
   if (!resultUser.success) {
-    const errorResponse: UserResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Data is incomplete' }],
     };
     return NextResponse.json(errorResponse, { status: 400 });
@@ -85,7 +69,7 @@ export async function PUT(
   );
 
   if (!user) {
-    const errorResponse: UserResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Error updating the User' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });
@@ -99,11 +83,11 @@ export async function PUT(
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string> },
-): Promise<NextResponse<UserResponseBodyDelete>> {
+): Promise<NextResponse<UserResponse>> {
   const username = params.username!;
 
   if (!username) {
-    const errorResponse: UserResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -112,7 +96,7 @@ export async function DELETE(
   const user = await deleteUserByUsername(username);
 
   if (!user) {
-    const errorResponse: UserResponseBodyDelete = {
+    const errorResponse = {
       errors: [{ message: 'Error deleting the User' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });

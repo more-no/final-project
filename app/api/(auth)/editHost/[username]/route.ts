@@ -4,15 +4,7 @@ import { Host } from '../../../../../migrations/00001-createTableHostsInformatio
 import { getUserByUsername } from '../../../../../database/users';
 import { updateHostById } from '../../../../../database/hosts';
 
-export type HostResponseBodyPut =
-  | {
-      host: Host;
-    }
-  | {
-      errors: { message: string }[];
-    };
-
-export type HostResponseBodyDelete =
+export type HostResponse =
   | {
       host: Host;
     }
@@ -33,13 +25,13 @@ const hostSchema = z.object({
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
-): Promise<NextResponse<HostResponseBodyPut>> {
+): Promise<NextResponse<HostResponse>> {
   const username = params.username!;
 
   const hostToUpdate = await getUserByUsername(username);
 
   if (!hostToUpdate) {
-    const errorResponse: HostResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -55,7 +47,7 @@ export async function PUT(
   const result = hostSchema.safeParse(body);
 
   if (!result.success) {
-    const errorResponse: HostResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Data is incomplete' }],
     };
     return NextResponse.json(errorResponse, { status: 400 });
@@ -77,7 +69,7 @@ export async function PUT(
   );
 
   if (!host) {
-    const errorResponse: HostResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Error updating the Host' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });

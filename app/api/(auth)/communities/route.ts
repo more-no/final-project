@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Community } from '../../../../migrations/00002-createTableCommunities';
 import { getCommunities } from '../../../../database/communities';
 
-export type CommunityResponseBodyGet =
+type CommunityResponse =
   | {
       communities: Community[];
     }
@@ -10,7 +10,7 @@ export type CommunityResponseBodyGet =
       errors: { message: string }[];
     };
 
-export async function GET(): Promise<NextResponse<CommunityResponseBodyGet>> {
+export async function GET(): Promise<NextResponse<CommunityResponse>> {
   const communities = await getCommunities();
 
   return NextResponse.json({

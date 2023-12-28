@@ -4,10 +4,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createSession } from '../../../database/sessions';
 import { getUserWithPasswordHashByUsername } from '../../../database/users';
-import { secureCookieOptions } from '../../../utils/cookies';
 import { createCsrfSecret, createTokenFromSecret } from '../../../utils/csrf';
+import { secureCookieOptions } from '../../../utils/cookies';
 
-export type LoginResponseBodyPost =
+export type UserResponse =
   | {
       user: { username: string };
     }
@@ -26,7 +26,7 @@ const loginSchema = z.object({
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<LoginResponseBodyPost>> {
+): Promise<NextResponse<UserResponse>> {
   // Get the user data from the request
   const body = await request.json();
 

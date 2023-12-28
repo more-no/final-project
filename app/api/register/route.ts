@@ -9,20 +9,11 @@ import {
   getUserByUsername,
   getUserByEmail,
 } from '../../../database/users';
-import { secureCookieOptions } from '../../../utils/cookies';
 import { createCsrfSecret } from '../../../utils/csrf';
 import { createAdmin } from '../../../database/roles';
 import { createHost } from '../../../database/hosts';
-
-export type RegisterResponseBodyPost =
-  | {
-      user: {
-        username: string;
-      };
-    }
-  | {
-      errors: { message: string }[];
-    };
+import { UserResponse } from '../login/route';
+import { secureCookieOptions } from '../../../utils/cookies';
 
 const registerSchema = z.object({
   username: z
@@ -52,7 +43,7 @@ const registerSchema = z.object({
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<RegisterResponseBodyPost>> {
+): Promise<NextResponse<UserResponse>> {
   // Get the user data from the request
   const body = await request.json();
 

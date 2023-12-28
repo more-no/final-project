@@ -1,23 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getHostById, updateHostById } from '../../../../../database/hosts';
-import { Host } from '../../../../../migrations/00001-createTableHostsInformation';
-
-export type HostResponseBodyGet =
-  | {
-      host: Host;
-    }
-  | {
-      errors: { message: string }[];
-    };
-
-export type HostResponseBodyPut =
-  | {
-      host: Host;
-    }
-  | {
-      errors: { message: string }[];
-    };
+import { HostResponse } from '../../editHost/[username]/route';
 
 const hostSchema = z.object({
   available: z.boolean(),
@@ -36,13 +20,13 @@ const hostSchema = z.object({
 export async function GET(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<HostResponseBodyGet>> {
+): Promise<NextResponse<HostResponse>> {
   const hostId = Number(params.userId);
 
   const host = await getHostById(hostId);
 
   if (!host) {
-    const errorResponse: HostResponseBodyGet = {
+    const errorResponse = {
       errors: [{ message: 'Host not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -54,11 +38,11 @@ export async function GET(
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<HostResponseBodyPut>> {
+): Promise<NextResponse<HostResponse>> {
   const hostId = Number(params.userId);
 
   if (!hostId) {
-    const errorResponse: HostResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Host not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -71,7 +55,7 @@ export async function PUT(
   const result = hostSchema.safeParse(body);
 
   if (!result.success) {
-    const errorResponse: HostResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Data is incomplete' }],
     };
     return NextResponse.json(errorResponse, { status: 400 });
@@ -91,7 +75,7 @@ export async function PUT(
 
   if (!host) {
     // Create an error response in the shape of HostResponseBodyGet
-    const errorResponse: HostResponseBodyGet = {
+    const errorResponse = {
       errors: [{ message: 'Error updating the User' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });

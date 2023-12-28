@@ -1,7 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { RegisterResponseBodyPost } from '../api/register/route';
 import { getSafeReturnToPath } from '../../utils/validation';
 
 type Props = { returnTo?: string | string[] };
@@ -35,7 +34,7 @@ export default function RegistrationForm(props: Props) {
         }),
       });
 
-      const data: RegisterResponseBodyPost = await response.json();
+      const data = await response.json();
 
       if ('errors' in data) {
         setErrors(data.errors);

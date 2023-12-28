@@ -6,7 +6,7 @@ import {
   updateUserAccountById,
 } from '../../../../../database/users';
 
-export type UserAccountResponseBodyPut =
+type UserAccountResponse =
   | {
       userAccount: User;
     }
@@ -31,13 +31,13 @@ const userAccountSchema = z.object({
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
-): Promise<NextResponse<UserAccountResponseBodyPut>> {
+): Promise<NextResponse<UserAccountResponse>> {
   const username = params.username!;
 
   const userToUpdate = await getUserByUsername(username);
 
   if (!userToUpdate) {
-    const errorResponse: UserAccountResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -53,7 +53,7 @@ export async function PUT(
   const resultAccount = userAccountSchema.safeParse(body);
 
   if (!resultAccount.success) {
-    const errorResponse: UserAccountResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Data is incomplete' }],
     };
     return NextResponse.json(errorResponse, { status: 400 });
@@ -75,7 +75,7 @@ export async function PUT(
   );
 
   if (!userAccount) {
-    const errorResponse: UserAccountResponseBodyPut = {
+    const errorResponse = {
       errors: [{ message: 'Error updating the User Account' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });

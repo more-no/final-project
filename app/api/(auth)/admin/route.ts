@@ -1,22 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { Role } from '../../../../migrations/00008-createTableRoles';
-import { UserResponseBodyDelete } from '../editUser/[username]/route';
+import { NextResponse } from 'next/server';
 import { deleteUserByUsername } from '../../../../database/users';
-
-export type RoleResponseBodyGet =
-  | {
-      admin: Role;
-    }
-  | {
-      errors: { message: string }[];
-    };
+import { UserResponse } from '../../login/route';
 
 export async function DELETE(
-  request: NextRequest,
   username: string,
-): Promise<NextResponse<UserResponseBodyDelete>> {
+): Promise<NextResponse<UserResponse>> {
   if (!username) {
-    const errorResponse: UserResponseBodyDelete = {
+    const errorResponse = {
       errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
@@ -25,7 +15,7 @@ export async function DELETE(
   const user = await deleteUserByUsername(username);
 
   if (!user) {
-    const errorResponse: UserResponseBodyDelete = {
+    const errorResponse = {
       errors: [{ message: 'Error deleting the User' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });

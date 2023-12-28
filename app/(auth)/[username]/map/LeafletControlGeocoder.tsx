@@ -14,6 +14,8 @@ export default function LeafletControlGeocoder() {
     const geocoder = L.Control.geocoder({
       query: '',
       placeholder: 'Search here...',
+      queryMinLength: 4,
+      suggestMinLength: 4,
       defaultMarkGeocode: false,
       collapsed: false,
     });

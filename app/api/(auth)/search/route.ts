@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { searchHosts } from '../../../../database/hosts';
 import { SearchHost } from '../../../../migrations/00001-createTableHostsInformation';
 
-export type SearchResponseBodyGet =
+type SearchResponse =
   | {
       host: SearchHost[];
     }
@@ -12,11 +12,11 @@ export type SearchResponseBodyGet =
 
 export async function GET(
   request: NextRequest,
-): Promise<NextResponse<SearchResponseBodyGet>> {
+): Promise<NextResponse<SearchResponse>> {
   const city = request.nextUrl.searchParams.get('city');
 
   if (!city) {
-    const errorResponse: SearchResponseBodyGet = {
+    const errorResponse = {
       errors: [{ message: 'City not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });

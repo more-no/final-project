@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { getSafeReturnToPath } from '../../utils/validation';
-import { LoginResponseBodyPost } from '../api/login/route';
 
 type Props = { returnTo?: string | string[] };
 
@@ -25,7 +24,7 @@ export default function LoginForm(props: Props) {
         }),
       });
 
-      const data: LoginResponseBodyPost = await response.json();
+      const data = await response.json();
 
       if ('errors' in data) {
         setErrors(data.errors);
