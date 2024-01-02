@@ -14,7 +14,7 @@ export default function UsersList({ users }: Props) {
 
   async function handleDeleteUser(username: string) {
     try {
-      const response = await fetch(`/api/editUser/${username}`, {
+      const response = await fetch(`/api/users/${username}`, {
         method: 'DELETE',
       });
 

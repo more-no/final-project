@@ -1,55 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { getHostById, updateHostById } from '../../../../../database/hosts';
-import { HostResponse } from '../../editHost/[username]/route';
+import { Host } from '../../../../../migrations/00001-createTableHostsInformation';
+import { getUserByUsername } from '../../../../../database/users';
+import { updateHostById } from '../../../../../database/hosts';
+
+export type HostResponse =
+  | {
+      host: Host;
+    }
+  | {
+      errors: { message: string }[];
+    };
 
 const hostSchema = z.object({
   available: z.boolean(),
-  position: z.string().max(20),
   lastMinute: z.boolean(),
   openToMeet: z.boolean(),
   privateRoom: z.boolean(),
   bed: z.boolean(),
   haveAnimals: z.boolean(),
   hostAnimals: z.boolean(),
-  pastGuests: z.number(),
-  reviews: z.number(),
-  csrfToken: z.string(),
 });
-
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<HostResponse>> {
-  const hostId = Number(params.userId);
-
-  const host = await getHostById(hostId);
-
-  if (!host) {
-    const errorResponse = {
-      errors: [{ message: 'Host not found' }],
-    };
-    return NextResponse.json(errorResponse, { status: 404 });
-  }
-
-  return NextResponse.json({ host: host });
-}
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Record<string, string | string[]> },
+  { params }: { params: Record<string, string> },
 ): Promise<NextResponse<HostResponse>> {
-  const hostId = Number(params.userId);
+  const username = params.username!;
 
-  if (!hostId) {
+  const hostToUpdate = await getUserByUsername(username);
+
+  if (!hostToUpdate) {
     const errorResponse = {
-      errors: [{ message: 'Host not found' }],
+      errors: [{ message: 'User not found' }],
     };
     return NextResponse.json(errorResponse, { status: 404 });
   }
 
-  // Get the host data from the request
+  // Get the user data from the request
   const body = await request.json();
+
+  // ==========  Check Schemas for ZOD  ==================
+  // =====================================================
 
   // zod verify the body matches my schema
   const result = hostSchema.safeParse(body);
@@ -61,7 +53,10 @@ export async function PUT(
     return NextResponse.json(errorResponse, { status: 400 });
   }
 
-  // query the database to update the host
+  // ==========  End Check Schemas for ZOD  ==============
+  // =====================================================
+
+  // query the database to update the user
   const host = await updateHostById(
     result.data.available,
     result.data.lastMinute,
@@ -70,13 +65,12 @@ export async function PUT(
     result.data.bed,
     result.data.haveAnimals,
     result.data.hostAnimals,
-    hostId,
+    hostToUpdate.id,
   );
 
   if (!host) {
-    // Create an error response in the shape of HostResponseBodyGet
     const errorResponse = {
-      errors: [{ message: 'Error updating the User' }],
+      errors: [{ message: 'Error updating the Host' }],
     };
     return NextResponse.json(errorResponse, { status: 500 });
   }

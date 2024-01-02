@@ -18,7 +18,7 @@ export default function EditUserForm({ user }: Props) {
 
   async function handleEditUser() {
     try {
-      const response = await fetch(`/api/editUser/${user.username}`, {
+      const response = await fetch(`/api/users/${user.username}`, {
         method: 'PUT',
         body: JSON.stringify({
           gender,

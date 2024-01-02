@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getUserByUsername } from '../../../../../database/users';
 import { updateHostPositionById } from '../../../../../database/hosts';
-import { HostResponse } from '../../editHost/[username]/route';
+import { HostResponse } from '../../hosts/[username]/route';
 
 const hostPositionSchema = z.object({
   position: z.object({

@@ -21,7 +21,7 @@ export default function EditHostForm(props: Props) {
 
   async function handleEditHost(userId: number) {
     try {
-      const response = await fetch(`/api/editHost/${props.username}`, {
+      const response = await fetch(`/api/hosts/${props.username}`, {
         method: 'PUT',
         body: JSON.stringify({
           available,
