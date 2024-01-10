@@ -5,7 +5,7 @@ export default function Homepage() {
     <div
       className="hero min-h-screen"
       style={{
-        backgroundImage: 'url(/bg_dark_theme.jpg)',
+        backgroundImage: 'url(/bg_dark_theme.webp)',
       }}
     >
       <div className="hero-overlay bg-opacity-60" />

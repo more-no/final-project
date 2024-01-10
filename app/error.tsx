@@ -6,7 +6,7 @@ export default function Error() {
     <div
       className="hero min-h-screen"
       style={{
-        backgroundImage: 'url(/bg_light_theme.jpg)',
+        backgroundImage: 'url(/bg_light_theme.webp)',
       }}
     >
       <div className="hero-overlay bg-opacity-60" />

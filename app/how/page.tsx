@@ -11,7 +11,7 @@ export default function How() {
     <div
       className="hero min-h-screen"
       style={{
-        backgroundImage: 'url(/bg_info.jpg)',
+        backgroundImage: 'url(/bg_info.webp)',
       }}
     >
       <div className="hero-overlay bg-opacity-60" />
