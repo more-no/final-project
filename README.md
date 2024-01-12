@@ -1,4 +1,4 @@
-# OpenTribe: A social network for travellers. 
+# OpenTribe: A social network for travellers.
 
 <img align="center" src="/public/preview/landing_page.jpg" alt="landing page" />
 
@@ -9,11 +9,11 @@
 - HTML/CSS
 - React
 - Next.js
-- PostgreSQL 
-- Ley 
-- Playwright 
-- Tailwind CSS 
-- Daisy UI 
+- PostgreSQL
+- Ley
+- Playwright
+- Tailwind CSS
+- Daisy UI
 - Leaflet
 
 ## Setup instructions

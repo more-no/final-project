@@ -63,7 +63,7 @@ export default function MyMap(props: Props) {
             >
               <Popup>
                 <a
-                  href={`/profile/${host.username}`}
+                  href={`/${host.username}/profile`}
                   className="flex flex-col items-center text-center"
                 >
                   <div className="text-xl font-bold">{host.username}</div>
