@@ -172,7 +172,10 @@ export default function HeaderLogged(props: UserLoggedIn) {
                 </span>
               </li>
               <li>
-                <Link href={`/${props.username}/chat`}>Chat</Link>
+                <span className="justify-between">
+                  Chat
+                  <span className="badge">Soon!</span>
+                </span>
               </li>
               <li>
                 <span className="justify-between">

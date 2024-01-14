@@ -26,16 +26,7 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<UserResponse>> {
-  const username = params.username;
-
-  if (!username) {
-    const errorResponse = {
-      errors: [{ message: 'Username not found' }],
-    };
-    return NextResponse.json(errorResponse, { status: 404 });
-  }
-
-  const user = await getUserByUsername(username);
+  const user = await getUserByUsername(params.username!);
 
   if (!user) {
     const errorResponse = {
@@ -51,9 +42,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<UserResponse>> {
-  const username = params.username!;
-
-  const userToUpdate = await getUserByUsername(username);
+  const userToUpdate = await getUserByUsername(params.username!);
 
   if (!userToUpdate) {
     const errorResponse = {
@@ -109,16 +98,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<UserResponse>> {
-  const username = params.username!;
-
-  if (!username) {
-    const errorResponse = {
-      errors: [{ message: 'User not found' }],
-    };
-    return NextResponse.json(errorResponse, { status: 404 });
-  }
-
-  const user = await deleteUserByUsername(username);
+  const user = await deleteUserByUsername(params.username!);
 
   if (!user) {
     const errorResponse = {

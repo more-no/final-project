@@ -32,9 +32,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<UserAccountResponse>> {
-  const username = params.username!;
-
-  const userToUpdate = await getUserByUsername(username);
+  const userToUpdate = await getUserByUsername(params.username!);
 
   if (!userToUpdate) {
     const errorResponse = {

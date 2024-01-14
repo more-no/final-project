@@ -5,6 +5,8 @@ export type Language = {
   languageName: string;
 };
 
+export type Languages = Language[];
+
 export async function up(sql: Sql) {
   await sql`
     CREATE TABLE

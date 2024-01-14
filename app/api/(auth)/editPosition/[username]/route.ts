@@ -18,9 +18,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<HostResponse>> {
-  const username = params.username!;
-
-  const hostToUpdate = await getUserByUsername(username);
+  const hostToUpdate = await getUserByUsername(params.username!);
 
   if (!hostToUpdate) {
     const errorResponse = {

@@ -6,66 +6,57 @@ import { UserLanguages } from '../migrations/00005-createTableUsersLanguages';
 export const getLanguages = cache(async () => {
   const languages = await sql<Language[]>`
     SELECT
-      *
+      id,
+      language_name
     FROM
       languages
   `;
   return languages;
 });
 
-export const deleteLanguage = cache(async (languageName: string) => {
-  const language = await sql<Language[]>`
-    DELETE FROM languages
-    WHERE
-      language_name = ${languageName} RETURNING *
-  `;
-  return language;
-});
-
-// export const getLanguagesById = cache(async (languages: string[] => {
-//   const language = await sql<Language[]>`
-//     SELECT
-//       id
-//     FROM
-//       languages
-//     IN
-//       language_name = ${languages}
-//   `;
-//   return languages;
-// });
-
-// export const getLanguagesById = (languages: string[]) => {
-//   const languageArray = [];
-//   for (const language of languages) {
-//     languageArray.push(
-//       const language = await sql<Language[]>`
-//         SELECT
-//           id
-//         FROM
-//           languages
-//         WHERE
-//           language_name = ${language}
-//       `,
-//     );
-//   }
-//   return languageArray;
-// };
-
-export const updateUserLanguages = cache(async (username: string) => {
-  const [userLanguages] = await sql<UserLanguages[]>`
-    INSERT INTO
-      users_languages (
-        user_id,
-        language_id
-      )
+export const getLanguagesByUserId = cache(async (id: number) => {
+  const languages = await sql<UserLanguages[]>`
     SELECT
-      user_id,
-      language_id
+      languages.*
     FROM
-      users
-      JOIN languages ON languages.id = users.language_id
+      users_languages
+      JOIN languages ON users_languages.language_id = languages.id
     WHERE
-      users.username = ${username}
+      users_languages.user_id = ${id};
   `;
-  return userLanguages;
+  return languages;
 });
+
+export const updateUserLanguages = cache(
+  async (userId: number, languageId: number) => {
+    const [userLanguages] = await sql<UserLanguages[]>`
+      INSERT INTO
+        users_languages (
+          user_id,
+          language_id
+        )
+      VALUES
+        (
+          ${userId},
+          ${languageId}
+        ) RETURNING *
+    `;
+    console.log('User Languages:', userLanguages);
+    return userLanguages;
+  },
+);
+
+export const getLanguageByUserId = cache(
+  async (userId: number, languageId: number) => {
+    const [userLanguage] = await sql<UserLanguages[]>`
+      SELECT
+        *
+      FROM
+        users_languages
+      WHERE
+        user_id = ${userId}
+        AND language_id = ${languageId}
+    `;
+    return userLanguage;
+  },
+);

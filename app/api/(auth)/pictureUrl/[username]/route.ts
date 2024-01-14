@@ -21,9 +21,7 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Record<string, string> },
 ): Promise<NextResponse<PictureResponse>> {
-  const username = params.username!;
-
-  const userToUpdate = await getUserByUsername(username);
+  const userToUpdate = await getUserByUsername(params.username!);
 
   if (!userToUpdate) {
     const errorResponse = {
