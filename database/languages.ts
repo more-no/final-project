@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import { sql } from './connect';
-import { Language } from '../migrations/00004-createTableLanguages';
+import { Language, Languages } from '../migrations/00004-createTableLanguages';
 import { UserLanguages } from '../migrations/00005-createTableUsersLanguages';
 
 export const getLanguages = cache(async () => {
@@ -14,8 +14,8 @@ export const getLanguages = cache(async () => {
   return languages;
 });
 
-export const getLanguagesByUserId = cache(async (id: number) => {
-  const languages = await sql<UserLanguages[]>`
+export const getAllLanguagesByUserId = cache(async (id: number) => {
+  const languages = await sql<Languages>`
     SELECT
       languages.*
     FROM
@@ -41,7 +41,6 @@ export const updateUserLanguages = cache(
           ${languageId}
         ) RETURNING *
     `;
-    console.log('User Languages:', userLanguages);
     return userLanguages;
   },
 );
@@ -58,5 +57,17 @@ export const getLanguageByUserId = cache(
         AND language_id = ${languageId}
     `;
     return userLanguage;
+  },
+);
+
+export const deleteUserLanguage = cache(
+  async (userId: number, languageId: number) => {
+    const [languageToDelete] = await sql<UserLanguages[]>`
+      DELETE FROM users_languages
+      WHERE
+        user_id = ${userId}
+        AND language_id = ${languageId} RETURNING *
+    `;
+    return languageToDelete;
   },
 );

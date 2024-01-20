@@ -3,7 +3,6 @@ import { Sql } from 'postgres';
 export type UserLanguages = {
   userId: number;
   languageId: number;
-  languageName: string;
 };
 
 export async function up(sql: Sql) {

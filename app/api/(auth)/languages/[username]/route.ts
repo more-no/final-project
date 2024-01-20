@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUserByUsername } from '../../../../../database/users';
 import { UserLanguages } from '../../../../../migrations/00005-createTableUsersLanguages';
 import {
+  deleteUserLanguage,
   getLanguageByUserId,
   updateUserLanguages,
 } from '../../../../../database/languages';
 
 type LanguageResponse =
   | {
-      languages: UserLanguages | undefined[];
+      languages: UserLanguages | undefined;
     }
   | {
       errors: { message: string }[];
@@ -17,6 +18,54 @@ type LanguageResponse =
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string> },
+): Promise<NextResponse<LanguageResponse>> {
+  let userLanguages;
+  const user = await getUserByUsername(params.username!);
+
+  if (!user) {
+    const errorResponse = {
+      errors: [{ message: 'User not found' }],
+    };
+    return NextResponse.json(errorResponse, { status: 404 });
+  }
+
+  const body = await request.json();
+
+  const languageIds = body.languageId;
+  const userId = user.id;
+
+  for (const languageId of languageIds) {
+    const languageExist = await getLanguageByUserId(userId, languageId);
+
+    if (languageExist) {
+      return NextResponse.json(
+        { errors: [{ message: 'Language already listed' }] },
+        { status: 422 },
+      );
+    }
+
+    userLanguages = await updateUserLanguages(userId, languageId);
+
+    if (!userLanguages) {
+      const errorResponse = {
+        errors: [{ message: 'Error updating the Languages' }],
+      };
+      return NextResponse.json(errorResponse, { status: 500 });
+    }
+  }
+
+  return NextResponse.json({
+    languages: userLanguages,
+  });
+}
+
+export async function DELETE(
+  request: NextRequest,
+  {
+    params,
+  }: {
+    params: Record<string, string>;
+  },
 ): Promise<NextResponse<LanguageResponse>> {
   const user = await getUserByUsername(params.username!);
 
@@ -27,38 +76,27 @@ export async function PUT(
     return NextResponse.json(errorResponse, { status: 404 });
   }
 
-  // Get the user data from the request
-  const body = await request.json();
+  const languageId = parseInt(
+    request.nextUrl.searchParams.get('languageId') as string,
+  );
 
-  console.log('Body: ', body);
-
-  const languageId = body.languageId[0];
-  const userId = user.id;
-
-  console.log('LanguageId: ', languageId);
-  console.log('UserId: ', userId);
-
-  const languageExist = await getLanguageByUserId(userId, languageId);
-
-  if (languageExist) {
-    return NextResponse.json(
-      { errors: [{ message: 'Language already listed' }] },
-      { status: 422 },
-    );
+  if (!languageId) {
+    const errorResponse = {
+      errors: [{ message: 'Language not found' }],
+    };
+    return NextResponse.json(errorResponse, { status: 404 });
   }
 
-  const userLanguages = await updateUserLanguages(userId, languageId);
+  const languageToDelete = await deleteUserLanguage(user.id, languageId);
 
-  console.log('Response DB: ', userLanguages);
-
-  if (!userLanguages) {
+  if (!languageToDelete) {
     const errorResponse = {
-      errors: [{ message: 'Error updating the Languages' }],
+      errors: [{ message: 'Language not found' }],
     };
-    return NextResponse.json(errorResponse, { status: 500 });
+    return NextResponse.json(errorResponse, { status: 404 });
   }
 
   return NextResponse.json({
-    languages: userLanguages,
+    languages: languageToDelete,
   });
 }

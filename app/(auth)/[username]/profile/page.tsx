@@ -10,6 +10,8 @@ import { cookies } from 'next/headers';
 import BasicInfo from './BasicInfo';
 import AboutMe from './AboutMe';
 import AboutHost from './AboutHost';
+import { getAllLanguagesByUserId } from '../../../../database/languages';
+import UserLanguages from './Languages';
 
 type Props = {
   params: { username: string };
@@ -60,6 +62,8 @@ export default async function ProfilePage({ params }: Props) {
     return NextResponse.json(errorResponse, { status: 404 });
   }
 
+  const languages = await getAllLanguagesByUserId(user.id);
+
   return (
     <>
       <div>
@@ -80,6 +84,7 @@ export default async function ProfilePage({ params }: Props) {
                   country={user.country}
                   email={user.email}
                 />
+                <UserLanguages userLanguages={languages} />
               </div>
             </figure>
             <div className="card-body pr-16 pt-1">

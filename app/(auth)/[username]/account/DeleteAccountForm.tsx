@@ -11,20 +11,24 @@ export default function DeleteAccountForm({ user }: Props) {
   const router = useRouter();
 
   const handleDeleteAccount = async () => {
-    const response = await fetch(`/api/users/${user.username}`, {
-      method: 'DELETE',
-    });
+    try {
+      const response = await fetch(`/api/users/${user.username}`, {
+        method: 'DELETE',
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if ('errors' in data) {
-      console.log('Error deleting the user: ', data.errors);
-      return;
+      if ('errors' in data) {
+        console.log('Error deleting the user: ', data.errors);
+        return;
+      }
+
+      await DeleteSession();
+
+      router.replace('/');
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
     }
-
-    await DeleteSession();
-
-    router.replace('/');
   };
 
   return (

@@ -9,9 +9,10 @@ import { cookies } from 'next/headers';
 import { getValidSessionByTokenWithId } from '../../../../database/sessions';
 import { permanentRedirect } from 'next/navigation';
 import {
+  getAllLanguagesByUserId,
   getLanguages,
-  getLanguagesByUserId,
 } from '../../../../database/languages';
+import EditLanguageList from './EditLanguageList';
 
 type Props = {
   params: { username: string };
@@ -65,59 +66,52 @@ export default async function EditPage({ params }: Props) {
 
   const optionsList = await getLanguages();
 
-  const userLanguageList = await getLanguagesByUserId(user.id);
+  const userLanguageList = await getAllLanguagesByUserId(user.id);
 
-  console.log('List: ', userLanguageList);
+  return (
+    <>
+      <h1 className="text-4xl py-6 pb-15"> Edit your profile: </h1>
+      <p className="text-xl pb-8">
+        {' '}
+        Here you can update the info about yourself
+      </p>
 
-  if (userLanguageList.length === 0) {
-    return <div>There are no languages yet. </div>;
-  } else {
-    return (
-      <>
-        <h1 className="text-4xl py-6 pb-15"> Edit your profile: </h1>
-        <p className="text-xl pb-8">
-          {' '}
-          Here you can update the info about yourself
-        </p>
-
-        <div className="container mx-auto sw-full">
-          <div className="border-2 border-solid p-22">
-            <div className="card lg:card-side pb-16 pt-16">
-              <figure className="pl-16">
-                <div className="flex flex-col">
-                  <div className="rounded pb-10">
-                    <img src={user.pictureUrl} alt="Thumbnail" />
-                  </div>
-                  <div className="pr-16 pt-1">
-                    <UploadPicture
-                      cloudName={cloudinaryCloudName}
-                      username={user.username}
-                    />
-                  </div>
-                  <div className="pt-10">
-                    <EditLanguagesForm user={user} languages={optionsList} />
-                  </div>
-                  {userLanguageList.map((language) => {
-                    return (
-                      <div key={`user-${language.languageId}`}>
-                        {language.languageName}
-                      </div>
-                    );
-                  })}
+      <div className="container mx-auto sw-full">
+        <div className="border-2 border-solid p-22">
+          <div className="card lg:card-side pb-16 pt-16">
+            <figure className="pl-16">
+              <div className="flex flex-col">
+                <div className="rounded pb-10">
+                  <img src={user.pictureUrl} alt="Thumbnail" />
                 </div>
-              </figure>
-              <div className="card-body">
-                <div className="flex-col">
-                  <EditUserForm user={user} />
+                <div className="pr-16 pt-1">
+                  <UploadPicture
+                    cloudName={cloudinaryCloudName}
+                    username={user.username}
+                  />
+                </div>
+                <div className="pt-10 pb-10">
+                  <EditLanguagesForm user={user} languages={optionsList} />
+                </div>
+                <div>
+                  <EditLanguageList
+                    user={user}
+                    userLanguageList={userLanguageList}
+                  />
                 </div>
               </div>
-              <div className="card-body">
-                <EditHostForm host={host} username={user.username} />
+            </figure>
+            <div className="card-body">
+              <div className="flex-col">
+                <EditUserForm user={user} />
               </div>
+            </div>
+            <div className="card-body">
+              <EditHostForm host={host} username={user.username} />
             </div>
           </div>
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }

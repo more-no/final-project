@@ -14,6 +14,8 @@ import BasicInfo from './BasicInfo';
 import AboutMe from './AboutMe';
 import AboutHost from './AboutHost';
 import React from 'react';
+import { getAllLanguagesByUserId } from '../../../../database/languages';
+import UserLanguages from './Languages';
 
 type Props = {
   params: { username: string };
@@ -61,6 +63,8 @@ export default async function UserPage({ params }: Props) {
 
   const host = await getHostById(user.id);
 
+  const languages = await getAllLanguagesByUserId(user.id);
+
   if (!host && admin?.isAdmin === true) {
     return <UsersList users={users} />;
   }
@@ -84,6 +88,7 @@ export default async function UserPage({ params }: Props) {
                   city={user.city}
                   country={user.country}
                 />
+                <UserLanguages userLanguages={languages} />
               </div>
             </figure>
             <div className="card-body pr-16 pt-1">
