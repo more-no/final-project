@@ -46,7 +46,7 @@ export async function PUT(
   // ==========  End Check Schemas for ZOD  ==============
   // =====================================================
 
-  const valueAsString = JSON.stringify(body.position.value);
+  const valueAsString = JSON.stringify(result.data.position.value);
 
   const hostPosition = await updateHostPositionById(
     valueAsString,

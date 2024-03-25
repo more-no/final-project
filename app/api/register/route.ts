@@ -47,6 +47,9 @@ export async function POST(
   // Get the user data from the request
   const body = await request.json();
 
+  // ==========  Check Schemas for ZOD  ==================
+  // =====================================================
+
   // Validate the user data
   const result = registerSchema.safeParse(body);
 
@@ -58,6 +61,9 @@ export async function POST(
       },
     );
   }
+
+  // ==========  End Check Schemas for ZOD  ==============
+  // =====================================================
 
   // Check if user already exist in the database
   const user = await getUserByUsername(result.data.username);

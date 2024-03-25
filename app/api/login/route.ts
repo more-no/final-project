@@ -30,6 +30,9 @@ export async function POST(
   // Get the user data from the request
   const body = await request.json();
 
+  // ==========  Check Schemas for ZOD  ==================
+  // =====================================================
+
   // Validate the user data
   const result = loginSchema.safeParse(body);
 
@@ -41,6 +44,9 @@ export async function POST(
       },
     );
   }
+
+  // ==========  End Check Schemas for ZOD  ==============
+  // =====================================================
 
   // verify the user credentials
   const userWithPasswordHash = await getUserWithPasswordHashByUsername(
